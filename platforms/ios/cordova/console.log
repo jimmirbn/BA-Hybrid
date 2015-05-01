@@ -1,0 +1,71 @@
+2015-05-01 16:26:18.488 Frederikssund neurorehabilitation department[23194:380823] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Jimmi/Library/Developer/CoreSimulator/Devices/011C7E63-986A-436C-8C59-418CD0204E6D/data/Containers/Data/Application/EEB39C84-599C-40AD-BCAB-C6D77B909F83/Library/Cookies/Cookies.binarycookies
+2015-05-01 16:26:18.815 Frederikssund neurorehabilitation department[23194:380823] Apache Cordova native platform version 3.7.0 is starting.
+2015-05-01 16:26:18.815 Frederikssund neurorehabilitation department[23194:380823] Multi-tasking -> Device: YES, App: YES
+2015-05-01 16:26:18.840 Frederikssund neurorehabilitation department[23194:380823] Unlimited access to network resources
+2015-05-01 16:26:18.848 Frederikssund neurorehabilitation department[23194:380823] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-05-01 16:26:19.539 Frederikssund neurorehabilitation department[23194:380823] Resetting plugins due to page load.
+2015-05-01 16:26:19.772 Frederikssund neurorehabilitation department[23194:380823] Finished load of: file:///Users/Jimmi/Library/Developer/CoreSimulator/Devices/011C7E63-986A-436C-8C59-418CD0204E6D/data/Containers/Bundle/Application/61D582F2-CF5B-42C5-B3A6-B062BB011566/Frederikssund%20neurorehabilitation%20department.app/www/index.html
+2015-05-01 16:26:53.172 Frederikssund neurorehabilitation department[23468:382489] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Jimmi/Library/Developer/CoreSimulator/Devices/011C7E63-986A-436C-8C59-418CD0204E6D/data/Containers/Data/Application/E91FFF30-C44F-4B05-9C2E-F30266962766/Library/Cookies/Cookies.binarycookies
+2015-05-01 16:26:53.283 Frederikssund neurorehabilitation department[23468:382489] Apache Cordova native platform version 3.7.0 is starting.
+2015-05-01 16:26:53.283 Frederikssund neurorehabilitation department[23468:382489] Multi-tasking -> Device: YES, App: YES
+2015-05-01 16:26:53.285 Frederikssund neurorehabilitation department[23468:382489] Unlimited access to network resources
+2015-05-01 16:26:53.288 Frederikssund neurorehabilitation department[23468:382489] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-05-01 16:26:53.428 Frederikssund neurorehabilitation department[23468:382489] Resetting plugins due to page load.
+2015-05-01 16:26:53.543 Frederikssund neurorehabilitation department[23468:382489] Finished load of: file:///Users/Jimmi/Library/Developer/CoreSimulator/Devices/011C7E63-986A-436C-8C59-418CD0204E6D/data/Containers/Bundle/Application/FB252640-64AC-4490-BE0D-7289F157E36D/Frederikssund%20neurorehabilitation%20department.app/www/index.html
+2015-05-01 16:27:22.446 Frederikssund neurorehabilitation department[23468:383188] Terminating since there is no system app.
+2015-05-01 16:27:27.567 Frederikssund neurorehabilitation department[23700:383617] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Jimmi/Library/Developer/CoreSimulator/Devices/320BC867-EBC6-4921-A859-8C4799E7D574/data/Containers/Data/Application/FD1AF4C3-1CD5-43B4-9C9F-39CBE3957DC7/Library/Cookies/Cookies.binarycookies
+2015-05-01 16:27:27.663 Frederikssund neurorehabilitation department[23700:383617] Apache Cordova native platform version 3.7.0 is starting.
+2015-05-01 16:27:27.663 Frederikssund neurorehabilitation department[23700:383617] Multi-tasking -> Device: YES, App: YES
+2015-05-01 16:27:27.666 Frederikssund neurorehabilitation department[23700:383617] Unlimited access to network resources
+2015-05-01 16:27:27.668 Frederikssund neurorehabilitation department[23700:383617] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-05-01 16:27:28.034 Frederikssund neurorehabilitation department[23700:383617] Resetting plugins due to page load.
+2015-05-01 16:27:28.170 Frederikssund neurorehabilitation department[23700:383617] Finished load of: file:///Users/Jimmi/Library/Developer/CoreSimulator/Devices/320BC867-EBC6-4921-A859-8C4799E7D574/data/Containers/Bundle/Application/0562764D-2119-42E3-8595-2D38793D4C7F/Frederikssund%20neurorehabilitation%20department.app/www/index.html
+2015-05-01 16:28:53.433 Frederikssund neurorehabilitation department[23969:385250] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Jimmi/Library/Developer/CoreSimulator/Devices/1207FD7E-D980-4B3A-80F7-D985DA1832B3/data/Containers/Data/Application/DC042D73-C2E3-4B3E-B86E-E8E88B2E0C21/Library/Cookies/Cookies.binarycookies
+2015-05-01 16:28:53.577 Frederikssund neurorehabilitation department[23969:385250] Apache Cordova native platform version 3.7.0 is starting.
+2015-05-01 16:28:53.578 Frederikssund neurorehabilitation department[23969:385250] Multi-tasking -> Device: YES, App: YES
+2015-05-01 16:28:53.580 Frederikssund neurorehabilitation department[23969:385250] Unlimited access to network resources
+2015-05-01 16:28:53.584 Frederikssund neurorehabilitation department[23969:385250] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-05-01 16:28:54.073 Frederikssund neurorehabilitation department[23969:385250] Resetting plugins due to page load.
+2015-05-01 16:28:54.241 Frederikssund neurorehabilitation department[23969:385250] Finished load of: file:///Users/Jimmi/Library/Developer/CoreSimulator/Devices/1207FD7E-D980-4B3A-80F7-D985DA1832B3/data/Containers/Bundle/Application/C30ADD6C-C4F4-4B80-BA4A-76A43FBD52EB/Frederikssund%20neurorehabilitation%20department.app/www/index.html
+2015-05-01 16:29:42.584 Frederikssund neurorehabilitation department[24191:386677] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Jimmi/Library/Developer/CoreSimulator/Devices/F342CC62-FDC2-4E61-AB94-087E4EB93776/data/Containers/Data/Application/F4E684EC-3967-4A96-96CE-72917FE93832/Library/Cookies/Cookies.binarycookies
+2015-05-01 16:29:42.722 Frederikssund neurorehabilitation department[24191:386677] Apache Cordova native platform version 3.7.0 is starting.
+2015-05-01 16:29:42.722 Frederikssund neurorehabilitation department[24191:386677] Multi-tasking -> Device: YES, App: YES
+2015-05-01 16:29:42.724 Frederikssund neurorehabilitation department[24191:386677] Unlimited access to network resources
+2015-05-01 16:29:42.727 Frederikssund neurorehabilitation department[24191:386677] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-05-01 16:29:43.091 Frederikssund neurorehabilitation department[24191:386677] Resetting plugins due to page load.
+2015-05-01 16:29:43.196 Frederikssund neurorehabilitation department[24191:386677] Finished load of: file:///Users/Jimmi/Library/Developer/CoreSimulator/Devices/F342CC62-FDC2-4E61-AB94-087E4EB93776/data/Containers/Bundle/Application/355CA7E0-CEC0-487A-9AD7-68D3F2AFAC91/Frederikssund%20neurorehabilitation%20department.app/www/index.html
