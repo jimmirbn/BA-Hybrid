@@ -69,3 +69,4 @@ To disable web storage backup to iCloud, set the BackupWebStorage preference to 
 
 2015-05-01 16:29:43.091 Frederikssund neurorehabilitation department[24191:386677] Resetting plugins due to page load.
 2015-05-01 16:29:43.196 Frederikssund neurorehabilitation department[24191:386677] Finished load of: file:///Users/Jimmi/Library/Developer/CoreSimulator/Devices/F342CC62-FDC2-4E61-AB94-087E4EB93776/data/Containers/Bundle/Application/355CA7E0-CEC0-487A-9AD7-68D3F2AFAC91/Frederikssund%20neurorehabilitation%20department.app/www/index.html
+2015-05-01 17:40:42.052 Frederikssund neurorehabilitation department[24191:410194] Terminating since there is no system app.

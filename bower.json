@@ -1,0 +1,17 @@
+{
+  "name": "BA-Hybrid",
+  "version": "1.0.0",
+  "authors": [
+    "jimmi <jimmirbn@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "devDependencies": {
+    "bourbon": "~4.2.2",
+    "jquery": "~1.11.2"
+  }
+}
