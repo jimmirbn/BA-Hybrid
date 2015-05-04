@@ -57,7 +57,6 @@ img {
 
 .tab-content {
   width: auto;
-  display: none;
   height: 100%;
 }
 .tab-content .row {
@@ -68,10 +67,6 @@ img {
 }
 .tab-content .row .col-33 .swiper-container {
   height: 100%;
-}
-
-#tab-1 {
-  display: block;
 }
 
 .slide1 {
@@ -91,6 +86,10 @@ img {
 
 .clearfix {
   clear: both;
+}
+
+.hide {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

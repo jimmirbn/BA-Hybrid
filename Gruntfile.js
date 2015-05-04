@@ -358,6 +358,7 @@ module.exports = function (grunt) {
         // 'js_build',
         // 'assets_build',
         // 'template_build',
+        'sass',
         'notify:all'
     ]);
 

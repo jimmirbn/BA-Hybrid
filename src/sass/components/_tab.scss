@@ -51,7 +51,7 @@
 
 .tab-content {
     width: auto;
-    display: none;
+    // display: none;
     height: 100%;
     .row{
         height: 100%;
@@ -64,9 +64,9 @@
     }
 }
 
-#tab-1 {
- display: block;   
-}
+// #tab-1 {
+//  display: block;   
+// }
 
 .slide1{
     background: green;
