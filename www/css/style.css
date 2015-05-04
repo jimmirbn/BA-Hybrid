@@ -68,6 +68,9 @@ img {
 .tab-content .row .col-33 .swiper-container {
   height: 100%;
 }
+.tab-content img {
+  width: 100%;
+}
 
 .slide1 {
   background: green;
