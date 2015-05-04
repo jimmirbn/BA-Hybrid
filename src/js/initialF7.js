@@ -13,3 +13,12 @@ var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
+var mySwiper = myApp.swiper('.process-image', {
+    pagination:'.process-image-pagination'
+}); 
+var mySwiper = myApp.swiper('.process-video', {
+    pagination:'.process-video-pagination'
+}); 
+var mySwiper = myApp.swiper('.process-notes', {
+    pagination:'.process-notes-pagination'
+}); 

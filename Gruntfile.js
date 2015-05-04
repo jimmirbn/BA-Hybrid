@@ -37,6 +37,7 @@ module.exports = function (grunt) {
                 src : [
                     '<%= src.bower %>/jquery/dist/jquery.js',
                     '<%= src.bower %>/framework7/dist/js/framework7.js',
+                    '<%= src.bower %>/momentjs/moment.js',
                 ],
                 dest : '<%= app.js %>/vendors.js',
                 nonull : true
@@ -330,9 +331,9 @@ module.exports = function (grunt) {
 
     grunt.registerTask('js_build', [
         // 'ngAnnotate', 
-        'concat',
+        'concat:app',
         // 'modernizr',
-        'uglify',
+        'uglify:site',
         // 'clean',
         'notify:js'
     ]);
@@ -354,7 +355,7 @@ module.exports = function (grunt) {
         // 'concurrent:concurrentTwo',
         // 'modernizr',
         // 'clean',
-        'js_build',
+        // 'js_build',
         // 'assets_build',
         // 'template_build',
         'notify:all'
