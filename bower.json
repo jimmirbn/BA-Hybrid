@@ -12,6 +12,7 @@
   ],
   "devDependencies": {
     "bourbon": "~4.2.2",
-    "jquery": "~1.11.2"
+    "jquery": "~1.11.2",
+    "framework7": "~1.0.6"
   }
 }

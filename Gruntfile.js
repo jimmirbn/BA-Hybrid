@@ -20,29 +20,14 @@ module.exports = function (grunt) {
             root : 'src',
             js : '<%= src.root %>/js',
             sass : '<%= src.root %>/sass',
-            temp : '<%= src.root %>/temp',
+            // temp : '<%= src.root %>/temp',
             html : '<%= src.root %>/templating',
             
             assets : '<%= src.root %>/assets'
         },
     
-        // /**
-        //  * Annotate angular files before concatanation
-        //  */
-        // ngAnnotate : {
-        //     options : {
-        //         singleQuotes : true
-        //     },
-        //     app : {
-        //         files : {
-
-        //             '<%= src.temp %>/app.annotated.js' : ['<%= src.js %>/angular/**/*.js'] // where 'app' is the name of the app
-        //         }
-        //     }
-        // },
-    
         /**
-         * concat setup remember to include ngAnnotated files
+         * concat setup
          */
         concat: {
             options : {
@@ -51,14 +36,15 @@ module.exports = function (grunt) {
             vendors : {
                 src : [
                     '<%= src.bower %>/jquery/dist/jquery.js',
+                    '<%= src.bower %>/framework7/dist/js/framework7.js',
                 ],
                 dest : '<%= app.js %>/vendors.js',
                 nonull : true
             },
             app: {
                 src: [
-                    '<%= src.js %>/*.js',
-                    
+                    '<%= src.js %>/**/*.js',
+                    '<%= src.js %>/*.js'
                 ],
                 dest: '<%= app.js %>/site.js',
                 nonull : true
@@ -91,9 +77,7 @@ module.exports = function (grunt) {
             // }
         },
 
-        /**
-         * SASS setup
-         */
+/*sass setup*/
         sass: {
             dist: {
                 options: {
@@ -241,7 +225,10 @@ module.exports = function (grunt) {
                 options : {
                     livereload : 35729
                 },
-                files: ['<%= src.sass %>/**/*.scss'],
+                files: [
+                '<%= src.sass %>/**/*.scss',
+                '<%= src.sass %>/*.scss',
+                ],
                 tasks: ['css_build']
             },
             assetsfiles: {
@@ -343,9 +330,9 @@ module.exports = function (grunt) {
 
     grunt.registerTask('js_build', [
         // 'ngAnnotate', 
-        'concat:app',
+        'concat',
         // 'modernizr',
-        'uglify:site',
+        'uglify',
         // 'clean',
         'notify:js'
     ]);
@@ -367,6 +354,9 @@ module.exports = function (grunt) {
         // 'concurrent:concurrentTwo',
         // 'modernizr',
         // 'clean',
+        'js_build',
+        // 'assets_build',
+        // 'template_build',
         'notify:all'
     ]);
 
