@@ -1,7 +1,7 @@
 $(document).on("click", ".getPatientList", function() {
     var roomnr = this.id;
     var type = "patientListData";
-    $.post("api.php", {"type": type, 'roomnr' : roomnr}, function (data) {
+    $.post("http://www.digitaljimmi.com/api.php", {"type": type, 'roomnr' : roomnr}, function (data) {
         var result = JSON.parse(data);
         for (var i = 0; i < result.length; i++) {
 

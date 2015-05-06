@@ -15,7 +15,7 @@ $(document).on("click", ".getPatientInfo", function() {
     patientText.empty();
 
     localStorage.setItem("lastPatient", patientID);
-    $.post("api.php", {"type": type, 'id': patientID}, function (data) {
+    $.post("http://www.digitaljimmi.com/api.php", {"type": type, 'id': patientID}, function (data) {
         var result = JSON.parse(data);
         for (var i = 0; i < result.length; i++) {
             var name = result[i].fullname;
@@ -40,26 +40,32 @@ $(document).on("click", ".getPatientInfo", function() {
 
 //Load last patient
 var lastID = localStorage.getItem("lastPatient")
-var type = "patientInfo";
+if(lastID === null){
 
-$.post("api.php", {"type": type, 'id': lastID}, function (data) {
-    var result = JSON.parse(data);
-    for (var i = 0; i < result.length; i++) {
-        var name = result[i].fullname;
-        var image = result[i].image;
-        var infotext = result[i].infotext;
+    console.log('its empty');
+}
+else{
+    var type = "patientInfo";
 
-        var born = result[i].born;
-        var bornDate = moment(born).format('DD-MM-YYYY');
+    $.post("http://www.digitaljimmi.com/api.php", {"type": type, 'id': lastID}, function (data) {
+        var result = JSON.parse(data);
+        for (var i = 0; i < result.length; i++) {
+            var name = result[i].fullname;
+            var image = result[i].image;
+            var infotext = result[i].infotext;
 
-        var inlaid = result[i].inlaid;
-        var inlaidDate = moment(inlaid).format('DD-MM-YYYY');
-        var inlaidWeek = moment(inlaid).week();
+            var born = result[i].born;
+            var bornDate = moment(born).format('DD-MM-YYYY');
 
-        profileImage.append('<img src="'+image+'" alt="'+name+'">'); 
-        patientName.text(name); 
-        patientBorn.text('Født: '+bornDate);
-        patientinlaid.text('Indlagt: '+inlaidDate+' (Uge: '+inlaidWeek+')');
-        patientText.text(infotext);
-    }
-});
+            var inlaid = result[i].inlaid;
+            var inlaidDate = moment(inlaid).format('DD-MM-YYYY');
+            var inlaidWeek = moment(inlaid).week();
+
+            profileImage.append('<img src="'+image+'" alt="'+name+'">'); 
+            patientName.text(name); 
+            patientBorn.text('Født: '+bornDate);
+            patientinlaid.text('Indlagt: '+inlaidDate+' (Uge: '+inlaidWeek+')');
+            patientText.text(infotext);
+        }
+    });
+}

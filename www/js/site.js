@@ -93,8 +93,9 @@ $(document).on("click", ".openVideo", function() {
 
 });
 var type = "patientlejring";
+var lastID = localStorage.getItem("lastPatient")
 
-$.post("api.php", {"type": type}, function (data) {
+$.post("http://www.digitaljimmi.com/api.php", {"type": type, 'id':lastID}, function (data) {
     var result = JSON.parse(data);
     for (var i = 0; i < result.length; i++) {
         var image = result[i].image;
@@ -108,8 +109,6 @@ $.post("api.php", {"type": type}, function (data) {
         $("#positioning-video").append('<a href="#" class="openVideo"><video><source type="video/mp4" src="'+video+'"></video></a>');
     }
 });
-
-
 
 var profileImage = $("#profileImage");
 var patientName = $("#patientName");
@@ -128,7 +127,7 @@ $(document).on("click", ".getPatientInfo", function() {
     patientText.empty();
 
     localStorage.setItem("lastPatient", patientID);
-    $.post("api.php", {"type": type, 'id': patientID}, function (data) {
+    $.post("http://www.digitaljimmi.com/api.php", {"type": type, 'id': patientID}, function (data) {
         var result = JSON.parse(data);
         for (var i = 0; i < result.length; i++) {
             var name = result[i].fullname;
@@ -153,33 +152,39 @@ $(document).on("click", ".getPatientInfo", function() {
 
 //Load last patient
 var lastID = localStorage.getItem("lastPatient")
-var type = "patientInfo";
+if(lastID === null){
 
-$.post("api.php", {"type": type, 'id': lastID}, function (data) {
-    var result = JSON.parse(data);
-    for (var i = 0; i < result.length; i++) {
-        var name = result[i].fullname;
-        var image = result[i].image;
-        var infotext = result[i].infotext;
+    console.log('its empty');
+}
+else{
+    var type = "patientInfo";
 
-        var born = result[i].born;
-        var bornDate = moment(born).format('DD-MM-YYYY');
+    $.post("http://www.digitaljimmi.com/api.php", {"type": type, 'id': lastID}, function (data) {
+        var result = JSON.parse(data);
+        for (var i = 0; i < result.length; i++) {
+            var name = result[i].fullname;
+            var image = result[i].image;
+            var infotext = result[i].infotext;
 
-        var inlaid = result[i].inlaid;
-        var inlaidDate = moment(inlaid).format('DD-MM-YYYY');
-        var inlaidWeek = moment(inlaid).week();
+            var born = result[i].born;
+            var bornDate = moment(born).format('DD-MM-YYYY');
 
-        profileImage.append('<img src="'+image+'" alt="'+name+'">'); 
-        patientName.text(name); 
-        patientBorn.text('Født: '+bornDate);
-        patientinlaid.text('Indlagt: '+inlaidDate+' (Uge: '+inlaidWeek+')');
-        patientText.text(infotext);
-    }
-});
+            var inlaid = result[i].inlaid;
+            var inlaidDate = moment(inlaid).format('DD-MM-YYYY');
+            var inlaidWeek = moment(inlaid).week();
+
+            profileImage.append('<img src="'+image+'" alt="'+name+'">'); 
+            patientName.text(name); 
+            patientBorn.text('Født: '+bornDate);
+            patientinlaid.text('Indlagt: '+inlaidDate+' (Uge: '+inlaidWeek+')');
+            patientText.text(infotext);
+        }
+    });
+}
 $(document).on("click", ".getPatientList", function() {
     var roomnr = this.id;
     var type = "patientListData";
-    $.post("api.php", {"type": type, 'roomnr' : roomnr}, function (data) {
+    $.post("http://www.digitaljimmi.com/api.php", {"type": type, 'roomnr' : roomnr}, function (data) {
         var result = JSON.parse(data);
         for (var i = 0; i < result.length; i++) {
 
@@ -201,7 +206,7 @@ $(document).on("click", ".getPatientList", function() {
 $(document).on("click", ".team", function() {
     var teamnr = this.id;
     var type = "roomdata";
-    $.post("api.php", {"type": type, 'teamnr' : teamnr}, function (data) {
+    $.post("http://www.digitaljimmi.com/api.php", {"type": type, 'teamnr' : teamnr}, function (data) {
         var result = JSON.parse(data);
         for (var i = 0; i < result.length; i++) {
 

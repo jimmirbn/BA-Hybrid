@@ -1,6 +1,7 @@
 var type = "patientlejring";
+var lastID = localStorage.getItem("lastPatient")
 
-$.post("api.php", {"type": type}, function (data) {
+$.post("http://www.digitaljimmi.com/api.php", {"type": type, 'id':lastID}, function (data) {
     var result = JSON.parse(data);
     for (var i = 0; i < result.length; i++) {
         var image = result[i].image;
@@ -14,5 +15,3 @@ $.post("api.php", {"type": type}, function (data) {
         $("#positioning-video").append('<a href="#" class="openVideo"><video><source type="video/mp4" src="'+video+'"></video></a>');
     }
 });
-
-

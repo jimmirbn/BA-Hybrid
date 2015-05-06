@@ -1,103 +1,282 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>My App</title>
-    <!-- Path to Framework7 Library CSS-->
-    <link rel="stylesheet" href="css/framework7.min.css">
     <!-- Path to your custom app styles-->
-    <link rel="stylesheet" href="css/my-app.css">
-  </head>
-  <body>
+    <link rel="stylesheet" href="css/framework7.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <!-- Panels overlay-->
     <div class="panel-overlay"></div>
     <!-- Left panel with reveal effect-->
     <div class="panel panel-left panel-reveal">
-      <div class="content-block">
-        <p>Left panel content goes here</p>
-      </div>
-    </div>
-    <!-- Right panel with cover effect-->
-    <div class="panel panel-right panel-cover">
-      <div class="content-block">
-        <p>Right panel content goes here</p>
-      </div>
+        <!-- Left view-->
+        <div class="view view-left navbar-through">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="center sliding">Left View</div>
+                </div>
+            </div>
+            <div class="pages">
+                <div data-page="index-left" class="page">
+                    <div class="page-content">
+                        <div class="content-block-title">Team list</div>
+                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <a id="1" href="left-page-1.html" class="item-link team">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Team 1</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="2" href="left-page-1.html" class="item-link team">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Team 2</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="3" href="left-page-1.html" class="item-link team">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Team 3</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- <div class="content-block-title">Control Main View</div>
+                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <a href="about.html" data-view=".view-main" class="item-link">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">About</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="services.html" data-view=".view-main" class="item-link">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Services</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-view=".view-main" class="back item-link">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Back in history</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Views-->
     <div class="views">
-      <!-- Your main view, should have "view-main" class-->
-      <div class="view view-main">
-        <!-- Top Navbar-->
-        <div class="navbar">
-          <div class="navbar-inner">
-            <!-- We have home navbar without left link-->
-            <div class="center sliding">Awesome App</div>
-            <div class="right">
-              <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
-        <div class="pages navbar-through toolbar-through">
-          <!-- Page, data-page contains page name-->
-          <div data-page="index" class="page">
-            <!-- Scrollable page content-->
-            <div class="page-content">
-              <div class="content-block-title">Welcome To My Awesome App</div>
-              <div class="content-block">
-                <div class="content-block-inner">
-                  <p>Couple of worlds here because my app is so awesome!</p>
-                  <p>Duis sed erat ac eros ultrices pharetra id ut tellus. Praesent rhoncus enim ornare ipsum aliquet ultricies. Pellentesque sodales erat quis elementum sagittis.</p>
+        <!-- Right view, it is main view-->
+        <div class="view view-main navbar-through">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <a href="#" class="open-panel left">left</a>
+
+                    <div class="center sliding">Headline</div>
                 </div>
-              </div>
-              <div class="content-block-title">What about simple navigation?</div>
-              <div class="list-block">
-                <ul>
-                  <li><a href="about.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner"> 
-                          <div class="item-title">About</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="services.html" class="item-link">
-                      <div class="item-content"> 
-                        <div class="item-inner">
-                          <div class="item-title">Services</div>
-                        </div>
-                      </div></a></li>
-                  <li><a href="form.html" class="item-link">
-                      <div class="item-content"> 
-                        <div class="item-inner">
-                          <div class="item-title">Form</div>
-                        </div>
-                      </div></a></li>
-                </ul>
-              </div>
-              <div class="content-block-title">Side panels</div>
-              <div class="content-block">
-                <div class="row">
-                  <div class="col-50"><a href="#" data-panel="left" class="button open-panel">Left Panel</a></div>
-                  <div class="col-50"><a href="#" data-panel="right" class="button open-panel">Right Panel</a></div>
-                </div>
-              </div>
             </div>
-          </div>
+            <!-- Pages-->
+            <div class="pages">
+                <!-- Page, data-page contains page name-->
+                <div data-page="index-1" class="page">
+                    <!-- Scrollable page content-->
+                    <div class="page-content">
+                        <div class="content-block">
+                            <div class="content-block-inner">
+                                <div class="row">
+                                    <div class="col-50">
+                                        <div class="row">
+                                            <div class="col-50">
+                                                <span id="profileImage"></span>
+                                            </div>
+                                            <div class="col-50">
+                                                <p id="patientName"></p>
+                                                <p id="patientBorn"></p>
+                                                <p id="patientinlaid"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-50">
+                                        <p id="patientText"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabs-container">
+                                <div class="tabs-header">
+                                    <p>Patient data</p>
+                                </div>
+                                <div class="row no-gutter tabs-innercontainer">
+                                    <div class="col-25 h100">
+                                        <ul class="tabs-menu h100">
+                                            <li class="current"><a href="#tab-1">Process</a></li>
+                                            <li><a href="#tab-2">Forflytninger</a></li>
+                                            <li><a href="#tab-3">Lejring</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-75 h100">
+                                        <div class="tab h100">
+                                            <div id="tab-1" class="tab-content">
+                                                <div class="row">
+                                                    <div class="col-33">
+                                                        <div class="swiper-container process-image">
+                                                            <div class="swiper-wrapper">
+                                                                <div class="swiper-slide">
+                                                                    <div class="slide1"></div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="slide2"></div>
+                                                                </div>
+                                                                <div class="swiper-slide">
+                                                                    <div class="slide3"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="swiper-pagination"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-33">
+                                                        <div class="swiper-container process-video">
+                                                            <div class="swiper-wrapper">
+                                                                <div class="swiper-slide">Slide 1</div>
+                                                                <div class="swiper-slide">Slide 2</div>
+                                                                <div class="swiper-slide">Slide 3</div>
+                                                            </div>
+                                                            <div class="swiper-pagination"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-33">
+                                                        <div class="swiper-container process-notes">
+                                                            <div class="swiper-wrapper">
+                                                                <div class="swiper-slide">Slide 1</div>
+                                                                <div class="swiper-slide">Slide 2</div>
+                                                                <div class="swiper-slide">Slide 3</div>
+                                                            </div>
+                                                            <div class="swiper-pagination"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="tab-2" class="tab-content hide">
+                                                <div class="row">
+                                                    <div class="col-33">
+                                                        <div class="swiper-container transfers-image">
+                                                            <!-- Slides wrapper -->
+                                                            <div class="swiper-wrapper">
+                                                                <!-- Slides -->
+                                                                <div class="swiper-slide">Slide 1</div>
+                                                                <div class="swiper-slide">Slide 2</div>
+                                                                <div class="swiper-slide">Slide 3</div>
+                                                            </div>
+                                                            <div class="swiper-pagination"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-33">
+                                                        <div class="swiper-container transfers-video">
+                                                            <!-- Slides wrapper -->
+                                                            <div class="swiper-wrapper">
+                                                                <!-- Slides -->
+                                                                <div class="swiper-slide">Slide 1</div>
+                                                                <div class="swiper-slide">Slide 2</div>
+                                                                <div class="swiper-slide">Slide 3</div>
+                                                            </div>
+                                                            <div class="swiper-pagination"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-33">
+                                                        <div class="swiper-container transfers-notes">
+                                                            <!-- Slides wrapper -->
+                                                            <div class="swiper-wrapper">
+                                                                <!-- Slides -->
+                                                                <div class="swiper-slide">Slide 1</div>
+                                                                <div class="swiper-slide">Slide 2</div>
+                                                                <div class="swiper-slide">Slide 3</div>
+                                                            </div>
+                                                            <div class="swiper-pagination"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="tab-3" class="tab-content hide">
+                                                <div class="row">
+                                                    <div class="col-33">
+                                                        <div class="swiper-container positioning-image">
+                                                            <!-- Slides wrapper -->
+                                                            <div class="swiper-wrapper" id="positioning-image">
+                                                                <!-- Slides -->
+                                                                
+                                                            </div>
+                                                            <div class="swiper-pagination"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-33">
+                                                        <div class="swiper-container positioning-video">
+                                                            <!-- Slides wrapper -->
+                                                            <div class="swiper-wrapper">
+                                                                <!-- Slides -->
+                                                                <div class="swiper-slide" id="positioning-video"></div>
+                                                            </div>
+                                                            <div class="swiper-pagination"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-33">
+                                                        <div class="swiper-container positioning-notes">
+                                                            <!-- Slides wrapper -->
+                                                            <div class="swiper-wrapper">
+                                                                <!-- Slides -->
+                                                                <div class="swiper-slide" id="positioning-notes">Slide 1</div>
+                                                            </div>
+                                                            <div class="swiper-pagination"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- Bottom Toolbar-->
-        <div class="toolbar">
-          <div class="toolbar-inner"><a href="#" class="link">Link 1</a><a href="#" class="link">Link 2</a></div>
-        </div>
-      </div>
-    </div>
-    <!-- Path to Framework7 Library JS-->
-     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/framework7.min.js"></script>
-    <!-- Path to your app js-->
-    <script type="text/javascript" src="js/my-app.js"></script>
-  </body>
-</html>
+        <!-- Path to Framework7 Library JS-->
+        <script type="text/javascript" src="cordova.js"></script>
+        <!-- Path to your app js-->
+        <script type="text/javascript" src="js/vendors.min.js"></script>
+        <script type="text/javascript" src="js/site.min.js"></script>
+    </body>
+
+    </html>
