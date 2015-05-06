@@ -10,8 +10,7 @@ $.post("api.php", {"type": type}, function (data) {
         var video = result[i].video;
         var videodate = result[i].videodate;
 
-        $("#positioning-image").append('<img src="'+image+'">');
-        $("#positioning-video").append('<video><source type="video/mp4" src="'+video+'"></video>');
-
+        $("#positioning-image").append('<a href="#" class="openPhoto"><img src="'+image+'"></a>');
+        $("#positioning-video").append('<a href="#" class="openVideo"><video><source type="video/mp4" src="'+video+'"></video></a>');
     }
 });
