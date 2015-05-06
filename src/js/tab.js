@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     $(".tabs-menu a").click(function(event) {
         event.preventDefault();
         $(this).parent().addClass("current");
