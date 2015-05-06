@@ -38,6 +38,7 @@ module.exports = function (grunt) {
                     '<%= src.bower %>/jquery/dist/jquery.js',
                     '<%= src.bower %>/framework7/dist/js/framework7.js',
                     '<%= src.bower %>/momentjs/moment.js',
+                    '<%= src.bower %>/jquery-resize-image-to-parent/jquery.resizeimagetoparent.js',
                 ],
                 dest : '<%= app.js %>/vendors.js',
                 nonull : true
@@ -358,6 +359,8 @@ module.exports = function (grunt) {
         // 'js_build',
         // 'assets_build',
         // 'template_build',
+        'concat:vendors',
+        'uglify:vendors',
         'sass',
         'notify:all'
     ]);
@@ -365,6 +368,7 @@ module.exports = function (grunt) {
     grunt.registerTask('default', [
         'bower_install',
         'once',
+
         'watch'
     ]);
 

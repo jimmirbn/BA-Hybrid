@@ -15,6 +15,13 @@ img {
 .tabs-container .tabs-header p {
   margin: 0;
 }
+.tabs-container .tabs-innercontainer {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  top: 325px;
+  bottom: 15px;
+}
 
 .tabs-menu {
   list-style: none;
@@ -87,12 +94,46 @@ img {
   height: 100%;
 }
 
+.swiper-slide {
+  overflow: hidden;
+}
+
+.openPhoto {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.openVideo {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.openVideo video {
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .clearfix {
   clear: both;
 }
 
 .hide {
   display: none;
+}
+
+.h100 {
+  height: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,23 @@
+.swiper-slide{
+	overflow: hidden;
+}
+.openPhoto{
+	display: block;
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+.openVideo{
+	display: block;
+	height: 100%;
+	width: 100%;
+	video{
+		height: 100%;
+		@include position(absolute, 50% null null 50%);
+		@include transform(translate(-50%, -50%));
+		
+	}
+	
+}

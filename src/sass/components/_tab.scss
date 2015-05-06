@@ -9,7 +9,16 @@
             margin: 0;
         }
     }
+
+    .tabs-innercontainer{
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        top: 325px;
+        bottom: 15px;
+    }
 }
+
 .tabs-menu {
     list-style: none;
     padding: 0;
@@ -51,7 +60,6 @@
 
 .tab-content {
     width: auto;
-    // display: none;
     height: 100%;
     .row{
         height: 100%;
@@ -66,10 +74,6 @@
         width: 100%;
     }
 }
-
-// #tab-1 {
-//  display: block;   
-// }
 
 .slide1{
     background: green;
