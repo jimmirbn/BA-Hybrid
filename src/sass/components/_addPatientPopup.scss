@@ -1,0 +1,35 @@
+.popup-addPatient {
+    .row {
+        width: 50%;
+        margin: auto;
+        .list-block {
+            width: 100%;
+            .item-title{
+                color: gray;
+            }
+            .profileImage {
+                border: solid 2px lightgray;
+                background: url("../img/ava.png") no-repeat center center;
+                width: 152px;
+                height: 152px;
+                margin: 0 auto 35px;
+                border-radius: 2px;
+            }
+            .align-top {
+                .item-inner {
+                    display: block;
+                }
+                .item-title {
+                    width: 100%;
+                }
+                textarea {
+                    padding-left: 0;
+                }
+            }
+        }
+        button{
+            width: 50%;
+            margin: auto;
+        }
+    }
+}

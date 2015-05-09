@@ -10,6 +10,7 @@
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/framework7.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 
 <body>
@@ -106,6 +107,7 @@
                 <div class="navbar-inner">
                     <a href="#" class="open-panel left">left</a>
                     <div class="center sliding">Headline</div>
+                    <p class="right"><a href="#" data-popup=".popup-addPatient" class="open-popup">Add patient</a></p>
                 </div>
             </div>
             <!-- Pages-->
@@ -271,11 +273,79 @@
                 </div>
             </div>
         </div>
-        <!-- Path to Framework7 Library JS-->
-        <script type="text/javascript" src="cordova.js"></script>
-        <!-- Path to your app js-->
-        <script type="text/javascript" src="js/vendors.min.js"></script>
-        <script type="text/javascript" src="js/site.min.js"></script>
+    </div>
+    <div class="popup tablet-fullscreen popup-addPatient">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="center">Headline</div>
+                <p class="right"><a href="#" class="close-popup">Close popup</a></p>
+            </div>
+        </div>
+        <!-- <div class="content-block"> -->
+        <div class="row">
+            <div class="list-block">
+                <div class="profileImage">
+                </div>
+                <ul>
+                    <!-- Text inputs -->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Full Name</div>
+                                <div class="item-input">
+                                    <input type="text" placeholder="Patient full name">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Birth date</div>
+                                <div class="item-input">
+                                    <input type="date" placeholder="Birth day">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Room nr</div>
+                                <div class="item-input">
+                                    <select>
+                                        <option>Room 1</option>
+                                        <option>Room 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="align-top">
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-comment"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Description/Goals</div>
+                                <div class="item-input">
+                                    <textarea></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button class="button button-big active">Add patient</button>
+        </div>
+        <!-- </div> -->
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/vendors.min.js"></script>
+    <script type="text/javascript" src="js/site.min.js"></script>
 </body>
 
 </html>

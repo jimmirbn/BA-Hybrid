@@ -139,7 +139,7 @@ module.exports = function (grunt) {
             assets: {
                 expand: true,
                 cwd: '<%= src.assets %>/',
-                src: ['**/*.{ico,xml}'],
+                src: ['**/*.{ico,xml,png,jpg,svg}'],
                 dest: '<%= app.img %>/'
             },
 
@@ -356,8 +356,7 @@ module.exports = function (grunt) {
         // 'modernizr',
         // 'clean',
         // 'js_build',
-        // 'assets_build',
-        // 'template_build',
+        'assets_build',
         'concat:vendors',
         'uglify:vendors',
         'sass',
@@ -367,7 +366,6 @@ module.exports = function (grunt) {
     grunt.registerTask('default', [
         'bower_install',
         'once',
-
         'watch'
     ]);
 

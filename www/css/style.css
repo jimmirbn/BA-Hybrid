@@ -150,6 +150,38 @@
   transform: translate(-50%, -50%);
 }
 
+.popup-addPatient .row {
+  width: 50%;
+  margin: auto;
+}
+.popup-addPatient .row .list-block {
+  width: 100%;
+}
+.popup-addPatient .row .list-block .item-title {
+  color: gray;
+}
+.popup-addPatient .row .list-block .profileImage {
+  border: solid 2px lightgray;
+  background: url("../img/ava.png") no-repeat center center;
+  width: 152px;
+  height: 152px;
+  margin: 0 auto 35px;
+  border-radius: 2px;
+}
+.popup-addPatient .row .list-block .align-top .item-inner {
+  display: block;
+}
+.popup-addPatient .row .list-block .align-top .item-title {
+  width: 100%;
+}
+.popup-addPatient .row .list-block .align-top textarea {
+  padding-left: 0;
+}
+.popup-addPatient .row button {
+  width: 50%;
+  margin: auto;
+}
+
 .clearfix {
   clear: both;
 }
