@@ -123,6 +123,7 @@
                                             <div class="col-50">
                                                 <span id="profileImage"></span>
                                             </div>
+
                                             <div class="col-50">
                                                 <p id="patientName"></p>
                                                 <p id="patientBorn"></p>
@@ -131,6 +132,12 @@
                                         </div>
                                     </div>
                                     <div class="col-50">
+                                    <button onclick="capturePhotoWithData();">Capture Photo With Image Data</button> <br>
+    <button onclick="capturePhotoWithFile();">Capture Photo With Image File URI</button> <br>
+    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+    <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+    <img style="display:none;" id="largeImage" src="" />
                                         <p id="patientText"></p>
                                     </div>
                                 </div>
