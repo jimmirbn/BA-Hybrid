@@ -51,7 +51,7 @@ function uploadFilePositioning(mediaFile) {
 
 function winPositioning(r) {
     var positioningVideo = $("#positioning-video");
-    positioningVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + r.response + '"></video></a></div>');
+    positioningVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + r.response + '"></video></a></div>');
 }
 
 function fail(error) {

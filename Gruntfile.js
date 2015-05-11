@@ -138,7 +138,7 @@ module.exports = function (grunt) {
         copy: {
             assets: {
                 expand: true,
-                cwd: '<%= src.assets %>/',
+                cwd: '<%= src.img %>/',
                 src: ['**/*.{ico,xml,png,jpg,svg}'],
                 dest: '<%= app.img %>/'
             },
@@ -165,9 +165,9 @@ module.exports = function (grunt) {
             assets: {
                 files: [{
                     expand: true,
-                    cwd: '<%= src.assets %>/',
+                    cwd: '<%= src.img %>/',
                     src: ['**/*.{png,jpg,gif}'],
-                    dest: '<%= app.assets %>/'
+                    dest: '<%= app.img %>/'
                 }]
             },
             uploads: {
@@ -200,9 +200,9 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= src.assets %>/',
+                    cwd: '<%= src.img %>/',
                     src: ['**/*.svg'],
-                    dest: '<%= app.assets %>/',
+                    dest: '<%= app.img %>/',
                     ext: '.svg'
                 }]
             }
@@ -236,7 +236,7 @@ module.exports = function (grunt) {
                 options : {
                     livereload : 35729
                 },
-                files: ['<%= src.assets %>/**/*.{png,jpg,gif}', '<%= src.assets %>/*.{png,jpg,gif}', '<%= src.assets %>/**/*.svg', '<%= src.assets %>/*.svg'],
+                files: ['<%= src.img%>/**/*.{png,jpg,gif}', '<%= src.img %>/*.{png,jpg,gif}', '<%= src.img %>/**/*.svg', '<%= src.img %>/*.svg'],
                 tasks: ['assets_build']
             },
             templatefiles: {

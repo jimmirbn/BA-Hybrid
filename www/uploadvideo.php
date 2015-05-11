@@ -8,7 +8,8 @@ function getEncodedVideoString($type, $file) {
 $video = getEncodedVideoString('mp4', $_FILES["file"]['tmp_name']);
 echo $video;
 $id = $_POST['id'];
-
+$videotitle = $_POST['videotitle'];
+echo $videotitle;
 if($_POST['type'] == 'transfer'){
 
 	$result = $mysqli->query("INSERT INTO transfervideo(patientid,transfervideo) VALUES('$id','$video')");

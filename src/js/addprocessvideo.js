@@ -22,6 +22,7 @@ $$('.addProcessVideo').on('click', function() {
 // Called when capture operation is finished
 //
 function captureSuccessProcess(mediaFiles) {
+
     var i, len;
     for (i = 0, len = mediaFiles.length; i < len; i += 1) {
         uploadFileProcess(mediaFiles[i]);
@@ -35,22 +36,29 @@ function captureVideoProcess() {
 }
 
 function uploadFileProcess(mediaFile) {
-    var options = new FileUploadOptions();
 
-    var params = {};
-    params.type = "process";
-    params.id = $('#patientID').val();
+    myApp.prompt('Giv videon en title', 'Video title', function(value) {
 
-    options.params = params;
-    var ft = new FileTransfer(),
-        path = mediaFile.fullPath,
-        name = mediaFile.name;
-    ft.upload(path, 'http://www.digitaljimmi.com/uploadvideo.php', winProcess, fail, options);
+        var options = new FileUploadOptions();
+
+        var params = {};
+        params.type = "process";
+        params.id = $('#patientID').val();
+        params.videotitle = value;
+
+        options.params = params;
+        var ft = new FileTransfer(),
+            path = mediaFile.fullPath,
+            name = mediaFile.name;
+        ft.upload(path, 'http://www.digitaljimmi.com/uploadvideo.php', winProcess, fail, options);
+
+    });
 }
 
 function winProcess(r) {
+    console.log(r.response);
     var processVideo = $("#process-video");
-    processVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + r.response + '"></video></a></div>');
+    processVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + r.response + '"></video></a></div>');
 
 }
 

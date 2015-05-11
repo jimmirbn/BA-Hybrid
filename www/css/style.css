@@ -147,6 +147,30 @@
   z-index: 99;
 }
 
+.sliderDate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  color: white;
+  background: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  display: block;
+  margin: 0;
+  padding: 10px;
+}
+
+.videoTitle {
+  margin: 0;
+  position: absolute;
+  top: 20%;
+  color: white;
+  z-index: 9;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+
 .popup-addPatient .row {
   width: 50%;
   margin: auto;

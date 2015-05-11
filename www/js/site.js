@@ -266,7 +266,7 @@ function uploadFilePositioning(mediaFile) {
 
 function winPositioning(r) {
     var positioningVideo = $("#positioning-video");
-    positioningVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + r.response + '"></video></a></div>');
+    positioningVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + r.response + '"></video></a></div>');
 }
 
 function fail(error) {
@@ -356,6 +356,7 @@ $$('.addProcessVideo').on('click', function() {
 // Called when capture operation is finished
 //
 function captureSuccessProcess(mediaFiles) {
+
     var i, len;
     for (i = 0, len = mediaFiles.length; i < len; i += 1) {
         uploadFileProcess(mediaFiles[i]);
@@ -369,22 +370,29 @@ function captureVideoProcess() {
 }
 
 function uploadFileProcess(mediaFile) {
-    var options = new FileUploadOptions();
 
-    var params = {};
-    params.type = "process";
-    params.id = $('#patientID').val();
+    myApp.prompt('Giv videon en title', 'Video title', function(value) {
 
-    options.params = params;
-    var ft = new FileTransfer(),
-        path = mediaFile.fullPath,
-        name = mediaFile.name;
-    ft.upload(path, 'http://www.digitaljimmi.com/uploadvideo.php', winProcess, fail, options);
+        var options = new FileUploadOptions();
+
+        var params = {};
+        params.type = "process";
+        params.id = $('#patientID').val();
+        params.videotitle = value;
+
+        options.params = params;
+        var ft = new FileTransfer(),
+            path = mediaFile.fullPath,
+            name = mediaFile.name;
+        ft.upload(path, 'http://www.digitaljimmi.com/uploadvideo.php', winProcess, fail, options);
+
+    });
 }
 
 function winProcess(r) {
+    console.log(r.response);
     var processVideo = $("#process-video");
-    processVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + r.response + '"></video></a></div>');
+    processVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + r.response + '"></video></a></div>');
 
 }
 
@@ -503,7 +511,7 @@ function uploadFileTransfer(mediaFile) {
 
 function winTransfer(r) {
     var transfersVideo = $("#transfers-video");
-    transfersVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + r.response + '"></video></a></div>');
+    transfersVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + r.response + '"></video></a></div>');
 }
 
 function fail(error) {
@@ -584,7 +592,7 @@ $$(document).on("click", ".getPatientInfo", function() {
             for (var i = 0; i < result.length; i++) {
                 var image = result[i].processimage;
                 var imagedate = result[i].processimagedate;
-                processImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+                processImage.append('<div class="swiper-slide"><p class="sliderDate">'+imagedate+'</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
             }
         }
     });
@@ -601,7 +609,7 @@ $$(document).on("click", ".getPatientInfo", function() {
             for (var i = 0; i < result.length; i++) {
                 var note = result[i].processnote;
                 var notedate = result[i].processnotedate;
-                processNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+                processNotes.append('<div class="swiper-slide test"><p class="sliderDate">'+notedate+'</p><p class="sliderNote">'+note+'</p></div>');
             }
         }
     });
@@ -618,7 +626,8 @@ $$(document).on("click", ".getPatientInfo", function() {
             for (var i = 0; i < result.length; i++) {
                 var video = result[i].processvideo;
                 var videodate = result[i].processvideodate;
-                processVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
+                var videotitle = result[i].processvideotitle;
+                processVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
                 
             }
         }
@@ -637,7 +646,7 @@ $$(document).on("click", ".getPatientInfo", function() {
             for (var i = 0; i < result.length; i++) {
                 var image = result[i].transferimage;
                 var imagedate = result[i].transferimagedate;
-                transfersImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+                transfersImage.append('<div class="swiper-slide test"><p class="sliderDate">'+imagedate+'</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
             }
         }
     });
@@ -654,7 +663,7 @@ $$(document).on("click", ".getPatientInfo", function() {
             for (var i = 0; i < result.length; i++) {
                 var note = result[i].transfernote;
                 var notedate = result[i].transfernotedate;
-                transfersNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+                transfersNotes.append('<div class="swiper-slide test"><p class="sliderDate">'+notedate+'</p><p class="sliderNote">'+note+'</p></div>');
             }
         }
     });
@@ -671,8 +680,8 @@ $$(document).on("click", ".getPatientInfo", function() {
             for (var i = 0; i < result.length; i++) {
                 var video = result[i].transfervideo;
                 var videodate = result[i].transfervideodate;
-                transfersVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
-                
+                var videotitle = result[i].transfervideotitle;
+                transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');  
             }
         }
     });
@@ -691,7 +700,7 @@ $$(document).on("click", ".getPatientInfo", function() {
             for (var i = 0; i < result.length; i++) {
                 var image = result[i].positioningimage;
                 var imagedate = result[i].positioningimagedate;
-                positioningImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+                positioningImage.append('<div class="swiper-slide"><p class="sliderDate">'+imagedate+'</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
             }
         }
     });
@@ -708,7 +717,7 @@ $$(document).on("click", ".getPatientInfo", function() {
             for (var i = 0; i < result.length; i++) {
                 var note = result[i].positioningnote;
                 var notedate = result[i].positioningnotedate;
-                positioningNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+                positioningNotes.append('<div class="swiper-slide test"><p class="sliderDate">'+notedate+'</p><p class="sliderNote">'+note+'</p></div>');
             }
         }
     });
@@ -725,7 +734,8 @@ $$(document).on("click", ".getPatientInfo", function() {
             for (var i = 0; i < result.length; i++) {
                 var video = result[i].positioningvideo;
                 var videodate = result[i].positioningvideodate;
-                positioningVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
+                var videotitle = result[i].positioningvideotitle;
+                positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
                 
             }
         }
@@ -780,7 +790,7 @@ if (lastID === null) {
             for (var i = 0; i < result.length; i++) {
                 var image = result[i].processimage;
                 var imagedate = result[i].processimagedate;
-                processImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+                processImage.append('<div class="swiper-slide"><p class="sliderDate">'+imagedate+'</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
             }
         }
     });
@@ -797,7 +807,7 @@ if (lastID === null) {
             for (var i = 0; i < result.length; i++) {
                 var note = result[i].processnote;
                 var notedate = result[i].processnotedate;
-                processNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+                processNotes.append('<div class="swiper-slide test"><p class="sliderDate">'+notedate+'</p><p class="sliderNote">'+note+'</p></div>');
             }
         }
     });
@@ -814,7 +824,8 @@ if (lastID === null) {
             for (var i = 0; i < result.length; i++) {
                 var video = result[i].processvideo;
                 var videodate = result[i].processvideodate;
-                processVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
+                var videotitle = result[i].processvideotitle;
+                processVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
                 
             }
         }
@@ -835,7 +846,7 @@ if (lastID === null) {
             for (var i = 0; i < result.length; i++) {
                 var image = result[i].transferimage;
                 var imagedate = result[i].transferimagedate;
-                transfersImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+                transfersImage.append('<div class="swiper-slide test"><p class="sliderDate">'+imagedate+'</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
             }
         }
     });
@@ -852,7 +863,7 @@ if (lastID === null) {
             for (var i = 0; i < result.length; i++) {
                 var note = result[i].transfernote;
                 var notedate = result[i].transfernotedate;
-                transfersNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+                transfersNotes.append('<div class="swiper-slide test"><p class="sliderDate">'+notedate+'</p><p class="sliderNote">'+note+'</p></div>');
             }
         }
     });
@@ -869,7 +880,8 @@ if (lastID === null) {
             for (var i = 0; i < result.length; i++) {
                 var video = result[i].transfervideo;
                 var videodate = result[i].transfervideodate;
-                transfersVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
+                var videotitle = result[i].transfervideotitle;
+                transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
                 
             }
         }
@@ -888,7 +900,7 @@ if (lastID === null) {
             for (var i = 0; i < result.length; i++) {
                 var image = result[i].positioningimage;
                 var imagedate = result[i].positioningimagedate;
-                positioningImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+                positioningImage.append('<div class="swiper-slide"><p class="sliderDate">'+imagedate+'</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
             }
         }
     });
@@ -905,7 +917,7 @@ if (lastID === null) {
             for (var i = 0; i < result.length; i++) {
                 var note = result[i].positioningnote;
                 var notedate = result[i].positioningnotedate;
-                positioningNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+                positioningNotes.append('<div class="swiper-slide test"><p class="sliderDate">'+notedate+'</p><p class="sliderNote">'+note+'</p></div>');
             }
         }
     });
@@ -922,7 +934,8 @@ if (lastID === null) {
             for (var i = 0; i < result.length; i++) {
                 var video = result[i].positioningvideo;
                 var videodate = result[i].positioningvideodate;
-                positioningVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
+                var videotitle = result[i].positioningvideotitle;
+                positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
                 
             }
         }
