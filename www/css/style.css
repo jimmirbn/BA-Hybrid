@@ -1,21 +1,19 @@
 .tabs-container {
-  margin-top: 25px;
+  margin: 25px -15px 0;
 }
 .tabs-container .tabs-header {
   height: 50px;
   border-top: solid 1px gray;
-  border-left: solid 1px gray;
-  border-right: solid 1px gray;
 }
 .tabs-container .tabs-header p {
   margin: 0;
 }
 .tabs-container .tabs-innercontainer {
   position: absolute;
-  left: 15px;
-  right: 15px;
+  left: 0;
+  right: 0;
   top: 325px;
-  bottom: 15px;
+  bottom: 0;
 }
 
 .tabs-menu {
@@ -54,7 +52,6 @@
 
 .tab {
   background-color: #fff;
-  height: 250px;
 }
 
 .tab-content {
@@ -89,15 +86,12 @@
   height: 100%;
 }
 
-.profile-image {
-  width: 150px;
-  height: 150px;
+.swiper-slide {
   overflow: hidden;
-  position: relative;
-  display: block;
 }
-.profile-image img {
-  max-width: 100%;
+.swiper-slide .photo {
+  height: 100%;
+  width: auto;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -108,20 +102,9 @@
   transform: translate(-50%, -50%);
 }
 
-.swiper-slide {
-  overflow: hidden;
-}
-.swiper-slide .photo {
-  height: 438px;
-  width: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+.swiper-pagination {
+  bottom: 80px !important;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .openPhoto {
@@ -150,6 +133,20 @@
   transform: translate(-50%, -50%);
 }
 
+.btn-slider {
+  position: absolute;
+  z-index: 9;
+  bottom: 10px;
+  width: 90%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 99;
+}
+
 .popup-addPatient .row {
   width: 50%;
   margin: auto;
@@ -165,7 +162,7 @@
   background: url("../img/ava.png") no-repeat center center;
   width: 152px;
   height: 152px;
-  margin: 0 auto 35px;
+  margin: 0 auto 15px;
   border-radius: 2px;
 }
 .popup-addPatient .row .list-block .align-top .item-inner {
@@ -180,6 +177,42 @@
 .popup-addPatient .row button {
   width: 50%;
   margin: auto;
+}
+.popup-addPatient .addProfileImage {
+  width: 30%;
+  margin: 0 auto 25px;
+}
+.popup-addPatient i.icon.icon-form-door {
+  width: 29px;
+  height: 29px;
+  background-image: url(../img/i-form-door.png);
+}
+
+.profile-image, .profileImage {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  display: block;
+}
+.profile-image img, .profileImage img {
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/* Default Status bar background */
+.statusbar-overlay {
+  background: black;
+  /* We can add transition for smooth color animation */
+  -webkit-transition: 400ms;
+  transition: 400ms;
 }
 
 .clearfix {

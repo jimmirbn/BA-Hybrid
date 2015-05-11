@@ -1,0 +1,7 @@
+/* Default Status bar background */
+.statusbar-overlay {
+    background: black;
+    /* We can add transition for smooth color animation */
+    -webkit-transition: 400ms;
+    transition: 400ms;
+}

@@ -62,38 +62,6 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- <div class="content-block-title">Control Main View</div>
-                        <div class="list-block">
-                            <ul>
-                                <li>
-                                    <a href="about.html" data-view=".view-main" class="item-link">
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">About</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="services.html" data-view=".view-main" class="item-link">
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Services</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" data-view=".view-main" class="back item-link">
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Back in history</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -123,6 +91,7 @@
                                         <div class="row">
                                             <div class="col-50">
                                                 <span id="profileImage" class="profile-image"></span>
+                                                <input type="hidden" id="patientID">
                                             </div>
                                             <div class="col-50">
                                                 <p id="patientName"></p>
@@ -132,7 +101,6 @@
                                         </div>
                                     </div>
                                     <div class="col-50">
-                                        <p><a href="#" class="chooseImage">New profile image</a></p>
                                         <p id="patientText"></p>
                                     </div>
                                 </div>
@@ -155,38 +123,27 @@
                                                 <div class="row">
                                                     <div class="col-33">
                                                         <div class="swiper-container process-image">
-                                                            <div class="swiper-wrapper">
-                                                                <div class="swiper-slide">
-                                                                    <div class="slide1"></div>
-                                                                </div>
-                                                                <div class="swiper-slide">
-                                                                    <div class="slide2"></div>
-                                                                </div>
-                                                                <div class="swiper-slide">
-                                                                    <div class="slide3"></div>
-                                                                </div>
+                                                            <!-- Slides wrapper -->
+                                                            <div class="swiper-wrapper" id="process-image">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addProcessImage">Nyt process billede</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container process-video">
-                                                            <div class="swiper-wrapper">
-                                                                <div class="swiper-slide">Slide 1</div>
-                                                                <div class="swiper-slide">Slide 2</div>
-                                                                <div class="swiper-slide">Slide 3</div>
+                                                            <div class="swiper-wrapper" id="process-video">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addProcessVideo">Ny process video</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container process-notes">
-                                                            <div class="swiper-wrapper">
-                                                                <div class="swiper-slide">Slide 1</div>
-                                                                <div class="swiper-slide">Slide 2</div>
-                                                                <div class="swiper-slide">Slide 3</div>
+                                                            <div class="swiper-wrapper" id="process-notes">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addProcessNote">Ny process note</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -195,38 +152,26 @@
                                                 <div class="row">
                                                     <div class="col-33">
                                                         <div class="swiper-container transfers-image">
-                                                            <!-- Slides wrapper -->
-                                                            <div class="swiper-wrapper">
-                                                                <!-- Slides -->
-                                                                <div class="swiper-slide">Slide 1</div>
-                                                                <div class="swiper-slide">Slide 2</div>
-                                                                <div class="swiper-slide">Slide 3</div>
+                                                            <div class="swiper-wrapper" id="transfers-image">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addTransfersImage">Nyt flyt billede</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container transfers-video">
-                                                            <!-- Slides wrapper -->
-                                                            <div class="swiper-wrapper">
-                                                                <!-- Slides -->
-                                                                <div class="swiper-slide">Slide 1</div>
-                                                                <div class="swiper-slide">Slide 2</div>
-                                                                <div class="swiper-slide">Slide 3</div>
+                                                            <div class="swiper-wrapper" id="transfers-video">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addTransfersVideo">Ny flyt video</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container transfers-notes">
-                                                            <!-- Slides wrapper -->
-                                                            <div class="swiper-wrapper">
-                                                                <!-- Slides -->
-                                                                <div class="swiper-slide">Slide 1</div>
-                                                                <div class="swiper-slide">Slide 2</div>
-                                                                <div class="swiper-slide">Slide 3</div>
+                                                            <div class="swiper-wrapper" id="transfers-notes">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addTransfersNote">Ny flyt note</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -235,31 +180,26 @@
                                                 <div class="row">
                                                     <div class="col-33">
                                                         <div class="swiper-container positioning-image">
-                                                            <!-- Slides wrapper -->
                                                             <div class="swiper-wrapper" id="positioning-image">
-                                                                <!-- Slides -->
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active addPositioningImage btn btn-slider">Nyt lejring billede</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container positioning-video">
-                                                            <!-- Slides wrapper -->
-                                                            <div class="swiper-wrapper">
-                                                                <!-- Slides -->
-                                                                <div class="swiper-slide" id="positioning-video"></div>
+                                                            <div class="swiper-wrapper" id="positioning-video">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addPositioningVideo">Ny Lejring video</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container positioning-notes">
-                                                            <!-- Slides wrapper -->
-                                                            <div class="swiper-wrapper">
-                                                                <!-- Slides -->
-                                                                <div class="swiper-slide" id="positioning-notes">Slide 1</div>
+                                                            <div class="swiper-wrapper" id="positioning-notes">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addPositioningNote">Ny Lejring note</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -277,8 +217,8 @@
     <div class="popup tablet-fullscreen popup-addPatient">
         <div class="navbar">
             <div class="navbar-inner">
-                <div class="center">Headline</div>
-                <p class="right"><a href="#" class="close-popup">Close popup</a></p>
+                <div class="center">Tilføj patient</div>
+                <p class="right"><a href="#" class="close-popup">Luk</a></p>
             </div>
         </div>
         <!-- <div class="content-block"> -->
@@ -286,15 +226,16 @@
             <div class="list-block">
                 <div class="profileImage">
                 </div>
+                <p class="button addProfileImage">Tilføj patient billede</p>
                 <ul>
                     <!-- Text inputs -->
                     <li>
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Full Name</div>
+                                <div class="item-title label">Fulde navn</div>
                                 <div class="item-input">
-                                    <input type="text" placeholder="Patient full name">
+                                    <input type="text" name="fullname" placeholder="Fulde navn">
                                 </div>
                             </div>
                         </div>
@@ -303,9 +244,9 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-calendar"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Birth date</div>
+                                <div class="item-title label">Fødselsdag</div>
                                 <div class="item-input">
-                                    <input type="date" placeholder="Birth day">
+                                    <input type="date" name="born" placeholder="Birth day">
                                 </div>
                             </div>
                         </div>
@@ -314,11 +255,38 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-calendar"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Room nr</div>
+                                <div class="item-title label">Indlagt dato</div>
                                 <div class="item-input">
-                                    <select>
-                                        <option>Room 1</option>
-                                        <option>Room 2</option>
+                                    <input type="date" name="inlaid" placeholder="Indlagt dato">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-door"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Stue nr</div>
+                                <div class="item-input">
+                                    <select name="roomnr">
+                                        <option value="1">Stue 1</option>
+                                        <option value="2">Stue 2</option>
+                                        <option value="3">Stue 3</option>
+                                        <option value="4">Stue 4</option>
+                                        <option value="5">Stue 5</option>
+                                        <option value="6">Stue 6</option>
+                                        <option value="7">Stue 7</option>
+                                        <option value="8">Stue 8</option>
+                                        <option value="9">Stue 9</option>
+                                        <option value="10">Stue 10</option>
+                                        <option value="11">Stue 11</option>
+                                        <option value="12">Stue 12</option>
+                                        <option value="13">Stue 13</option>
+                                        <option value="14">Stue 14</option>
+                                        <option value="15">Stue 15</option>
+                                        <option value="16">Stue 16</option>
+                                        <option value="17">Stue 17</option>
+                                        <option value="18">Stue 18</option>
                                     </select>
                                 </div>
                             </div>
@@ -328,16 +296,16 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-comment"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Description/Goals</div>
+                                <div class="item-title label">Patient info & patient mål</div>
                                 <div class="item-input">
-                                    <textarea></textarea>
+                                    <textarea name="description"></textarea>
                                 </div>
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
-            <button class="button button-big active">Add patient</button>
+            <button class="button button-big active addPatient">Tilføj patient</button>
         </div>
         <!-- </div> -->
     </div>

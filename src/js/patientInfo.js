@@ -1,27 +1,19 @@
-var profileImage = $("#profileImage");
-var patientName = $("#patientName");
-var patientBorn = $("#patientBorn");
-var patientinlaid = $("#patientinlaid");
-var patientText = $("#patientText");
-
-$(document).on("click", ".getPatientInfo", function() {
+$$(document).on("click", ".getPatientInfo", function() {
     var patientID = this.id;
     var type = "patientInfo";
-
-    profileImage.empty();
-    patientName.empty();
-    patientBorn.empty();
-    patientinlaid.empty();
-    patientText.empty();
-
+    emptyPatientInfo();
+    $('#patientID').val('');
+    $('#patientID').val(patientID);
     localStorage.setItem("lastPatient", patientID);
-    $.post("http://www.digitaljimmi.com/api.php", {"type": type, 'id': patientID}, function (data) {
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": type,
+        'id': patientID
+    }, function(data) {
         var result = JSON.parse(data);
         for (var i = 0; i < result.length; i++) {
             var name = result[i].fullname;
-            var image = result[i].image;
+            var profileimage = result[i].profileimage;
             var infotext = result[i].infotext;
-
             var born = result[i].born;
             var bornDate = moment(born).format('DD-MM-YYYY');
 
@@ -29,47 +21,193 @@ $(document).on("click", ".getPatientInfo", function() {
             var inlaidDate = moment(inlaid).format('DD-MM-YYYY');
             var inlaidWeek = moment(inlaid).week();
 
-            profileImage.append('<img src="'+image+'" alt="'+name+'">'); 
-            patientName.text(name); 
-            patientBorn.text('Født: '+bornDate);
-            patientinlaid.text('Indlagt: '+inlaidDate+' (Uge: '+inlaidWeek+')');
+            profileImage.append('<img src="' + profileimage + '" alt="' + name + '">');
+            patientName.text(name);
+            patientBorn.text('Født: ' + bornDate);
+            patientinlaid.text('Indlagt: ' + inlaidDate + ' (Uge: ' + inlaidWeek + ')');
             patientText.text(infotext);
         }
     });
+//PROCESS START
+    var processimages = 'getprocessimages';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": processimages,
+        'id': patientID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no process images');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var image = result[i].processimage;
+                var imagedate = result[i].processimagedate;
+                processImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+            }
+        }
+    });
 
-    var type2 = "patientlejring";
-// var lastID = localStorage.getItem("lastPatient")
+    var processnotes = 'getprocessnotes';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": processnotes,
+        'id': patientID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no process notes');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var note = result[i].processnote;
+                var notedate = result[i].processnotedate;
+                processNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+            }
+        }
+    });
 
-$.post("http://www.digitaljimmi.com/api.php", {"type": type2, 'id':patientID}, function (data) {
-    var result = JSON.parse(data);
-    for (var i = 0; i < result.length; i++) {
-        var image = result[i].image;
-        var imagedate = result[i].imagedate;
-        var note = result[i].note;
-        var notedate = result[i].notedate;
-        var video = result[i].video;
-        var videodate = result[i].videodate;
+    var processvideos = 'getprocessvideos';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": processvideos,
+        'id': patientID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no process videos');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var video = result[i].processvideo;
+                var videodate = result[i].processvideodate;
+                processVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
+                
+            }
+        }
+    });
+    //PROCESS END
+    // TRANSFER START
+    var transferimages = 'gettransferimages';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": transferimages,
+        'id': patientID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no transfer images');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var image = result[i].transferimage;
+                var imagedate = result[i].transferimagedate;
+                transfersImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+            }
+        }
+    });
 
-        $("#positioning-image").append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="'+image+'"></a></div>');
-        $("#positioning-video").append('<a href="#" class="openVideo"><video><source type="video/mp4" src="'+video+'"></video></a>');
-    }
-});
+    var transfernotes = 'gettransfernotes';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": transfernotes,
+        'id': patientID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no transfer notes');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var note = result[i].transfernote;
+                var notedate = result[i].transfernotedate;
+                transfersNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+            }
+        }
+    });
+
+    var transfervideos = 'gettransfervideos';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": transfervideos,
+        'id': patientID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no transfer videos');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var video = result[i].transfervideo;
+                var videodate = result[i].transfervideodate;
+                transfersVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
+                
+            }
+        }
+    });
+// TRANSFER END
+
+// positioning START
+    var positioningimages = 'getpositioningimages';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": positioningimages,
+        'id': patientID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no positioning images');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var image = result[i].positioningimage;
+                var imagedate = result[i].positioningimagedate;
+                positioningImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+            }
+        }
+    });
+
+    var positioningnotes = 'getpositioningnotes';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": positioningnotes,
+        'id': patientID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no positioning notes');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var note = result[i].positioningnote;
+                var notedate = result[i].positioningnotedate;
+                positioningNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+            }
+        }
+    });
+
+    var positioningvideos = 'getpositioningvideos';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": positioningvideos,
+        'id': patientID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no positioning videos');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var video = result[i].positioningvideo;
+                var videodate = result[i].positioningvideodate;
+                positioningVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
+                
+            }
+        }
+    });
+// positioning END
 });
 
 //Load last patient
 var lastID = localStorage.getItem("lastPatient")
-if(lastID === null){
+if (lastID === null) {
 
     console.log('its empty');
-}
-else{
+} else {
+    emptyPatientInfo();
     var type = "patientInfo";
-
-    $.post("http://www.digitaljimmi.com/api.php", {"type": type, 'id': lastID}, function (data) {
+    $('#patientID').val('');
+    $('#patientID').val(lastID);
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": type,
+        'id': lastID
+    }, function(data) {
         var result = JSON.parse(data);
         for (var i = 0; i < result.length; i++) {
             var name = result[i].fullname;
-            var image = result[i].image;
+            var profileimage = result[i].profileimage;
             var infotext = result[i].infotext;
 
             var born = result[i].born;
@@ -79,11 +217,172 @@ else{
             var inlaidDate = moment(inlaid).format('DD-MM-YYYY');
             var inlaidWeek = moment(inlaid).week();
 
-            profileImage.append('<img src="'+image+'" alt="'+name+'">'); 
-            patientName.text(name); 
-            patientBorn.text('Født: '+bornDate);
-            patientinlaid.text('Indlagt: '+inlaidDate+' (Uge: '+inlaidWeek+')');
+            profileImage.append('<img src="' + profileimage + '" alt="' + name + '">');
+            patientName.text(name);
+            patientBorn.text('Født: ' + bornDate);
+            patientinlaid.text('Indlagt: ' + inlaidDate + ' (Uge: ' + inlaidWeek + ')');
             patientText.text(infotext);
         }
     });
+// PROCESS START
+    var processimages = 'getprocessimages';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": processimages,
+        'id': lastID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no process images');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var image = result[i].processimage;
+                var imagedate = result[i].processimagedate;
+                processImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+            }
+        }
+    });
+
+    var processnotes = 'getprocessnotes';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": processnotes,
+        'id': lastID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no process notes');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var note = result[i].processnote;
+                var notedate = result[i].processnotedate;
+                processNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+            }
+        }
+    });
+
+    var processvideos = 'getprocessvideos';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": processvideos,
+        'id': lastID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no process videos');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var video = result[i].processvideo;
+                var videodate = result[i].processvideodate;
+                processVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
+                
+            }
+        }
+    });
+
+    // PROCESS END
+    
+    // TRANSFER START
+    var transferimages = 'gettransferimages';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": transferimages,
+        'id': lastID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no transfer images');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var image = result[i].transferimage;
+                var imagedate = result[i].transferimagedate;
+                transfersImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+            }
+        }
+    });
+
+    var transfernotes = 'gettransfernotes';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": transfernotes,
+        'id': lastID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no transfer notes');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var note = result[i].transfernote;
+                var notedate = result[i].transfernotedate;
+                transfersNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+            }
+        }
+    });
+
+    var transfervideos = 'gettransfervideos';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": transfervideos,
+        'id': lastID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no transfer videos');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var video = result[i].transfervideo;
+                var videodate = result[i].transfervideodate;
+                transfersVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
+                
+            }
+        }
+    });
+// TRANSFER END
+    // positioning START
+    var positioningimages = 'getpositioningimages';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": positioningimages,
+        'id': lastID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no positioning images');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var image = result[i].positioningimage;
+                var imagedate = result[i].positioningimagedate;
+                positioningImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+            }
+        }
+    });
+
+    var positioningnotes = 'getpositioningnotes';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": positioningnotes,
+        'id': lastID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no positioning notes');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var note = result[i].positioningnote;
+                var notedate = result[i].positioningnotedate;
+                positioningNotes.append('<div class="swiper-slide test"><p>'+note+'</p></div>');
+            }
+        }
+    });
+
+    var positioningvideos = 'getpositioningvideos';
+    $.post("http://www.digitaljimmi.com/api.php", {
+        "type": positioningvideos,
+        'id': lastID
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            console.log('no positioning videos');
+        } else {
+            for (var i = 0; i < result.length; i++) {
+                var video = result[i].positioningvideo;
+                var videodate = result[i].positioningvideodate;
+                positioningVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
+                
+            }
+        }
+    });
+// positioning END
 }

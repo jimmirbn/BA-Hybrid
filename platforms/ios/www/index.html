@@ -10,6 +10,7 @@
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/framework7.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 
 <body>
@@ -36,7 +37,7 @@
                                     <a id="1" href="left-page-1.html" class="item-link team">
                                         <div class="item-content">
                                             <div class="item-inner">
-                                            <div class="item-title">Team 1</div>
+                                                <div class="item-title">Team 1</div>
                                             </div>
                                         </div>
                                     </a>
@@ -45,7 +46,7 @@
                                     <a id="2" href="left-page-1.html" class="item-link team">
                                         <div class="item-content">
                                             <div class="item-inner">
-                                            <div class="item-title">Team 2</div>
+                                                <div class="item-title">Team 2</div>
                                             </div>
                                         </div>
                                     </a>
@@ -54,45 +55,13 @@
                                     <a id="3" href="left-page-1.html" class="item-link team">
                                         <div class="item-content">
                                             <div class="item-inner">
-                                            <div class="item-title">Team 3</div>
+                                                <div class="item-title">Team 3</div>
                                             </div>
                                         </div>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <!-- <div class="content-block-title">Control Main View</div>
-                        <div class="list-block">
-                            <ul>
-                                <li>
-                                    <a href="about.html" data-view=".view-main" class="item-link">
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">About</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="services.html" data-view=".view-main" class="item-link">
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Services</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" data-view=".view-main" class="back item-link">
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Back in history</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -105,8 +74,8 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <a href="#" class="open-panel left">left</a>
-
                     <div class="center sliding">Headline</div>
+                    <p class="right"><a href="#" data-popup=".popup-addPatient" class="open-popup">Add patient</a></p>
                 </div>
             </div>
             <!-- Pages-->
@@ -121,9 +90,9 @@
                                     <div class="col-50">
                                         <div class="row">
                                             <div class="col-50">
-                                                <span id="profileImage"></span>
+                                                <span id="profileImage" class="profile-image"></span>
+                                                <input type="hidden" id="patientID">
                                             </div>
-
                                             <div class="col-50">
                                                 <p id="patientName"></p>
                                                 <p id="patientBorn"></p>
@@ -132,12 +101,6 @@
                                         </div>
                                     </div>
                                     <div class="col-50">
-                                    <button onclick="capturePhotoWithData();">Capture Photo With Image Data</button> <br>
-    <button onclick="capturePhotoWithFile();">Capture Photo With Image File URI</button> <br>
-    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
-    <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
-    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-    <img style="display:none;" id="largeImage" src="" />
                                         <p id="patientText"></p>
                                     </div>
                                 </div>
@@ -160,38 +123,27 @@
                                                 <div class="row">
                                                     <div class="col-33">
                                                         <div class="swiper-container process-image">
-                                                            <div class="swiper-wrapper">
-                                                                <div class="swiper-slide">
-                                                                    <div class="slide1"></div>
-                                                                </div>
-                                                                <div class="swiper-slide">
-                                                                    <div class="slide2"></div>
-                                                                </div>
-                                                                <div class="swiper-slide">
-                                                                    <div class="slide3"></div>
-                                                                </div>
+                                                            <!-- Slides wrapper -->
+                                                            <div class="swiper-wrapper" id="process-image">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addProcessImage">Nyt process billede</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container process-video">
-                                                            <div class="swiper-wrapper">
-                                                                <div class="swiper-slide">Slide 1</div>
-                                                                <div class="swiper-slide">Slide 2</div>
-                                                                <div class="swiper-slide">Slide 3</div>
+                                                            <div class="swiper-wrapper" id="process-video">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addProcessVideo">Ny process video</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container process-notes">
-                                                            <div class="swiper-wrapper">
-                                                                <div class="swiper-slide">Slide 1</div>
-                                                                <div class="swiper-slide">Slide 2</div>
-                                                                <div class="swiper-slide">Slide 3</div>
+                                                            <div class="swiper-wrapper" id="process-notes">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addProcessNote">Ny process note</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -200,38 +152,26 @@
                                                 <div class="row">
                                                     <div class="col-33">
                                                         <div class="swiper-container transfers-image">
-                                                            <!-- Slides wrapper -->
-                                                            <div class="swiper-wrapper">
-                                                                <!-- Slides -->
-                                                                <div class="swiper-slide">Slide 1</div>
-                                                                <div class="swiper-slide">Slide 2</div>
-                                                                <div class="swiper-slide">Slide 3</div>
+                                                            <div class="swiper-wrapper" id="transfers-image">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addTransfersImage">Nyt flyt billede</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container transfers-video">
-                                                            <!-- Slides wrapper -->
-                                                            <div class="swiper-wrapper">
-                                                                <!-- Slides -->
-                                                                <div class="swiper-slide">Slide 1</div>
-                                                                <div class="swiper-slide">Slide 2</div>
-                                                                <div class="swiper-slide">Slide 3</div>
+                                                            <div class="swiper-wrapper" id="transfers-video">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addTransfersVideo">Ny flyt video</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container transfers-notes">
-                                                            <!-- Slides wrapper -->
-                                                            <div class="swiper-wrapper">
-                                                                <!-- Slides -->
-                                                                <div class="swiper-slide">Slide 1</div>
-                                                                <div class="swiper-slide">Slide 2</div>
-                                                                <div class="swiper-slide">Slide 3</div>
+                                                            <div class="swiper-wrapper" id="transfers-notes">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addTransfersNote">Ny flyt note</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -240,32 +180,26 @@
                                                 <div class="row">
                                                     <div class="col-33">
                                                         <div class="swiper-container positioning-image">
-                                                            <!-- Slides wrapper -->
                                                             <div class="swiper-wrapper" id="positioning-image">
-                                                                <!-- Slides -->
-                                                                
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active addPositioningImage btn btn-slider">Nyt lejring billede</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container positioning-video">
-                                                            <!-- Slides wrapper -->
-                                                            <div class="swiper-wrapper">
-                                                                <!-- Slides -->
-                                                                <div class="swiper-slide" id="positioning-video"></div>
+                                                            <div class="swiper-wrapper" id="positioning-video">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addPositioningVideo">Ny Lejring video</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-33">
                                                         <div class="swiper-container positioning-notes">
-                                                            <!-- Slides wrapper -->
-                                                            <div class="swiper-wrapper">
-                                                                <!-- Slides -->
-                                                                <div class="swiper-slide" id="positioning-notes">Slide 1</div>
+                                                            <div class="swiper-wrapper" id="positioning-notes">
                                                             </div>
                                                             <div class="swiper-pagination"></div>
+                                                            <button class="button button-big active btn btn-slider addPositioningNote">Ny Lejring note</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -279,11 +213,107 @@
                 </div>
             </div>
         </div>
-        <!-- Path to Framework7 Library JS-->
-        <script type="text/javascript" src="cordova.js"></script>
-        <!-- Path to your app js-->
-        <script type="text/javascript" src="js/vendors.min.js"></script>
-        <script type="text/javascript" src="js/site.min.js"></script>
-    </body>
+    </div>
+    <div class="popup tablet-fullscreen popup-addPatient">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="center">Tilføj patient</div>
+                <p class="right"><a href="#" class="close-popup">Luk</a></p>
+            </div>
+        </div>
+        <!-- <div class="content-block"> -->
+        <div class="row">
+            <div class="list-block">
+                <div class="profileImage">
+                </div>
+                <p class="button addProfileImage">Tilføj patient billede</p>
+                <ul>
+                    <!-- Text inputs -->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Fulde navn</div>
+                                <div class="item-input">
+                                    <input type="text" name="fullname" placeholder="Fulde navn">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Fødselsdag</div>
+                                <div class="item-input">
+                                    <input type="date" name="born" placeholder="Birth day">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Indlagt dato</div>
+                                <div class="item-input">
+                                    <input type="date" name="inlaid" placeholder="Indlagt dato">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-door"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Stue nr</div>
+                                <div class="item-input">
+                                    <select name="roomnr">
+                                        <option value="1">Stue 1</option>
+                                        <option value="2">Stue 2</option>
+                                        <option value="3">Stue 3</option>
+                                        <option value="4">Stue 4</option>
+                                        <option value="5">Stue 5</option>
+                                        <option value="6">Stue 6</option>
+                                        <option value="7">Stue 7</option>
+                                        <option value="8">Stue 8</option>
+                                        <option value="9">Stue 9</option>
+                                        <option value="10">Stue 10</option>
+                                        <option value="11">Stue 11</option>
+                                        <option value="12">Stue 12</option>
+                                        <option value="13">Stue 13</option>
+                                        <option value="14">Stue 14</option>
+                                        <option value="15">Stue 15</option>
+                                        <option value="16">Stue 16</option>
+                                        <option value="17">Stue 17</option>
+                                        <option value="18">Stue 18</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="align-top">
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-comment"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Patient info & patient mål</div>
+                                <div class="item-input">
+                                    <textarea name="description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button class="button button-big active addPatient">Tilføj patient</button>
+        </div>
+        <!-- </div> -->
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/vendors.min.js"></script>
+    <script type="text/javascript" src="js/site.min.js"></script>
+</body>
 
-    </html>
+</html>

@@ -1,21 +1,20 @@
-.tabs-container{
-    margin-top: 25px;
-    .tabs-header{
+.tabs-container {
+    margin: 25px -15px 0;
+    .tabs-header {
         height: 50px;
         border-top: solid 1px gray;
-        border-left: solid 1px gray;
-        border-right: solid 1px gray;
-        p{
+        // border-left: solid 1px gray;
+        // border-right: solid 1px gray;
+        p {
             margin: 0;
         }
     }
-
-    .tabs-innercontainer{
+    .tabs-innercontainer {
         position: absolute;
-        left: 15px;
-        right: 15px;
+        left: 0;
+        right: 0;
         top: 325px;
-        bottom: 15px;
+        bottom: 0;
     }
 }
 
@@ -44,7 +43,7 @@
     padding: 10px;
     text-transform: uppercase;
     color: #fff;
-    text-decoration: none; 
+    text-decoration: none;
     display: block;
     height: 100%;
 }
@@ -55,50 +54,36 @@
 
 .tab {
     background-color: #fff;
-    height: 250px;
 }
 
 .tab-content {
     width: auto;
     height: 100%;
-    .row{
+    .row {
         height: 100%;
-        .col-33{
+        .col-33 {
             height: 100%;
-            .swiper-container{
+            .swiper-container {
                 height: 100%;
             }
         }
     }
-    img{
+    img {
         width: 100%;
     }
 }
 
-.slide1{
+.slide1 {
     background: green;
-    height: 100%
-}
-.slide2{
-    background: blue;
-    height: 100%;
-}
-.slide3{
-    background: red;
     height: 100%;
 }
 
-.profile-image{
-    width: 150px;
-    height: 150px;
-    overflow: hidden;
-    position: relative;
-    display: block;
-    img{
-        max-width: 100%;
-          position: absolute;
-  top: 50%;
-  left: 50%;
-  @include transform(translate(-50%,-50%));
-    }
+.slide2 {
+    background: blue;
+    height: 100%;
+}
+
+.slide3 {
+    background: red;
+    height: 100%;
 }

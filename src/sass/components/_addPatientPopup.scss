@@ -12,7 +12,7 @@
                 background: url("../img/ava.png") no-repeat center center;
                 width: 152px;
                 height: 152px;
-                margin: 0 auto 35px;
+                margin: 0 auto 15px;
                 border-radius: 2px;
             }
             .align-top {
@@ -32,4 +32,14 @@
             margin: auto;
         }
     }
+    .addProfileImage{
+        width: 30%;
+        margin: 0 auto 25px;
+    }
+
+    i.icon.icon-form-door {
+  width: 29px;
+  height: 29px;
+  background-image: url(../img/i-form-door.png);
+}
 }
