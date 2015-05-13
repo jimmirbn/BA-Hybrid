@@ -171,6 +171,14 @@
   text-align: center;
 }
 
+.sliderNote {
+  height: 100%;
+  margin: 0;
+  padding-top: 50px;
+  color: black;
+  padding-left: 10px;
+}
+
 .popup-addPatient .row {
   width: 50%;
   margin: auto;

@@ -22,6 +22,7 @@ module.exports = function (grunt) {
             sass : '<%= src.root %>/sass',
             // temp : '<%= src.root %>/temp',
             html : '<%= src.root %>/templating',
+            img : '<%= src.root %>/img',
             
             assets : '<%= src.root %>/assets'
         },

@@ -42,7 +42,7 @@ function uploadFileProcess(mediaFile) {
         var options = new FileUploadOptions();
 
         var params = {};
-        params.type = "process";
+        params.process = "process";
         params.id = $('#patientID').val();
         params.videotitle = value;
 
@@ -50,15 +50,22 @@ function uploadFileProcess(mediaFile) {
         var ft = new FileTransfer(),
             path = mediaFile.fullPath,
             name = mediaFile.name;
-        ft.upload(path, 'http://www.digitaljimmi.com/uploadvideo.php', winProcess, fail, options);
+        ft.upload(path, 'http://169.254.136.152/uploadvideo.php', winProcess, fail, options);
 
     });
 }
 
 function winProcess(r) {
-    console.log(r.response);
+    var result = JSON.parse(r.response);
     var processVideo = $("#process-video");
-    processVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + r.response + '"></video></a></div>');
+    var videodate = moment().format('DD-MM-YYYY');
+    for (var i = 0; i < result.length; i++) {
+                var video = result[0];
+                var videotitle = result[1];
+    processVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
+    }
+    // console.log(r.response);
+    // processVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + r.response + '"></video></a></div>');
 
 }
 

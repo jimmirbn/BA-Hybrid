@@ -42,14 +42,14 @@ $$('.profileImage, .addProfileImage').on('click', function() {
 });
 
 $$('.addPatient').on('click', function(){
-var type = 'addPatient';
+var addPatient = 'addPatient';
 var imageSrc = $('.profileImage img').attr('src');
 var fullname = $('input[name="fullname"]').val();
 var born = $('input[name="born"]').val();
 var inlaid = $('input[name="inlaid"]').val();
 var roomnr = $('select[name="roomnr"]').val();
 var description = $('textarea[name="description"]').val();
-  $.post("http://www.digitaljimmi.com/api.php", {"type": type, "fullname": fullname,"born": born,"inlaid":inlaid,"roomnr": roomnr,"description": description,"imageSrc": imageSrc}, function (data) {
+  $.post("http://169.254.136.152/api.php", {"addPatient": addPatient, "fullname": fullname,"born": born,"inlaid":inlaid,"roomnr": roomnr,"description": description,"imageSrc": imageSrc}, function (data) {
         var result = JSON.parse(data);
         if(result === "success"){
             emptyPatientInfo();
@@ -69,7 +69,7 @@ var description = $('textarea[name="description"]').val();
             $('textarea[name="description"]').val('');
 
         } else{
-            myApp.alert('Sorry, something went wrong, try again');
+            myApp.alert('Sorry, something went wrong, try again '+result);
         }
     });
 }); 

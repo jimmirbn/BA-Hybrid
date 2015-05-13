@@ -1,12 +1,12 @@
 $$(document).on("click", ".getPatientInfo", function() {
     var patientID = this.id;
-    var type = "patientInfo";
+    var patientInfo = "patientInfo";
     emptyPatientInfo();
     $('#patientID').val('');
     $('#patientID').val(patientID);
     localStorage.setItem("lastPatient", patientID);
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": type,
+    $.post("http://169.254.136.152/api.php", {
+        "patientInfo": patientInfo,
         'id': patientID
     }, function(data) {
         var result = JSON.parse(data);
@@ -29,9 +29,9 @@ $$(document).on("click", ".getPatientInfo", function() {
         }
     });
 //PROCESS START
-    var processimages = 'getprocessimages';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": processimages,
+    var getprocessimages = 'getprocessimages';
+    $.post("http://169.254.136.152/api.php", {
+        "getprocessimages": getprocessimages,
         'id': patientID
     }, function(data) {
         var result = JSON.parse(data);
@@ -46,9 +46,9 @@ $$(document).on("click", ".getPatientInfo", function() {
         }
     });
 
-    var processnotes = 'getprocessnotes';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": processnotes,
+    var getprocessnotes = 'getprocessnotes';
+    $.post("http://169.254.136.152/api.php", {
+        "getprocessnotes": getprocessnotes,
         'id': patientID
     }, function(data) {
         var result = JSON.parse(data);
@@ -63,9 +63,9 @@ $$(document).on("click", ".getPatientInfo", function() {
         }
     });
 
-    var processvideos = 'getprocessvideos';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": processvideos,
+    var getprocessvideos = 'getprocessvideos';
+    $.post("http://169.254.136.152/api.php", {
+        "getprocessvideos": getprocessvideos,
         'id': patientID
     }, function(data) {
         var result = JSON.parse(data);
@@ -83,9 +83,9 @@ $$(document).on("click", ".getPatientInfo", function() {
     });
     //PROCESS END
     // TRANSFER START
-    var transferimages = 'gettransferimages';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": transferimages,
+    var gettransferimages = 'gettransferimages';
+    $.post("http://169.254.136.152/api.php", {
+        "gettransferimages": gettransferimages,
         'id': patientID
     }, function(data) {
         var result = JSON.parse(data);
@@ -100,9 +100,9 @@ $$(document).on("click", ".getPatientInfo", function() {
         }
     });
 
-    var transfernotes = 'gettransfernotes';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": transfernotes,
+    var gettransfernotes = 'gettransfernotes';
+    $.post("http://169.254.136.152/api.php", {
+        "gettransfernotes": gettransfernotes,
         'id': patientID
     }, function(data) {
         var result = JSON.parse(data);
@@ -117,9 +117,9 @@ $$(document).on("click", ".getPatientInfo", function() {
         }
     });
 
-    var transfervideos = 'gettransfervideos';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": transfervideos,
+    var gettransfervideos = 'gettransfervideos';
+    $.post("http://169.254.136.152/api.php", {
+        "gettransfervideos": gettransfervideos,
         'id': patientID
     }, function(data) {
         var result = JSON.parse(data);
@@ -137,9 +137,9 @@ $$(document).on("click", ".getPatientInfo", function() {
 // TRANSFER END
 
 // positioning START
-    var positioningimages = 'getpositioningimages';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": positioningimages,
+    var getpositioningimages = 'getpositioningimages';
+    $.post("http://169.254.136.152/api.php", {
+        "getpositioningimages": getpositioningimages,
         'id': patientID
     }, function(data) {
         var result = JSON.parse(data);
@@ -154,9 +154,9 @@ $$(document).on("click", ".getPatientInfo", function() {
         }
     });
 
-    var positioningnotes = 'getpositioningnotes';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": positioningnotes,
+    var getpositioningnotes = 'getpositioningnotes';
+    $.post("http://169.254.136.152/api.php", {
+        "getpositioningnotes": getpositioningnotes,
         'id': patientID
     }, function(data) {
         var result = JSON.parse(data);
@@ -171,9 +171,9 @@ $$(document).on("click", ".getPatientInfo", function() {
         }
     });
 
-    var positioningvideos = 'getpositioningvideos';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": positioningvideos,
+    var getpositioningvideos = 'getpositioningvideos';
+    $.post("http://169.254.136.152/api.php", {
+        "getpositioningvideos": getpositioningvideos,
         'id': patientID
     }, function(data) {
         var result = JSON.parse(data);
@@ -199,11 +199,11 @@ if (lastID === null) {
     console.log('its empty');
 } else {
     emptyPatientInfo();
-    var type = "patientInfo";
+    var patientInfo = "patientInfo";
     $('#patientID').val('');
     $('#patientID').val(lastID);
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": type,
+    $.post("http://169.254.136.152/api.php", {
+        "patientInfo": patientInfo,
         'id': lastID
     }, function(data) {
         var result = JSON.parse(data);
@@ -227,9 +227,9 @@ if (lastID === null) {
         }
     });
 // PROCESS START
-    var processimages = 'getprocessimages';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": processimages,
+    var getprocessimages = 'getprocessimages';
+    $.post("http://169.254.136.152/api.php", {
+        "getprocessimages": getprocessimages,
         'id': lastID
     }, function(data) {
         var result = JSON.parse(data);
@@ -244,9 +244,9 @@ if (lastID === null) {
         }
     });
 
-    var processnotes = 'getprocessnotes';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": processnotes,
+    var getprocessnotes = 'getprocessnotes';
+    $.post("http://169.254.136.152/api.php", {
+        "getprocessnotes": getprocessnotes,
         'id': lastID
     }, function(data) {
         var result = JSON.parse(data);
@@ -261,9 +261,9 @@ if (lastID === null) {
         }
     });
 
-    var processvideos = 'getprocessvideos';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": processvideos,
+    var getprocessvideos = 'getprocessvideos';
+    $.post("http://169.254.136.152/api.php", {
+        "getprocessvideos": getprocessvideos,
         'id': lastID
     }, function(data) {
         var result = JSON.parse(data);
@@ -283,9 +283,9 @@ if (lastID === null) {
     // PROCESS END
     
     // TRANSFER START
-    var transferimages = 'gettransferimages';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": transferimages,
+    var gettransferimages = 'gettransferimages';
+    $.post("http://169.254.136.152/api.php", {
+        "gettransferimages": gettransferimages,
         'id': lastID
     }, function(data) {
         var result = JSON.parse(data);
@@ -300,9 +300,9 @@ if (lastID === null) {
         }
     });
 
-    var transfernotes = 'gettransfernotes';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": transfernotes,
+    var gettransfernotes = 'gettransfernotes';
+    $.post("http://169.254.136.152/api.php", {
+        "gettransfernotes": gettransfernotes,
         'id': lastID
     }, function(data) {
         var result = JSON.parse(data);
@@ -317,9 +317,9 @@ if (lastID === null) {
         }
     });
 
-    var transfervideos = 'gettransfervideos';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": transfervideos,
+    var gettransfervideos = 'gettransfervideos';
+    $.post("http://169.254.136.152/api.php", {
+        "gettransfervideos": gettransfervideos,
         'id': lastID
     }, function(data) {
         var result = JSON.parse(data);
@@ -337,9 +337,9 @@ if (lastID === null) {
     });
 // TRANSFER END
     // positioning START
-    var positioningimages = 'getpositioningimages';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": positioningimages,
+    var getpositioningimages = 'getpositioningimages';
+    $.post("http://169.254.136.152/api.php", {
+        "getpositioningimages": getpositioningimages,
         'id': lastID
     }, function(data) {
         var result = JSON.parse(data);
@@ -354,9 +354,9 @@ if (lastID === null) {
         }
     });
 
-    var positioningnotes = 'getpositioningnotes';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": positioningnotes,
+    var getpositioningnotes = 'getpositioningnotes';
+    $.post("http://169.254.136.152/api.php", {
+        "getpositioningnotes": getpositioningnotes,
         'id': lastID
     }, function(data) {
         var result = JSON.parse(data);
@@ -371,9 +371,9 @@ if (lastID === null) {
         }
     });
 
-    var positioningvideos = 'getpositioningvideos';
-    $.post("http://www.digitaljimmi.com/api.php", {
-        "type": positioningvideos,
+    var getpositioningvideos = 'getpositioningvideos';
+    $.post("http://169.254.136.152/api.php", {
+        "getpositioningvideos": getpositioningvideos,
         'id': lastID
     }, function(data) {
         var result = JSON.parse(data);

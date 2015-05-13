@@ -31,8 +31,7 @@ if($_POST['type'] == 'process'){
 	$result = $mysqli->query("INSERT INTO processvideo(patientid,processvideo) VALUES('$id','$video')");
 	if(!$result){
 		echo json_encode('error');
-	}
-	
+	}	
 }
 
 ?>

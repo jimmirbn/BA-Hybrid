@@ -1,7 +1,7 @@
 $(document).on("click", ".team", function() {
     var teamnr = this.id;
-    var type = "roomdata";
-    $.post("http://www.digitaljimmi.com/api.php", {"type": type, 'teamnr' : teamnr}, function (data) {
+    var roomdata = "roomdata";
+    $.post("http://169.254.136.152/api.php", {"roomdata": roomdata, 'teamnr' : teamnr}, function (data) {
         var result = JSON.parse(data);
         for (var i = 0; i < result.length; i++) {
 
