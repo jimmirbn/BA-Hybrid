@@ -49,7 +49,7 @@ var born = $('input[name="born"]').val();
 var inlaid = $('input[name="inlaid"]').val();
 var roomnr = $('select[name="roomnr"]').val();
 var description = $('textarea[name="description"]').val();
-  $.post("http://169.254.136.152/api.php", {"addPatient": addPatient, "fullname": fullname,"born": born,"inlaid":inlaid,"roomnr": roomnr,"description": description,"imageSrc": imageSrc}, function (data) {
+  $$.post(connection, {"addPatient": addPatient, "fullname": fullname,"born": born,"inlaid":inlaid,"roomnr": roomnr,"description": description,"imageSrc": imageSrc}, function (data) {
         var result = JSON.parse(data);
         if(result === "success"){
             emptyPatientInfo();

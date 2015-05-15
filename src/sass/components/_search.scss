@@ -1,0 +1,53 @@
+.search-container {
+position: relative
+}
+
+    .searchbar {
+        padding: 0;
+        background: transparent;
+    width: auto;
+        input[type="search"] {
+            border: solid 1px lightgray;
+        }
+    }
+
+
+.searchbar-overlay {
+    &.active {
+        position: fixed;
+        top: 44px;
+        opacity: 1;
+    }
+}
+
+#results {
+    display: none;
+    list-style: none;
+    position: absolute;
+    width: 202px;
+    left: 0;
+    border-left: solid 1px lightgrey;
+    top: 32px;
+    border-right: solid 1px lightgrey;
+    border-bottom: 1px solid lightgrey;
+    background: white;
+    z-index: 99999;
+    padding: 0;
+    margin: 0;
+    height: auto;
+}
+
+.show {
+    border-top: 1px solid lightgrey;
+
+    &.nothing{
+        padding: 15px;
+    }
+}
+
+.patient-name {
+    a {
+        padding: 15px;
+        display: block;
+    }
+}

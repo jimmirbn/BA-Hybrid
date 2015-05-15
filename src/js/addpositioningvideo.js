@@ -60,13 +60,17 @@ function uploadFilePositioning(mediaFile) {
         var ft = new FileTransfer(),
             path = mediaFile.fullPath,
             name = mediaFile.name;
-        ft.upload(path, 'http://169.254.136.152/uploadvideo.php', winPositioning, fail, options);
+            $$('.loading').show();
+
+        ft.upload(path, connectionVideo, winPositioning, fail, options);
 
     });
 
 }
 
 function winPositioning(r) {
+            $$('.loading').hide();
+
     var result = JSON.parse(r.response);
 
     var positioningVideo = $("#positioning-video");
@@ -75,8 +79,8 @@ function winPositioning(r) {
     for (var i = 0; i < result.length; i++) {
                 var video = result[0];
                 var videotitle = result[1];
-    positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
     }
+    positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
 }
 
 function fail(error) {

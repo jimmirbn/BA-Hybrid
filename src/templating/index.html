@@ -10,7 +10,6 @@
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/framework7.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 
 <body>
@@ -62,6 +61,29 @@
                                 </li>
                             </ul>
                         </div>
+                        <!-- <div class="content-block-title"></div> -->
+                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <a id="allRooms" href="all.html" class="item-link getAll">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Alle stuer</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="allPatients" href="all.html" class="item-link getAll">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Alle patienter</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,8 +96,19 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <a href="#" class="open-panel left">left</a>
-                    <div class="center sliding">Headline</div>
+                    <!-- <div class="center sliding">Headline</div> -->
+                    <div class="search-container">
+                        <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init">
+                            <div class="searchbar-input">
+                                <input class="search" id="search" type="search" placeholder="Search">
+                                <a href="#" class="searchbar-clear"></a>
+                            </div>
+                            <!-- <a href="#" class="searchbar-cancel">Cancel</a> -->
+                        </form>
+                    <ul id="results"></ul>
+                    </div>
                     <p class="right"><a href="#" data-popup=".popup-addPatient" class="open-popup">Add patient</a></p>
+                    <div class="searchbar-overlay"></div>
                 </div>
             </div>
             <!-- Pages-->
@@ -83,124 +116,124 @@
                 <!-- Page, data-page contains page name-->
                 <div data-page="index-1" class="page">
                     <!-- Scrollable page content-->
-                    <div class="page-content">
-                        <div class="content-block">
+                    <div class="page-content" id="home">
+                        <div class="content-block patient-block">
                             <div class="content-block-inner">
                                 <div class="row">
-                                    <div class="col-50">
+                                    <div class="col-50 patientImage-Data">
                                         <div class="row">
-                                            <div class="col-50">
+                                            <div class="col-50 profileImage-container">
                                                 <span id="profileImage" class="profile-image"></span>
                                                 <input type="hidden" id="patientID">
                                             </div>
-                                            <div class="col-50">
+                                            <div class="col-50 profileText-container">
                                                 <p id="patientName"></p>
                                                 <p id="patientBorn"></p>
                                                 <p id="patientinlaid"></p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-50">
+                                    <div class="col-50 patientInfo-container">
                                         <p id="patientText"></p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tabs-container">
-                                <div class="tabs-header">
-                                    <p>Patient data</p>
+                        </div>
+                        <div class="tabs-container">
+                            <div class="tabs-header">
+                                <p>Patient data</p>
+                            </div>
+                            <div class="row no-gutter tabs-innercontainer">
+                                <div class="col-25 h100">
+                                    <ul class="tabs-menu">
+                                        <li class="current"><a href="#tab-1">Process</a></li>
+                                        <li><a href="#tab-2">Forflytninger</a></li>
+                                        <li><a href="#tab-3">Lejring</a></li>
+                                    </ul>
                                 </div>
-                                <div class="row no-gutter tabs-innercontainer">
-                                    <div class="col-25 h100">
-                                        <ul class="tabs-menu h100">
-                                            <li class="current"><a href="#tab-1">Process</a></li>
-                                            <li><a href="#tab-2">Forflytninger</a></li>
-                                            <li><a href="#tab-3">Lejring</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-75 h100">
-                                        <div class="tab h100">
-                                            <div id="tab-1" class="tab-content">
-                                                <div class="row">
-                                                    <div class="col-33">
-                                                        <div class="swiper-container process-image">
-                                                            <!-- Slides wrapper -->
-                                                            <div class="swiper-wrapper" id="process-image">
-                                                            </div>
-                                                            <div class="swiper-pagination"></div>
-                                                            <button class="button button-big active btn btn-slider addProcessImage">Nyt process billede</button>
+                                <div class="col-75 h100">
+                                    <div class="tab h100">
+                                        <div id="tab-1" class="tab-content">
+                                            <div class="row">
+                                                <div class="col-33">
+                                                    <div class="swiper-container process-image">
+                                                        <!-- Slides wrapper -->
+                                                        <div class="swiper-wrapper" id="process-image">
                                                         </div>
+                                                        <div class="swiper-pagination"></div>
+                                                        <button class="button button-big active btn btn-slider addProcessImage">Nyt process billede</button>
                                                     </div>
-                                                    <div class="col-33">
-                                                        <div class="swiper-container process-video">
-                                                            <div class="swiper-wrapper" id="process-video">
-                                                            </div>
-                                                            <div class="swiper-pagination"></div>
-                                                            <button class="button button-big active btn btn-slider addProcessVideo">Ny process video</button>
+                                                </div>
+                                                <div class="col-33">
+                                                    <div class="swiper-container process-video">
+                                                        <div class="swiper-wrapper" id="process-video">
                                                         </div>
+                                                        <div class="swiper-pagination"></div>
+                                                        <button class="button button-big active btn btn-slider addProcessVideo">Ny process video</button>
                                                     </div>
-                                                    <div class="col-33">
-                                                        <div class="swiper-container process-notes">
-                                                            <div class="swiper-wrapper" id="process-notes">
-                                                            </div>
-                                                            <div class="swiper-pagination"></div>
-                                                            <button class="button button-big active btn btn-slider addProcessNote">Ny process note</button>
+                                                </div>
+                                                <div class="col-33">
+                                                    <div class="swiper-container process-notes">
+                                                        <div class="swiper-wrapper" id="process-notes">
                                                         </div>
+                                                        <div class="swiper-pagination"></div>
+                                                        <button id="process" data-popup=".popup-addNote" class="button button-big active btn btn-slider open-popup popupType">Ny process note</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="tab-2" class="tab-content hide">
-                                                <div class="row">
-                                                    <div class="col-33">
-                                                        <div class="swiper-container transfers-image">
-                                                            <div class="swiper-wrapper" id="transfers-image">
-                                                            </div>
-                                                            <div class="swiper-pagination"></div>
-                                                            <button class="button button-big active btn btn-slider addTransfersImage">Nyt flyt billede</button>
+                                        </div>
+                                        <div id="tab-2" class="tab-content hide">
+                                            <div class="row">
+                                                <div class="col-33">
+                                                    <div class="swiper-container transfers-image">
+                                                        <div class="swiper-wrapper" id="transfers-image">
                                                         </div>
+                                                        <div class="swiper-pagination"></div>
+                                                        <button class="button button-big active btn btn-slider addTransfersImage">Nyt flyt billede</button>
                                                     </div>
-                                                    <div class="col-33">
-                                                        <div class="swiper-container transfers-video">
-                                                            <div class="swiper-wrapper" id="transfers-video">
-                                                            </div>
-                                                            <div class="swiper-pagination"></div>
-                                                            <button class="button button-big active btn btn-slider addTransfersVideo">Ny flyt video</button>
+                                                </div>
+                                                <div class="col-33">
+                                                    <div class="swiper-container transfers-video">
+                                                        <div class="swiper-wrapper" id="transfers-video">
                                                         </div>
+                                                        <div class="swiper-pagination"></div>
+                                                        <button class="button button-big active btn btn-slider addTransfersVideo">Ny flyt video</button>
                                                     </div>
-                                                    <div class="col-33">
-                                                        <div class="swiper-container transfers-notes">
-                                                            <div class="swiper-wrapper" id="transfers-notes">
-                                                            </div>
-                                                            <div class="swiper-pagination"></div>
-                                                            <button class="button button-big active btn btn-slider addTransfersNote">Ny flyt note</button>
+                                                </div>
+                                                <div class="col-33">
+                                                    <div class="swiper-container transfers-notes">
+                                                        <div class="swiper-wrapper" id="transfers-notes">
                                                         </div>
+                                                        <div class="swiper-pagination"></div>
+                                                        <button id="transfer" data-popup=".popup-addNote" class="button button-big active btn btn-slider open-popup popupType">Ny flyt note</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="tab-3" class="tab-content hide">
-                                                <div class="row">
-                                                    <div class="col-33">
-                                                        <div class="swiper-container positioning-image">
-                                                            <div class="swiper-wrapper" id="positioning-image">
-                                                            </div>
-                                                            <div class="swiper-pagination"></div>
-                                                            <button class="button button-big active addPositioningImage btn btn-slider">Nyt lejring billede</button>
+                                        </div>
+                                        <div id="tab-3" class="tab-content hide">
+                                            <div class="row">
+                                                <div class="col-33">
+                                                    <div class="swiper-container positioning-image">
+                                                        <div class="swiper-wrapper" id="positioning-image">
                                                         </div>
+                                                        <div class="swiper-pagination"></div>
+                                                        <button class="button button-big active addPositioningImage btn btn-slider">Nyt lejring billede</button>
                                                     </div>
-                                                    <div class="col-33">
-                                                        <div class="swiper-container positioning-video">
-                                                            <div class="swiper-wrapper" id="positioning-video">
-                                                            </div>
-                                                            <div class="swiper-pagination"></div>
-                                                            <button class="button button-big active btn btn-slider addPositioningVideo">Ny Lejring video</button>
+                                                </div>
+                                                <div class="col-33">
+                                                    <div class="swiper-container positioning-video">
+                                                        <div class="swiper-wrapper" id="positioning-video">
                                                         </div>
+                                                        <div class="swiper-pagination"></div>
+                                                        <button class="button button-big active btn btn-slider addPositioningVideo">Ny Lejring video</button>
                                                     </div>
-                                                    <div class="col-33">
-                                                        <div class="swiper-container positioning-notes">
-                                                            <div class="swiper-wrapper" id="positioning-notes">
-                                                            </div>
-                                                            <div class="swiper-pagination"></div>
-                                                            <button class="button button-big active btn btn-slider addPositioningNote">Ny Lejring note</button>
+                                                </div>
+                                                <div class="col-33">
+                                                    <div class="swiper-container positioning-notes">
+                                                        <div class="swiper-wrapper" id="positioning-notes">
                                                         </div>
+                                                        <div class="swiper-pagination"></div>
+                                                        <button id="positioning" data-popup=".popup-addNote" class="button button-big active btn btn-slider open-popup popupType">Ny Lejring note</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -308,6 +341,50 @@
             <button class="button button-big active addPatient">Tilføj patient</button>
         </div>
         <!-- </div> -->
+    </div>
+    <div class="popup tablet-fullscreen popup-addNote">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="center">Add</div>
+                <p class="right"><a href="#" class="close-popup">Luk</a></p>
+            </div>
+        </div>
+        <!-- <div class="content-block"> -->
+        <div class="row">
+            <div class="list-block">
+                <ul>
+                    <li class="align-top">
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-comment"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Note</div>
+                                <div class="item-input">
+                                    <textarea name="note"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button class="button button-big active addNote">Tilføj note</button>
+            <input type="hidden" id="type">
+        </div>
+        <!-- </div> -->
+    </div>
+    <div class="loading">
+        <span class="preloader"></span>
+        <div class="spinner-container">
+            <span class="dots"></span>
+            <span class="dots"></span>
+            <span class="dots"></span>
+            <span class="dots"></span>
+            <span class="dots"></span>
+            <span class="dots"></span>
+            <span class="dots"></span>
+            <span class="dots"></span>
+            <span class="dots"></span>
+            <span class="dots"></span>
+        </div>
     </div>
     <!-- Path to Framework7 Library JS-->
     <script type="text/javascript" src="cordova.js"></script>

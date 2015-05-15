@@ -1,0 +1,25 @@
+.patient-block {
+    .row {
+        @include screen(768px, 1024px, portrait) {
+            width: 100%;
+            margin: auto;
+        }
+
+        .profile-image {
+            @include screen(768px, 1024px, portrait) {
+                margin: auto;
+            }
+        }
+        .patientImage-Data {
+            @include screen(768px, 1024px, portrait) {
+                width: 100%;
+            }
+        }
+        .patientInfo-container {
+            @include screen(768px, 1024px, portrait) {
+                margin: auto;
+                width: 70%;
+            }
+        }
+    }
+}

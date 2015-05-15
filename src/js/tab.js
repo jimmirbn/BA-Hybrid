@@ -1,6 +1,4 @@
-$(document).ready(function() {
-
-    $(".tabs-menu a").click(function(event) {
+    $$(".tabs-menu a").click(function(event) {
         event.preventDefault();
         $(this).parent().addClass("current");
         $(this).parent().siblings().removeClass("current");
@@ -9,4 +7,3 @@ $(document).ready(function() {
         $(tab).removeClass('hide');
 
     });
-});

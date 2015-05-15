@@ -2,9 +2,12 @@
     .row {
         width: 50%;
         margin: auto;
+        @include screen(768px, 1024px, portrait) {
+            width: 70%;
+        }
         .list-block {
             width: 100%;
-            .item-title{
+            .item-title {
                 color: gray;
             }
             .profileImage {
@@ -27,19 +30,18 @@
                 }
             }
         }
-        button{
+        button {
             width: 50%;
             margin: auto;
         }
     }
-    .addProfileImage{
-        width: 30%;
+    .addProfileImage {
+        width: 35%;
         margin: 0 auto 25px;
     }
-
     i.icon.icon-form-door {
-  width: 29px;
-  height: 29px;
-  background-image: url(../img/i-form-door.png);
-}
+        width: 29px;
+        height: 29px;
+        background-image: url(../img/i-form-door.png);
+    }
 }

@@ -28,7 +28,6 @@ function captureSuccessTransfer(mediaFiles) {
     }
 }
 
-
 function captureVideoTransfer() {
     // Launch device video recording application,
     navigator.device.capture.captureVideo(captureSuccessTransfer, captureError);
@@ -60,12 +59,13 @@ function uploadFileTransfer(mediaFile) {
         var ft = new FileTransfer(),
             path = mediaFile.fullPath,
             name = mediaFile.name;
-        ft.upload(path, 'http://169.254.136.152/uploadvideo.php', winTransfer, fail, options);
-
+            $$('.loading').show();
+        ft.upload(path, connectionVideo, winTransfer, fail, options);
     });
 }
 
 function winTransfer(r) {
+    $$('.loading').hide();
     var result = JSON.parse(r.response);
 
     var transfersVideo = $("#transfers-video");
@@ -74,8 +74,8 @@ function winTransfer(r) {
     for (var i = 0; i < result.length; i++) {
                 var video = result[0];
                 var videotitle = result[1];
-    transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
     }
+    transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
 
 
 }

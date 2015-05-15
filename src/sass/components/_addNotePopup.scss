@@ -1,0 +1,25 @@
+.popup-addNote {
+    .row {
+        width: 50%;
+        margin: auto;
+        .list-block {
+            width: 100%;
+            .align-top {
+                .item-inner {
+                    display: block;
+                }
+                .item-title {
+                    width: 100%;
+                }
+                textarea {
+                    padding-left: 0;
+                    height: 400px;
+                }
+            }
+        }
+        button {
+            width: 50%;
+            margin: auto;
+        }
+    }
+}

@@ -1,5 +1,15 @@
 .tabs-container {
-    margin: 25px -15px 0;
+    position: absolute;
+    bottom: 51px;
+    left: 0;
+    right: 0;
+    top: 300px;
+    @include screen(768px, 1024px, portrait) {
+        top: 350px;
+        bottom: 92px;
+    }
+
+    // margin: 25px -15px 0;
     .tabs-header {
         height: 50px;
         border-top: solid 1px gray;
@@ -10,11 +20,23 @@
         }
     }
     .tabs-innercontainer {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 325px;
-        bottom: 0;
+        // position: absolute;
+        // left: 0;
+        // right: 0;
+        // top: 325px;
+        // bottom: 0;
+        height: 100%;
+        .col-25 {
+            @include screen(768px, 1024px, portrait) {
+                width: 100%;
+                height: auto;
+            }
+        }
+        .col-75 {
+            @include screen(768px, 1024px, portrait) {
+                width: 100%;
+            }
+        }
     }
 }
 
@@ -22,34 +44,39 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    height: 250px;
-}
-
-.tabs-menu li {
-    height: 33.333333333%;
-    line-height: 30px;
-    background-color: #ccc;
-    width: 100%;
-}
-
-.tabs-menu li.current {
-    position: relative;
-    background-color: #fff;
-    border-bottom: 1px solid #fff;
-    z-index: 5;
-}
-
-.tabs-menu li a {
-    padding: 10px;
-    text-transform: uppercase;
-    color: #fff;
-    text-decoration: none;
-    display: block;
     height: 100%;
-}
+    @include screen(768px, 1024px, portrait) {
+        height: auto;
+    }
 
-.tabs-menu .current a {
-    color: #2e7da3;
+    li {
+        height: 33.333333333%;
+        background-color: #ccc;
+        width: 100%;
+        @include screen(768px, 1024px, portrait) {
+            height: auto;
+            width: 33.333333333%;
+            float: left;
+        }
+
+        a {
+            padding: 10px;
+            text-transform: uppercase;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            height: 100%;
+        }
+        &.current {
+            position: relative;
+            background-color: #fff;
+            border-bottom: 1px solid #fff;
+            z-index: 5;
+            a {
+                color: #2e7da3;
+            }
+        }
+    }
 }
 
 .tab {
@@ -71,19 +98,4 @@
     img {
         width: 100%;
     }
-}
-
-.slide1 {
-    background: green;
-    height: 100%;
-}
-
-.slide2 {
-    background: blue;
-    height: 100%;
-}
-
-.slide3 {
-    background: red;
-    height: 100%;
 }

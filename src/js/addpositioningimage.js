@@ -9,13 +9,15 @@ function onSuccessPositioning(imageData) {
     var positioningImage = $("#positioning-image");
     var patientID = $('#patientID').val();
     image = 'data:image/jpeg;base64,' + imageData;
-    // profileImage.append('<img src="' + image + '" alt="' + name + '">');
-    positioningImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+    var imagedate = moment().format('DD-MM-YYYY');
+    
+    // positioningImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
+    positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="'+imagedate+'"></a></div>');
 
     var addImage = 'addImage';
     var table = 'positioningimages';
     var imagerow = 'positioningimage';
-  $.post("http://169.254.136.152/api.php", {"addImage": addImage, "imageData":image, "patientID":patientID,"table":table,"imagerow":imagerow}, function (data) {
+  $$.post(connection, {"addImage": addImage, "imageData":image, "patientID":patientID,"table":table,"imagerow":imagerow}, function (data) {
         var result = JSON.parse(data);
         console.log(result);
         // if(result === "success"){

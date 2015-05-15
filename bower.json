@@ -14,6 +14,8 @@
     "bourbon": "~4.2.2",
     "jquery": "~1.11.2",
     "framework7": "~1.0.6",
-    "momentjs": "~2.10.2"
+    "momentjs": "~2.10.2",
+    "loaders.css": "~0.1.1",
+    "sass-mediaqueries": "~1.5.1"
   }
 }

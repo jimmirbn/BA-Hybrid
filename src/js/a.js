@@ -1,5 +1,17 @@
 // Initialize your app
-var myApp = new Framework7();
+var myApp = new Framework7({
+     onAjaxStart: function (xhr) {
+        myApp.showIndicator();
+    },
+    onAjaxComplete: function (xhr) {
+        myApp.hideIndicator();
+    }
+
+});
+
+var connection = "http://localhost/api.php";
+var connectionVideo = "http://localhost/uploadvideo.php";
+var connectionSearch = "http://localhost/search.php";
 
 // Export selectors engine
 var $$ = Dom7;
@@ -28,6 +40,7 @@ function captureError(error) {
     var msg = 'An error occurred during capture: ' + error.code;
     navigator.notification.alert(msg, null, 'Uh oh!');
 }
+
 function emptyPatientInfo() {
     var profileImage = $("#profileImage");
     var patientName = $("#patientName");
@@ -47,6 +60,8 @@ function emptyPatientInfo() {
     var processVideo = $("#process-video");
     var processNotes = $("#process-notes");
 
+    var searchInput = $('.search');
+
     profileImage.empty();
     patientName.empty();
     patientBorn.empty();
@@ -61,10 +76,11 @@ function emptyPatientInfo() {
     processVideo.empty();
     processImage.empty();
     processNotes.empty();
+    searchInput.val('');
 
-}
+};
 
-var profileImage = $("#profileImage");
+var profileImage =  $("#profileImage");
 var patientName = $("#patientName");
 var patientBorn = $("#patientBorn");
 var patientinlaid = $("#patientinlaid");
@@ -81,3 +97,4 @@ var processNotes = $("#process-notes");
 var transfersImage = $("#transfers-image");
 var transfersVideo = $("#transfers-video");
 var transfersNotes = $("#transfers-notes");
+var searchInput = $('.search');
