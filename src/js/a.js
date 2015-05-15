@@ -9,12 +9,12 @@ var myApp = new Framework7({
 
 });
 
-var connection = "http://169.254.136.152/api.php";
-var connectionVideo = "http://169.254.136.152/uploadvideo.php";
-var connectionSearch = "http://169.254.136.152/search.php";
-// var connection = "http://localhost/api.php";
-// var connectionVideo = "http://localhost/uploadvideo.php";
-// var connectionSearch = "http://localhost/search.php";
+// var connection = "http://169.254.136.152/api.php";
+// var connectionVideo = "http://169.254.136.152/uploadvideo.php";
+// var connectionSearch = "http://169.254.136.152/search.php";
+var connection = "http://localhost/api.php";
+var connectionVideo = "http://localhost/uploadvideo.php";
+var connectionSearch = "http://localhost/search.php";
 
 // Export selectors engine
 var $$ = Dom7;

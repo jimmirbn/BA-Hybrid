@@ -57,6 +57,6 @@ $$(document).on("click", ".openVideo", function() {
             console.log(theVideoNr);
             myVideoBrowserDark.open(theVideoNr);
         }
-        $('.videoPlay' + theVideoNr + '')[0].play;
+        // $('.videoPlay' + theVideoNr + '')[0].play;
     }
 });
