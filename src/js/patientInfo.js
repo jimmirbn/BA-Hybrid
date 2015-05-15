@@ -125,7 +125,7 @@ function getVideos(id, type) {
                         var video = result[i].processvideo;
                         var videodate = result[i].processvideodate;
                         var videotitle = result[i].processvideotitle;
-                        processVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video controls poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
+                        processVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
                     }
                 }
                 if (type == 'transfervideos') {
@@ -133,7 +133,7 @@ function getVideos(id, type) {
                         var video = result[i].transfervideo;
                         var videodate = result[i].transfervideodate;
                         var videotitle = result[i].transfervideotitle;
-                        transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video controls poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
+                        transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
                     }
                 }
                 if (type == 'positioningvideos') {
@@ -141,7 +141,7 @@ function getVideos(id, type) {
                         var video = result[i].positioningvideo;
                         var videodate = result[i].positioningvideodate;
                         var videotitle = result[i].positioningvideotitle;
-                        positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video controls poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
+                        positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
                     }
                 }
             }

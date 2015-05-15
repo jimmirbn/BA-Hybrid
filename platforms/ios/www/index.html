@@ -96,18 +96,19 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <a href="#" class="open-panel left">left</a>
-                    <div class="center sliding">Headline</div>
+                    <!-- <div class="center sliding">Headline</div> -->
                     <div class="search-container">
                         <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init">
                             <div class="searchbar-input">
                                 <input class="search" id="search" type="search" placeholder="Search">
                                 <a href="#" class="searchbar-clear"></a>
-                            </div><a href="#" class="searchbar-cancel">Cancel</a>
+                            </div>
+                            <!-- <a href="#" class="searchbar-cancel">Cancel</a> -->
                         </form>
+                    <ul id="results"></ul>
                     </div>
                     <p class="right"><a href="#" data-popup=".popup-addPatient" class="open-popup">Add patient</a></p>
                     <div class="searchbar-overlay"></div>
-                    <ul id="results"></ul>
                 </div>
             </div>
             <!-- Pages-->
@@ -116,23 +117,23 @@
                 <div data-page="index-1" class="page">
                     <!-- Scrollable page content-->
                     <div class="page-content" id="home">
-                        <div class="content-block">
+                        <div class="content-block patient-block">
                             <div class="content-block-inner">
                                 <div class="row">
-                                    <div class="col-50">
+                                    <div class="col-50 patientImage-Data">
                                         <div class="row">
-                                            <div class="col-50">
+                                            <div class="col-50 profileImage-container">
                                                 <span id="profileImage" class="profile-image"></span>
                                                 <input type="hidden" id="patientID">
                                             </div>
-                                            <div class="col-50">
+                                            <div class="col-50 profileText-container">
                                                 <p id="patientName"></p>
                                                 <p id="patientBorn"></p>
                                                 <p id="patientinlaid"></p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-50">
+                                    <div class="col-50 patientInfo-container">
                                         <p id="patientText"></p>
                                     </div>
                                 </div>
@@ -144,7 +145,7 @@
                             </div>
                             <div class="row no-gutter tabs-innercontainer">
                                 <div class="col-25 h100">
-                                    <ul class="tabs-menu h100">
+                                    <ul class="tabs-menu">
                                         <li class="current"><a href="#tab-1">Process</a></li>
                                         <li><a href="#tab-2">Forflytninger</a></li>
                                         <li><a href="#tab-3">Lejring</a></li>

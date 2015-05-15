@@ -35,7 +35,7 @@ $$(document).on("click", ".openVideo", function() {
 
     video.each(function(i) {
         arr.push({
-            html: '<video controls class="videoPlay" src="' + $(this).attr("src") + '"></video>',
+            html: '<video controls class="videoPlay' + i + '" src="' + $(this).attr("src") + '"></video>',
             caption: '' + $(this).attr("data-id")
         });
     });
@@ -43,9 +43,9 @@ $$(document).on("click", ".openVideo", function() {
     var myVideoBrowserDark = myApp.photoBrowser({
         photos: arr,
         theme: 'dark',
-        onClose: function() {
-            $('.videoPlay')[0].pause();
-        }
+        // onClose: function() {
+        //     $('.videoPlay')[0].pause();
+        // }
     });
 
     theVideo = $(this).find('source').attr('src');
@@ -54,8 +54,9 @@ $$(document).on("click", ".openVideo", function() {
 
         if (video[i].src == theVideo) {
             var theVideoNr = i;
+            console.log(theVideoNr);
             myVideoBrowserDark.open(theVideoNr);
         }
+        $('.videoPlay' + theVideoNr + '')[0].play;
     }
-    // $('.videoPlay')[0].play;
 });

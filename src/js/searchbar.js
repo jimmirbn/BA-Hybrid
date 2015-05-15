@@ -40,7 +40,6 @@ $(".search").keyup(function() {
             data: dataString,
             cache: false,
             success: function(html) {
-                console.log(html);
                 $("#results").html(html).show();
             }
         });

@@ -9,9 +9,12 @@ var myApp = new Framework7({
 
 });
 
-var connection = "http://localhost/api.php";
-var connectionVideo = "http://localhost/uploadvideo.php";
-var connectionSearch = "http://localhost/search.php";
+var connection = "http://169.254.136.152/api.php";
+var connectionVideo = "http://169.254.136.152/uploadvideo.php";
+var connectionSearch = "http://169.254.136.152/search.php";
+// var connection = "http://localhost/api.php";
+// var connectionVideo = "http://localhost/uploadvideo.php";
+// var connectionSearch = "http://localhost/search.php";
 
 // Export selectors engine
 var $$ = Dom7;
@@ -830,7 +833,7 @@ function getVideos(id, type) {
                         var video = result[i].processvideo;
                         var videodate = result[i].processvideodate;
                         var videotitle = result[i].processvideotitle;
-                        processVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video controls poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
+                        processVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
                     }
                 }
                 if (type == 'transfervideos') {
@@ -838,7 +841,7 @@ function getVideos(id, type) {
                         var video = result[i].transfervideo;
                         var videodate = result[i].transfervideodate;
                         var videotitle = result[i].transfervideotitle;
-                        transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video controls poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
+                        transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
                     }
                 }
                 if (type == 'positioningvideos') {
@@ -846,7 +849,7 @@ function getVideos(id, type) {
                         var video = result[i].positioningvideo;
                         var videodate = result[i].positioningvideodate;
                         var videotitle = result[i].positioningvideotitle;
-                        positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video controls poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
+                        positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
                     }
                 }
             }
@@ -965,7 +968,7 @@ $$(document).on("click", ".openVideo", function() {
 
     video.each(function(i) {
         arr.push({
-            html: '<video controls class="videoPlay" src="' + $(this).attr("src") + '"></video>',
+            html: '<video controls class="videoPlay' + i + '" src="' + $(this).attr("src") + '"></video>',
             caption: '' + $(this).attr("data-id")
         });
     });
@@ -973,9 +976,9 @@ $$(document).on("click", ".openVideo", function() {
     var myVideoBrowserDark = myApp.photoBrowser({
         photos: arr,
         theme: 'dark',
-        onClose: function() {
-            $('.videoPlay')[0].pause();
-        }
+        // onClose: function() {
+        //     $('.videoPlay')[0].pause();
+        // }
     });
 
     theVideo = $(this).find('source').attr('src');
@@ -984,10 +987,11 @@ $$(document).on("click", ".openVideo", function() {
 
         if (video[i].src == theVideo) {
             var theVideoNr = i;
+            console.log(theVideoNr);
             myVideoBrowserDark.open(theVideoNr);
         }
+        $('.videoPlay' + theVideoNr + '')[0].play;
     }
-    // $('.videoPlay')[0].play;
 });
 
 $$(document).on("click", ".team", function() {
@@ -1054,7 +1058,6 @@ $(".search").keyup(function() {
             data: dataString,
             cache: false,
             success: function(html) {
-                console.log(html);
                 $("#results").html(html).show();
             }
         });
