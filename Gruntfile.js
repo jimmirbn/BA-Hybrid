@@ -39,7 +39,6 @@ module.exports = function (grunt) {
                     '<%= src.bower %>/jquery/dist/jquery.js',
                     '<%= src.bower %>/framework7/dist/js/framework7.js',
                     '<%= src.bower %>/momentjs/moment.js',
-                    '<%= src.bower %>/spin.js/spin.js',
                 ],
                 dest : '<%= app.js %>/vendors.js',
                 nonull : true

@@ -640,7 +640,7 @@
 
 .searchbar-overlay.active {
   position: fixed;
-  top: 44px;
+  top: 64px;
   opacity: 1;
 }
 
