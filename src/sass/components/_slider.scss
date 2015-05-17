@@ -38,10 +38,11 @@
         display: block;
         height: 80px;
         width: 80px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        @include transform(translate(-50%, -50%));
+        // position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // @include transform(translate(-50%, -50%));
+        @include transform(translate(85px, 160px));
         z-index: 1;
         background: rgba(0, 0, 0, 0.5) url(../img/arrow_white.png) no-repeat 30px 18px;
         border-radius: 50%;

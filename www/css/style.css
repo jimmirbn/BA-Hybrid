@@ -262,14 +262,11 @@ a {
   display: block;
   height: 80px;
   width: 80px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(85px, 160px);
+  -moz-transform: translate(85px, 160px);
+  -ms-transform: translate(85px, 160px);
+  -o-transform: translate(85px, 160px);
+  transform: translate(85px, 160px);
   z-index: 1;
   background: rgba(0, 0, 0, 0.5) url(../img/arrow_white.png) no-repeat 30px 18px;
   border-radius: 50%;
@@ -1131,6 +1128,11 @@ a {
 .btn.active-state {
   background-color: #81ccf1;
   color: #fff;
+}
+
+.login-screen, html.with-statusbar-overlay .popup.tablet-fullscreen, html.with-statusbar-overlay body > .photo-browser {
+  height: 100% !important;
+  top: 0 !important;
 }
 
 .page-content {
