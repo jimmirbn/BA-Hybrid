@@ -36,11 +36,7 @@
                             "xml": false,
                             "count": 3
                         }
-                    ],
-                    "Foundation.framework": [],
-                    "UIKit.framework": [],
-                    "AVFoundation.framework": [],
-                    "MediaPlayer.framework": []
+                    ]
                 }
             },
             "config.xml": {
@@ -59,15 +55,26 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Capture\"><param name=\"ios-package\" value=\"CDVCapture\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
+                            "xml": "<feature name=\"StatusBar\"><param name=\"ios-package\" value=\"CDVStatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarOverlaysWebView\" value=\"true\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
                             "count": 1
                         }
-                    ],
-                    "/widget/plugins": []
+                    ]
                 }
             },
             "*-Info.plist": {
@@ -83,22 +90,24 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
-        },
         "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
-        },
-        "org.apache.cordova.media-capture": {
             "PACKAGE_NAME": "com.phonegap.patientInfo"
         },
-        "org.apache.cordova.file-transfer": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.phonegap.patientInfo"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.phonegap.patientInfo"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.phonegap.patientInfo"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.phonegap.patientInfo"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.phonegap.patientInfo"
         }
     },
-    "dependent_plugins": {
-        "org.apache.cordova.file": {
-            "PACKAGE_NAME": "com.phonegap.patientInfo"
-        }
-    }
+    "dependent_plugins": {}
 }

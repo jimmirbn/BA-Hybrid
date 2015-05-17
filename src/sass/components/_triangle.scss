@@ -1,0 +1,52 @@
+.arrow {
+    will-change: transform;
+    @include transition(transform 200ms ease, opacity 200ms ease);
+    &:not(:nth-child(1n+3)) {
+        font-size: 5px;
+        @include inline-block;
+        text-indent: -9999px;
+        width: 5em;
+        height: 5em;
+        position: absolute;
+        bottom: 5px;
+        right: 0px;
+        overflow: hidden;
+        opacity: 0;
+        &:before,
+        &:after {
+            @include transition(background-color 0.2s ease-out);
+            content: "";
+            position: absolute;
+            left: 25%;
+            right: 25%;
+            height: 2px;
+            background-color: $palette__black--light;
+            top: 48%;
+        }
+        &:before{
+            top: 54%;
+        }
+    }
+}
+
+.prev:not(:nth-child(1n+3)) {
+    &:after {
+        @include transform-origin(0 0);
+        @include transform(rotate(-45deg));
+    }
+    &:before {
+        @include transform-origin(0 100%);
+        @include transform(rotate(45deg));
+    }
+}
+
+.arrow:not(:nth-child(1n+3)) {
+    &:after {
+        @include transform-origin(100% 100%);
+        @include transform(rotate(-45deg));
+    }
+    &:before {
+        @include transform-origin(100% 0);
+        @include transform(rotate(45deg));
+    }
+}

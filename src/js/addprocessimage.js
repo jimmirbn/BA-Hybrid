@@ -39,17 +39,17 @@ function getPhotoProcess() {
 
 $$('.addProcessImage').on('click', function() {
     var buttons = [{
-        text: 'From photo library',
+        text: 'Fra foto bibliotek',
         onClick: function() {
             getPhotoProcess();
         }
     }, {
-        text: 'From Camera',
+        text: 'Fra kamera',
         onClick: function() {
             snapPictureProcess();
         }
     }, {
-        text: 'Cancel',
+        text: 'Afbryd',
         color: 'red',
         onClick: function() {
         }

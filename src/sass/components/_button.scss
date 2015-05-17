@@ -1,0 +1,109 @@
+.toggler {
+    font-family: arial;
+    font-size: 18px;
+    text-transform: uppercase;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: #000;
+    margin-top: 6px;
+    span {
+        display: block;
+        padding: 9px 20px 10px 38px;
+        @include transition(opacity 400ms ease);
+        &.open {
+            opacity: 0;
+            position: absolute;
+            left: 0;
+        }
+    }
+    i {
+        position: absolute;
+        left: 0;
+        background-color: #000;
+        height: 3px;
+        width: 28px;
+        @include transition(transform 400ms ease, top 400ms ease);
+        $top: 12px;
+        &.t {
+            top: $top;
+        }
+        &.m {
+            top: $top + 6;
+            @include transition(opacity 400ms ease, width 400ms ease, left 400ms ease);
+        }
+        &.b {
+            top: $top + 12;
+        }
+    }
+    &.open {
+        span {
+            &.closed {
+                opacity: 0;
+            }
+            &.open {
+                opacity: 1;
+            }
+        }
+        i {
+            $top: 18px;
+            &.t {
+                top: $top;
+                @include transform(rotate(45deg));
+            }
+            &.m {
+                width: 0;
+                opacity: 0;
+                left: 34px;
+            }
+            &.b {
+                top: $top;
+                @include transform(rotate(-45deg));
+            }
+        }
+    }
+}
+
+.btn {
+    background-color: $palette__white;
+    border-radius: 0;
+    border: 0;
+    border-color: transparent;
+    color: $palette__black--dark;
+    &--blue {
+        background-color: $palette__blue;
+        color: $palette__white;
+    }
+    &--slider {
+        i {
+            display: block;
+            width: 44px;
+            position: absolute;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+        &--image {
+            i {
+                background: $palette__blue url(../img/camera.png) no-repeat center center;
+                background-size: 26px;
+            }
+        }
+        &--video {
+            i {
+                background: $palette__blue url(../img/video.png) no-repeat center center;
+                background-size: 26px;
+            }
+        }
+        &--note {
+            i {
+                background: $palette__blue url(../img/chart.png) no-repeat center center;
+                background-size: 26px;
+            }
+        }
+    }
+    &.active-state {
+        background-color: $palette__blue--light;
+        color: $palette__white;
+    }
+}

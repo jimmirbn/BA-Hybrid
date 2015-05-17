@@ -1,20 +1,42 @@
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+
+    onDeviceReady: function() {
+        // alert('Loading PhoneGap is completed');
+        StatusBar.overlaysWebView(false);
+        StatusBar.styleLightContent();
+        StatusBar.backgroundColorByName("black");
+        StatusBar.backgroundColorByHexString("#000000");
+    },
+
+};
 // Initialize your app
 var myApp = new Framework7({
-     onAjaxStart: function (xhr) {
+    onAjaxStart: function(xhr) {
         myApp.showIndicator();
     },
-    onAjaxComplete: function (xhr) {
+    onAjaxComplete: function(xhr) {
         myApp.hideIndicator();
     }
 
 });
 
-var connection = "http://169.254.136.152/api.php";
-var connectionVideo = "http://169.254.136.152/uploadvideo.php";
-var connectionSearch = "http://169.254.136.152/search.php";
-// var connection = "http://localhost/api.php";
-// var connectionVideo = "http://localhost/uploadvideo.php";
-// var connectionSearch = "http://localhost/search.php";
+// var connection = "http://169.254.136.152/api.php";
+// var connectionVideo = "http://169.254.136.152/uploadvideo.php";
+// var connectionSearch = "http://169.254.136.152/search.php";
+var connection = "http://localhost/api.php";
+var connectionVideo = "http://localhost/uploadvideo.php";
+var connectionSearch = "http://localhost/search.php";
 
 // Export selectors engine
 var $$ = Dom7;
@@ -28,12 +50,9 @@ var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
-
-document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady() {
-    console.log('Loading PhoneGap is completed');
-}
+// mainView.router.loadPage('left-page-1.html');
+// mainView.router.loadPage('left-page-2.html');
+// mainView.router.loadPage('all.html');
 
 function onFail(message) {
     alert('An error occured: ' + message);
@@ -83,7 +102,7 @@ function emptyPatientInfo() {
 
 };
 
-var profileImage =  $("#profileImage");
+var profileImage = $("#profileImage");
 var patientName = $("#patientName");
 var patientBorn = $("#patientBorn");
 var patientinlaid = $("#patientinlaid");

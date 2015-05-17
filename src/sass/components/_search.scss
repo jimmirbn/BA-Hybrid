@@ -1,16 +1,20 @@
 .search-container {
-position: relative
+    position: relative
 }
 
-    .searchbar {
-        padding: 0;
-        background: transparent;
+.searchbar {
+    padding: 0;
+    background: transparent;
     width: auto;
-        input[type="search"] {
-            border: solid 1px lightgray;
-        }
+    input[type="search"] {
+        border: solid 1px $palette__grey--dark;
+        border-radius: 0;
     }
 
+    &:after{
+        background: transparent;
+    }
+}
 
 .searchbar-overlay {
     &.active {
@@ -39,8 +43,7 @@ position: relative
 
 .show {
     border-top: 1px solid lightgrey;
-
-    &.nothing{
+    &.nothing {
         padding: 15px;
     }
 }

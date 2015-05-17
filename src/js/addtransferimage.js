@@ -40,17 +40,17 @@ function getPhotoTransfers() {
 
 $$('.addTransfersImage').on('click', function() {
     var buttons = [{
-        text: 'From photo library',
+        text: 'Fra foto bibliotek',
         onClick: function() {
             getPhotoTransfers();
         }
     }, {
-        text: 'From Camera',
+        text: 'Fra kamera',
         onClick: function() {
             snapPictureTransfers();
         }
     }, {
-        text: 'Cancel',
+        text: 'Afbryd',
         color: 'red',
         onClick: function() {
         }

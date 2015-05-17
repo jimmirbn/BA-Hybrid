@@ -12,24 +12,27 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body style="padding: 0!important;">
     <!-- Status bar overlay for fullscreen mode-->
-    <div class="statusbar-overlay"></div>
+    <!-- <div class="statusbar-overlay"></div> -->
     <!-- Panels overlay-->
     <div class="panel-overlay"></div>
     <!-- Left panel with reveal effect-->
-    <div class="panel panel-left panel-reveal">
+    <div class="panel panel-left panel-reveal" style="padding: 0!important;">
         <!-- Left view-->
-        <div class="view view-left navbar-through">
+        <div class="view view-left navbar-through left-panel">
             <div class="navbar">
                 <div class="navbar-inner">
+                    <div class="loading--leftview">
+                        <span class="preloader preloader--leftview"></span>
+                    </div>
                     <div class="center sliding">Left View</div>
                 </div>
             </div>
             <div class="pages">
                 <div data-page="index-left" class="page">
-                    <div class="page-content">
-                        <div class="content-block-title">Team list</div>
+                    <div class="page-content page-content--scroll">
+                        <div class="content-block-title">Teams</div>
                         <div class="list-block">
                             <ul>
                                 <li>
@@ -95,19 +98,42 @@
         <div class="view view-main navbar-through">
             <div class="navbar">
                 <div class="navbar-inner">
-                    <a href="#" class="open-panel left">left</a>
+                    <div class="loading">
+                        <span class="preloader"></span>
+                        <!-- <div class="spinner-container">
+                            <span class="dots"></span>
+                            <span class="dots"></span>
+                            <span class="dots"></span>
+                            <span class="dots"></span>
+                            <span class="dots"></span>
+                            <span class="dots"></span>
+                            <span class="dots"></span>
+                            <span class="dots"></span>
+                            <span class="dots"></span>
+                            <span class="dots"></span>
+                        </div> -->
+                    </div>
+                    <!-- <a href="#" class="open-panel left">Menu</a> -->
+                    <a href="#" class="toggler open-panel left">
+                        <span class="closed">Åben</span>
+                        <span class="open">Luk</span>
+                        <i class="t"></i>
+                        <i class="m"></i>
+                        <i class="b"></i>
+                    </a>
+                    <!-- <a href="#" class="open-panel left">Menu</a> -->
                     <!-- <div class="center sliding">Headline</div> -->
                     <div class="search-container">
                         <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init">
                             <div class="searchbar-input">
-                                <input class="search" id="search" type="search" placeholder="Search">
+                                <input class="search" id="search" type="search" placeholder="Søg">
                                 <a href="#" class="searchbar-clear"></a>
                             </div>
                             <!-- <a href="#" class="searchbar-cancel">Cancel</a> -->
                         </form>
-                    <ul id="results"></ul>
+                        <ul id="results"></ul>
                     </div>
-                    <p class="right"><a href="#" data-popup=".popup-addPatient" class="open-popup">Add patient</a></p>
+                    <p class="right"><a href="#" data-popup=".popup-addPatient" class="open-popup">Tilføj patient</a></p>
                     <div class="searchbar-overlay"></div>
                 </div>
             </div>
@@ -122,12 +148,13 @@
                                 <div class="row">
                                     <div class="col-50 patientImage-Data">
                                         <div class="row">
-                                            <div class="col-50 profileImage-container">
+                                            <div class="col-40 profileImage-container">
+                                                <!-- <img src="img/pin.png" alt=""> -->
                                                 <span id="profileImage" class="profile-image"></span>
                                                 <input type="hidden" id="patientID">
                                             </div>
-                                            <div class="col-50 profileText-container">
-                                                <p id="patientName"></p>
+                                            <div class="col-60 profileText-container">
+                                                <h1 class="text-bold" id="patientName"></h1>
                                                 <p id="patientBorn"></p>
                                                 <p id="patientinlaid"></p>
                                             </div>
@@ -141,14 +168,14 @@
                         </div>
                         <div class="tabs-container">
                             <div class="tabs-header">
-                                <p>Patient data</p>
+                                <h3>Patient data</h3>
                             </div>
                             <div class="row no-gutter tabs-innercontainer">
                                 <div class="col-25 h100">
                                     <ul class="tabs-menu">
-                                        <li class="current"><a href="#tab-1">Process</a></li>
-                                        <li><a href="#tab-2">Forflytninger</a></li>
-                                        <li><a href="#tab-3">Lejring</a></li>
+                                        <li data-id="#tab-1" class="process current"><span><img src="img/process_grey.png" alt=""><a href="">Process<i class="arrow"></i></a></span></li>
+                                        <li class="transfers" data-id="#tab-2"><span><img src="img/transfer_grey.png" alt=""><a href="#tab-2">Forflytninger<i class="arrow"></i></a></span></li>
+                                        <li class="positioning" data-id="#tab-3"><span><img src="img/positioning_grey.png" alt=""><a href="#tab-3">Lejring<i class="arrow"></i></a></span></li>
                                     </ul>
                                 </div>
                                 <div class="col-75 h100">
@@ -161,7 +188,7 @@
                                                         <div class="swiper-wrapper" id="process-image">
                                                         </div>
                                                         <div class="swiper-pagination"></div>
-                                                        <button class="button button-big active btn btn-slider addProcessImage">Nyt process billede</button>
+                                                        <button class="button button-big btn btn--slider btn--slider--image addProcessImage"><i></i>Nyt billede</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-33">
@@ -169,7 +196,7 @@
                                                         <div class="swiper-wrapper" id="process-video">
                                                         </div>
                                                         <div class="swiper-pagination"></div>
-                                                        <button class="button button-big active btn btn-slider addProcessVideo">Ny process video</button>
+                                                        <button class="button button-big btn btn--slider btn--slider--video addProcessVideo"><i></i>Ny video</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-33">
@@ -177,7 +204,7 @@
                                                         <div class="swiper-wrapper" id="process-notes">
                                                         </div>
                                                         <div class="swiper-pagination"></div>
-                                                        <button id="process" data-popup=".popup-addNote" class="button button-big active btn btn-slider open-popup popupType">Ny process note</button>
+                                                        <button id="process" data-popup=".popup-addNote" class="button button-big btn btn--slider btn--slider--note open-popup popupType"><i></i>Ny note</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -189,7 +216,7 @@
                                                         <div class="swiper-wrapper" id="transfers-image">
                                                         </div>
                                                         <div class="swiper-pagination"></div>
-                                                        <button class="button button-big active btn btn-slider addTransfersImage">Nyt flyt billede</button>
+                                                        <button class="button button-big btn btn--slider btn--slider--image addTransfersImage"><i></i>Nyt billede</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-33">
@@ -197,7 +224,7 @@
                                                         <div class="swiper-wrapper" id="transfers-video">
                                                         </div>
                                                         <div class="swiper-pagination"></div>
-                                                        <button class="button button-big active btn btn-slider addTransfersVideo">Ny flyt video</button>
+                                                        <button class="button button-big btn btn--slider btn--slider--video addTransfersVideo"><i></i>Ny video</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-33">
@@ -205,7 +232,7 @@
                                                         <div class="swiper-wrapper" id="transfers-notes">
                                                         </div>
                                                         <div class="swiper-pagination"></div>
-                                                        <button id="transfer" data-popup=".popup-addNote" class="button button-big active btn btn-slider open-popup popupType">Ny flyt note</button>
+                                                        <button id="transfer" data-popup=".popup-addNote" class="button button-big btn btn--slider btn--slider--note open-popup popupType"><i></i>Ny note</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -217,7 +244,7 @@
                                                         <div class="swiper-wrapper" id="positioning-image">
                                                         </div>
                                                         <div class="swiper-pagination"></div>
-                                                        <button class="button button-big active addPositioningImage btn btn-slider">Nyt lejring billede</button>
+                                                        <button class="button button-big addPositioningImage btn btn--slider btn--slider--image"><i></i>Nyt billede</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-33">
@@ -225,7 +252,7 @@
                                                         <div class="swiper-wrapper" id="positioning-video">
                                                         </div>
                                                         <div class="swiper-pagination"></div>
-                                                        <button class="button button-big active btn btn-slider addPositioningVideo">Ny Lejring video</button>
+                                                        <button class="button button-big btn btn--slider btn--slider--video addPositioningVideo"><i></i>Ny video</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-33">
@@ -233,7 +260,7 @@
                                                         <div class="swiper-wrapper" id="positioning-notes">
                                                         </div>
                                                         <div class="swiper-pagination"></div>
-                                                        <button id="positioning" data-popup=".popup-addNote" class="button button-big active btn btn-slider open-popup popupType">Ny Lejring note</button>
+                                                        <button id="positioning" data-popup=".popup-addNote" class="button button-big btn btn--slider btn--slider--note open-popup popupType"><i></i>Ny note</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -241,6 +268,9 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="noPatient">
+                            <h2>Opret en ny patient<br> eller brug menuen samt søgefeltet.</h2>
                         </div>
                     </div>
                 </div>
@@ -250,7 +280,6 @@
     <div class="popup tablet-fullscreen popup-addPatient">
         <div class="navbar">
             <div class="navbar-inner">
-                <div class="center">Tilføj patient</div>
                 <p class="right"><a href="#" class="close-popup">Luk</a></p>
             </div>
         </div>
@@ -259,7 +288,7 @@
             <div class="list-block">
                 <div class="profileImage">
                 </div>
-                <p class="button addProfileImage">Tilføj patient billede</p>
+                <p class="button btn btn--blue addProfileImage">Tilføj billede</p>
                 <ul>
                     <!-- Text inputs -->
                     <li>
@@ -329,23 +358,22 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-comment"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Patient info & patient mål</div>
+                                <div class="item-title label">Patient info & evt målene for forløbet</div>
                                 <div class="item-input">
-                                    <textarea name="description"></textarea>
+                                    <textarea placeholder="Tryk her for at tilføje tekst" name="description"></textarea>
                                 </div>
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
-            <button class="button button-big active addPatient">Tilføj patient</button>
+            <button class="button button-big btn btn--blue addPatient">Tilføj patient</button>
         </div>
         <!-- </div> -->
     </div>
     <div class="popup tablet-fullscreen popup-addNote">
         <div class="navbar">
             <div class="navbar-inner">
-                <div class="center">Add</div>
                 <p class="right"><a href="#" class="close-popup">Luk</a></p>
             </div>
         </div>
@@ -357,40 +385,28 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-comment"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Note</div>
+                                <!-- <div class="item-title label">Note</div> -->
                                 <div class="item-input">
-                                    <textarea name="note"></textarea>
+                                    <textarea placeholder="Tryk her for at skrive en note" name="note"></textarea>
                                 </div>
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
-            <button class="button button-big active addNote">Tilføj note</button>
+            <button class="button button-big btn btn--blue addNote">Tilføj note</button>
             <input type="hidden" id="type">
         </div>
         <!-- </div> -->
-    </div>
-    <div class="loading">
-        <span class="preloader"></span>
-        <div class="spinner-container">
-            <span class="dots"></span>
-            <span class="dots"></span>
-            <span class="dots"></span>
-            <span class="dots"></span>
-            <span class="dots"></span>
-            <span class="dots"></span>
-            <span class="dots"></span>
-            <span class="dots"></span>
-            <span class="dots"></span>
-            <span class="dots"></span>
-        </div>
     </div>
     <!-- Path to Framework7 Library JS-->
     <script type="text/javascript" src="cordova.js"></script>
     <!-- Path to your app js-->
     <script type="text/javascript" src="js/vendors.min.js"></script>
     <script type="text/javascript" src="js/site.min.js"></script>
+    <script type="text/javascript">
+    app.initialize();
+    </script>
 </body>
 
 </html>

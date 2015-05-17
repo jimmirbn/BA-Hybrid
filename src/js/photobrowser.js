@@ -1,7 +1,9 @@
 $$(document).on("click", ".openPhoto", function() {
+    console.log($(this).siblings());
     var arr = [];
     var img = $(this).parent().parent().parent().find("img"),
         len = img.length;
+        console.log(img);
     if (len > 0) {
 
         img.each(function() {

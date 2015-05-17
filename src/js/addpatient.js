@@ -51,15 +51,19 @@ var roomnr = $('select[name="roomnr"]').val();
 var description = $('textarea[name="description"]').val();
   $$.post(connection, {"addPatient": addPatient, "fullname": fullname,"born": born,"inlaid":inlaid,"roomnr": roomnr,"description": description,"imageSrc": imageSrc}, function (data) {
         var result = JSON.parse(data);
-        if(result === "success"){
+        if(result != "error"){
             emptyPatientInfo();
 
-            profileImage.append('<img src="' + imageSrc + '" alt="' + fullname + '">');
+            localStorage.setItem("lastPatient", result);
+
+            if(imageSrc != undefined){
+                profileImage.append('<img src="' + imageSrc + '" alt="' + fullname + '">');
+            }
             patientName.text(fullname);
             patientBorn.text('Født: ' + born);
             patientinlaid.text('Indlagt: ' +inlaid);
             patientText.text(description);
-            myApp.closeModal('.popup');
+            myApp.closeModal('.popup-addPatient');
 
             $('.profileImage').empty();
             $('input[name="fullname"]').val('');

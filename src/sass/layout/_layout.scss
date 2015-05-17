@@ -1,0 +1,41 @@
+.page-content {
+    overflow: initial;
+    &--scroll {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.content-block {
+    margin: 0;
+    .content-block-inner {
+        &:before, &:after {
+            background-color: transparent;
+        }
+    }
+}
+
+.page {
+    background-color: $palette__white;
+}
+
+.panel-left {
+    border-right: solid 2px $palette__grey--dark;
+}
+
+.noPatient {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9;
+    background: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    color: white;
+    padding-top: 200px;
+    h2{
+        font-family: $mari--regular;
+    }
+}

@@ -40,17 +40,17 @@ function getPhotoPositioning() {
 
 $$('.addPositioningImage').on('click', function() {
     var buttons = [{
-        text: 'From photo library',
+        text: 'Fra foto bibliotek',
         onClick: function() {
             getPhotoPositioning();
         }
     }, {
-        text: 'From Camera',
+        text: 'Fra kamera',
         onClick: function() {
             snapPicturePositioning();
         }
     }, {
-        text: 'Cancel',
+        text: 'Afbryd',
         color: 'red',
         onClick: function() {
         }

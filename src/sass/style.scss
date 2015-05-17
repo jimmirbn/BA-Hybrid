@@ -1,6 +1,12 @@
+//Utils
+@import "utils/vendors";
+@import "utils/variables";
+@import "utils/helpers";
+
 //base
-@import "base/vendors";
+@import "base/fonts";
 @import "base/base";
+@import "base/typography";
 
 //components
 @import "components/tab";
@@ -12,7 +18,11 @@
 @import "components/loader";
 @import "components/search";
 @import "components/patient-block";
+@import "components/navbar";
+@import "components/triangle";
+@import "components/button";
 
-//Utils
-@import "utils/helpers";
+//Layout
+@import "layout/layout";
+
 

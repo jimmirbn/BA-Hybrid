@@ -1,0 +1,68 @@
+// @include font-face("mari", "../fonts/mari-webfont", normal, normal);
+
+// @include font-face("mari", "../fonts/mari_bold-webfont", bold, normal, $file-formats: woff);
+
+// @include font-face("mari", "../fonts/mari_light-webfont", lighter, normal, $file-formats: woff);
+
+// // @include font-face("mari", "../fonts/brown-regular-webfont", , normal);
+
+// // @include font-face("mari", "../fonts/brown-regular-italic-webfont", normal, italic, $file-formats: eot woff ttf svg);
+
+// // Fonts
+// $mari: "mari";
+//
+
+@include font-face("mari-regular", "../fonts/mari-webfont-webfont", normal);
+
+@include font-face("mari-bold", "../fonts/mari_bold-webfont-webfont", normal);
+
+@include font-face("mari-light", "../fonts/mari_light-webfont-webfont", normal);
+
+//Fonts
+$mari--regular : "mari-regular";
+$mari--light : "mari-light";
+$mari--bold : "mari-bold";
+
+// @font-face {
+//     font-family: 'marilight';
+//     src: url("fonts/mari_light-webfont.eot");
+//     src: url("fonts/mari_light-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/mari_light-webfont.woff") format("woff"), url("fonts/mari_light-webfont.ttf") format("truetype"), url("fonts/mari_light-webfont.svg#marilight") format("svg");
+//     font-weight: normal;
+//     font-style: normal;
+// }
+
+
+// @font-face {
+//     font-family: 'mariregular';
+//     src: url("fonts/mari-webfont.eot");
+//     src: url("fonts/mari-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/mari-webfont.woff") format("woff"), url("fonts/mari-webfont.ttf") format("truetype"), url("fonts/mari-webfont.svg#mariregular") format("svg");
+//     font-weight: normal;
+//     font-style: normal;
+// }
+
+
+// @font-face {
+//     font-family: 'maribold';
+//     src: url("fonts/mari_bold-webfont.eot");
+//     src: url("fonts/mari_bold-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/mari_bold-webfont.woff") format("woff"), url("fonts/mari_bold-webfont.ttf") format("truetype"), url("fonts/mari_bold-webfont.svg#maribold") format("svg");
+//     font-weight: normal;
+//     font-style: normal;
+// }
+
+
+// @font-face {
+//     font-family: 'maribook';
+//     src: url("fonts/mari_book-webfont.eot");
+//     src: url("fonts/mari_book-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/mari_book-webfont.woff") format("woff"), url("fonts/mari_book-webfont.ttf") format("truetype"), url("fonts/mari_book-webfont.svg#maribook") format("svg");
+//     font-weight: normal;
+//     font-style: normal;
+// }
+
+
+// @font-face {
+//     font-family: 'mariheavy';
+//     src: url("fonts/mari_heavy-webfont.eot");
+//     src: url("fonts/mari_heavy-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/mari_heavy-webfont.woff") format("woff"), url("fonts/mari_heavy-webfont.ttf") format("truetype"), url("fonts/mari_heavy-webfont.svg#mariheavy") format("svg");
+//     font-weight: normal;
+//     font-style: normal;
+// }

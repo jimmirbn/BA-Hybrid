@@ -13,10 +13,12 @@ function patientInfo(whereistheidfrom, newid) {
         var getInfo = newid;
         localStorage.setItem("lastPatient", newid);
     }
+    $$('.loading').show();
     $$.post(connection, {
         "patientInfo": patientInfo,
         'id': getInfo
     }, function(data) {
+        $$('.noPatient').hide();
         var result = JSON.parse(data);
         for (var i = 0; i < result.length; i++) {
             var name = result[i].fullname;
@@ -36,54 +38,92 @@ function patientInfo(whereistheidfrom, newid) {
             patientinlaid.text('Indlagt: ' + inlaidDate + ' (Uge: ' + inlaidWeek + ')');
             patientText.text(infotext);
         }
+        $$('.loading').hide();
     });
 
 };
 
 function getImages(id, type) {
     var type = type;
+    $$('.loading').show();
     $$.post(connection, {
         "type": type,
         'id': id
     }, function(data) {
         var result = JSON.parse(data);
         if (result == '') {
-            console.log('no images');
+            if (type == 'processimages') {
+                console.log('no processimages');
+                processImage.append('<div class="no-results"><p>Ingen process billeder</p></div>')
+                var dots = processImage.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'transferimages') {
+                console.log('no transferimages');
+                transfersImage.append('<div class="no-results"><p>Ingen billeder af flytninger</p></div>')
+                var dots = transfersImage.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'positioningimages') {
+                console.log('no positioningimages');
+                positioningImage.append('<div class="no-results"><p>Ingen billeder af lejringer</p></div>')
+                var dots = positioningImage.siblings()[0];
+                $$(dots).hide();
+            }
         } else {
             if (type == 'processimages') {
                 for (var i = 0; i < result.length; i++) {
                     var image = result[i].processimage;
                     var imagedate = result[i].processimagedate;
-                    processImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="'+imagedate+'"></a></div>');
+                    processImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
                 }
             }
             if (type == 'transferimages') {
                 for (var i = 0; i < result.length; i++) {
                     var image = result[i].transferimage;
                     var imagedate = result[i].transferimagedate;
-                    transfersImage.append('<div class="swiper-slide test"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="'+imagedate+'"></a></div>');
+                    transfersImage.append('<div class="swiper-slide test"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
                 }
             }
             if (type == 'positioningimages') {
                 for (var i = 0; i < result.length; i++) {
                     var image = result[i].positioningimage;
                     var imagedate = result[i].positioningimagedate;
-                    positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="'+imagedate+'"></a></div>');
+                    positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
                 }
             }
         }
+        $$('.loading').hide();
     });
 };
 
 function getNotes(id, type) {
     var type = type;
+    $$('.loading').show();
     $$.post(connection, {
         "type": type,
         'id': id
     }, function(data) {
         var result = JSON.parse(data);
         if (result == '') {
-            console.log('no notes');
+            if (type == 'processnotes') {
+                console.log('no processnotes');
+                processNotes.append('<div class="no-results"><p>Ingen process noter</p></div>')
+                var dots = processNotes.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'transfernotes') {
+                console.log('no transfernotes');
+                transfersNotes.append('<div class="no-results"><p>Ingen forflytnings noter</p></div>')
+                var dots = transfersNotes.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'positioningnotes') {
+                console.log('no positioningnotes');
+                positioningNotes.append('<div class="no-results"><p>Ingen lejrings noter</p></div>')
+                var dots = positioningNotes.siblings()[0];
+                $$(dots).hide();
+            }
         } else {
             if (type == 'processnotes') {
                 for (var i = 0; i < result.length; i++) {
@@ -107,49 +147,68 @@ function getNotes(id, type) {
                 }
             }
         }
+        $$('.loading').hide();
     });
 };
 
 function getVideos(id, type) {
-        var type = type;
-        $$.post(connection, {
-            "type": type,
-            'id': id
-        }, function(data) {
-            var result = JSON.parse(data);
-            if (result == '') {
-                console.log('no videos');
-            } else {
-                if (type == 'processvideos') {
-                    for (var i = 0; i < result.length; i++) {
-                        var video = result[i].processvideo;
-                        var videodate = result[i].processvideodate;
-                        var videotitle = result[i].processvideotitle;
-                        processVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
-                    }
-                }
-                if (type == 'transfervideos') {
-                    for (var i = 0; i < result.length; i++) {
-                        var video = result[i].transfervideo;
-                        var videodate = result[i].transfervideodate;
-                        var videotitle = result[i].transfervideotitle;
-                        transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
-                    }
-                }
-                if (type == 'positioningvideos') {
-                    for (var i = 0; i < result.length; i++) {
-                        var video = result[i].positioningvideo;
-                        var videodate = result[i].positioningvideodate;
-                        var videotitle = result[i].positioningvideotitle;
-                        positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
-                    }
+    var type = type;
+    $$('.loading').show();
+    $$.post(connection, {
+        "type": type,
+        'id': id
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            if (type == 'processvideos') {
+                console.log('no processimages');
+                processVideo.append('<div class="no-results"><p>Ingen process videoer</p></div>')
+                var dots = processVideo.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'transfervideos') {
+                console.log('no transferimages');
+                transfersVideo.append('<div class="no-results"><p>Ingen videoer af forflytninger</p></div>')
+                var dots = transfersVideo.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'positioningvideos') {
+                console.log('no positioningimages');
+                positioningVideo.append('<div class="no-results"><p>Ingen videoer af lejring</p></div>')
+                var dots = positioningVideo.siblings()[0];
+                $$(dots).hide();
+            }
+        } else {
+            if (type == 'processvideos') {
+                for (var i = 0; i < result.length; i++) {
+                    var video = result[i].processvideo;
+                    var videodate = result[i].processvideodate;
+                    var videotitle = result[i].processvideotitle;
+                    processVideo.append('<div class="swiper-slide"><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video><source data-id="' + videodate + '" type="video/mp4" src="' + video + '"></video></a></div>');
                 }
             }
-        });
-    };
+            if (type == 'transfervideos') {
+                for (var i = 0; i < result.length; i++) {
+                    var video = result[i].transfervideo;
+                    var videodate = result[i].transfervideodate;
+                    var videotitle = result[i].transfervideotitle;
+                    transfersVideo.append('<div class="swiper-slide"><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video><source data-id="' + videodate + '" type="video/mp4" src="' + video + '"></video></a></div>');
+                }
+            }
+            if (type == 'positioningvideos') {
+                for (var i = 0; i < result.length; i++) {
+                    var video = result[i].positioningvideo;
+                    var videodate = result[i].positioningvideodate;
+                    var videotitle = result[i].positioningvideotitle;
+                    positioningVideo.append('<div class="swiper-slide"><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video><source data-id="' + videodate + '" type="video/mp4" src="' + video + '"></video></a></div>');
+                }
+            }
+        }
+        $$('.loading').hide();
+    });
+};
 
 $$(document).on("click", ".getPatientInfo", function() {
-    $$('.loading').show();
     var patientID = this.id;
     emptyPatientInfo();
 
@@ -166,15 +225,14 @@ $$(document).on("click", ".getPatientInfo", function() {
     getVideos(patientID, 'processvideos');
     getVideos(patientID, 'transfervideos');
     getVideos(patientID, 'positioningvideos');
-    $$('.loading').hide();
 });
 
 //Load last patient
 
 if (lastID === null) {
-    console.log('its empty');
+    $$('.noPatient').show();
 } else {
-    $$('.loading').show();
+    $$('.noPatient').hide();
     emptyPatientInfo();
     patientInfo('stored');
     getImages(lastID, 'transferimages');
@@ -188,5 +246,4 @@ if (lastID === null) {
     getVideos(lastID, 'processvideos');
     getVideos(lastID, 'transfervideos');
     getVideos(lastID, 'positioningvideos');
-    $$('.loading').hide();
 }

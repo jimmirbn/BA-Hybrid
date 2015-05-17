@@ -1,5 +1,7 @@
 .swiper-container {
-    background: black;
+   &.process-video, &.process-image, &.transfers-image, &.transfers-video, &.positioning-image, &.positioning-video{
+      border-right: 1px solid $palette__black--light;
+   }
 }
 
 .swiper-slide {
@@ -9,17 +11,16 @@
         width: auto;
         @include position(absolute, 50% null null 50%);
         @include transform(translate(-50%, -50%));
-
         @include screen(768px, 1024px, portrait) {
             @include position(relative, 0 null null 50%);
-        @include transform(translate(-50%, 0%));
+            @include transform(translate(-50%, 0%));
         }
     }
 }
 
 .swiper-pagination {
-    bottom: 80px !important;
-    background: rgba(0, 0, 0, 0.3);
+    bottom: 65px !important;
+    // background: rgba(0, 0, 0, 0.3);
 }
 
 .openPhoto {
@@ -32,6 +33,19 @@
     display: block;
     height: 100%;
     width: 100%;
+    &:before {
+        content: '';
+        display: block;
+        height: 80px;
+        width: 80px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.5) url(../img/arrow_white.png) no-repeat 30px 18px;
+        border-radius: 50%;
+    }
     video {
         height: 100%;
         @include position(absolute, 50% null null 50%);
@@ -39,7 +53,7 @@
     }
 }
 
-.btn-slider {
+.btn--slider {
     position: absolute;
     z-index: 9;
     bottom: 10px;
@@ -55,28 +69,88 @@
     left: 0;
     z-index: 99;
     color: white;
-    background: rgba(0, 0, 0, 0.9);
+    // background: rgba(0, 0, 0, 0.9);
     width: 100%;
     display: block;
     margin: 0;
     padding: 10px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+    font-size: 18px;
+    font-family: $mari--regular;
 }
 
 .videoTitle {
     margin: 0;
-    position: absolute;
-    top: 20%;
-    color: white;
+    position: relative;
+    top: 15%;
+    color: $palette__black;
     z-index: 9;
-    font-size: 20px;
-    width: 100%;
+    text-align: left;
+    word-wrap: break-word;
+    font-family: $mari--light;
+    padding: 0 10px;
     text-align: center;
 }
 
 .sliderNote {
     height: 100%;
     margin: 0;
-    padding-top: 50px;
-    color: white;
-    padding-left: 10px;
+    color: $palette__black--dark;
+    padding: 50px 10px 0;
+    font-family: $mari--regular;
+}
+
+.process-notes, .transfers-notes, .positioning-notes, .process-video, .transfers-video, .positioning-video {
+    .sliderDate {
+        text-shadow: none;
+        color: $palette__black--dark;
+    }
+}
+
+.swiper-pagination-bullet {
+    position: relative;
+    background: transparent;
+    opacity: 1;
+    &:before {
+        content: '';
+        position: absolute;
+        height: 13px;
+        width: 13px;
+        display: block;
+        border: solid 1px $palette__black;
+        left: 50%;
+        top: 50%;
+        border-radius: 100%;
+        @include transform(translate(-50%, -50%));
+    }
+}
+
+.swiper-pagination-bullet-active {
+    background-color: $palette__black;
+}
+
+.no-results {
+    width: 100%;
+    height: 100%;
+    background: $palette__grey;
+    p {
+        position: relative;
+        width: 90%;
+        margin: auto;
+        top: 50%;
+        @include transform(translateY(-50%));
+        font-size: 25px;
+        text-align: center;
+        color: $palette__black--dark;
+    }
+}
+
+#transfers-notes, #process-notes, #positioning-notes {
+    .swiper-slide {
+        background-color: $palette__grey;
+    }
+}
+
+#process-video, #transfers-video, #positioning-video {
+    background-color: $palette__grey;
 }

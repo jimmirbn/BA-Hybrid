@@ -1,5 +1,5 @@
 $$(document).on("click", ".getPatientList", function() {
-    $$('.loading').show();
+    $$('.loading--leftview').show();
 
     var roomnr = this.id;
     var patientListData = "patientListData";
@@ -26,6 +26,6 @@ $$(document).on("click", ".getPatientList", function() {
                 );
             }
         }
-        $$('.loading').hide();
+        $$('.loading--leftview').hide();
     });
 });

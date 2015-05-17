@@ -1,5 +1,5 @@
 $$(document).on("click", ".getAll", function() {
-    $$('.loading').show();
+    $$('.loading--leftview').show();
     var type = this.id;
 
     $$.post(connection, {
@@ -49,6 +49,6 @@ $$(document).on("click", ".getAll", function() {
             }
 
         }
-        $$('.loading').hide();
+        $$('.loading--leftview').hide();
     });
 });

@@ -1,0 +1,30 @@
+//Colors from https://www.nordsjaellandshospital.dk/
+//
+
+$palette__white : #fff; // Background grey
+$palette__grey : #f0f0f0; // Background grey
+$palette__grey--dark : #d5d5d5; // Border color
+$palette__grey--more-dark : #434343; // h5
+$palette__grey--middle : #828282; // h5
+$palette__black: black;
+$palette__black--light: #777;
+$palette__black-middle : #222; // Footer background
+$palette__black--dark : #333; // Footer background
+$palette__blue--dark : #002555; // H2
+$palette__blue : #009ceb; // primary blue - taken from link image
+$palette__blue--secondary : #007dbb; // Taken from link color
+$palette__blue--light : #81ccf1; // Hover button
+
+
+//font-sizes
+$fontsize__h1 : rem(30);
+$fontsize__h2 : rem(40);
+$fontsize__h3 : rem(22);
+$fontsize__p : rem(16);
+$fontsize__p--large: rem(24);
+$fontsize__p--medium: rem(20);
+$fontsize__p--small: rem(11);
+$fontsize__btn--lg : rem(22);
+$fontsize__btn--md : rem(16);
+$fontsize__btn--sm : rem(18);
+$fontsize__btn : rem(10);

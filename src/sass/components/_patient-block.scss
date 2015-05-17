@@ -1,5 +1,28 @@
 .patient-block {
+    background-color: #007dbb;
+    background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #009ce8), color-stop(100%, #76c6eb));
+    background-image: -webkit-linear-gradient(left, #009ce8 0%, #76c6eb 100%);
+    background-image: -moz-linear-gradient(left, #009ce8 0%, #76c6eb 100%);
+    background-image: -o-linear-gradient(left, #009ce8 0%, #76c6eb 100%);
+    background-image: linear-gradient(left, #009ce8 0%, #76c6eb 100%);
+    // border-top: solid 1px $palette__grey--dark;
+    // border-bottom: solid 1px $palette__grey--dark;
+    .content-block-inner {
+        background-color: transparent;
+    }
     .row {
+        .profileText-container {
+            font-size: 15px;
+            margin: auto;
+            padding: 0;
+            p {
+                font-size: $fontsize__p--medium;
+                margin: 0;
+                // color: $palette__black--dark;
+                color: $palette__white;
+                font-size: $fontsize__p--medium;
+            }
+        }
         @include screen(768px, 1024px, portrait) {
             width: 100%;
             margin: auto;
@@ -16,6 +39,15 @@
             }
         }
         .patientInfo-container {
+            max-height: 150px;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            p {
+                margin: 0;
+                font-size: $fontsize__p--medium;
+                // color: $palette__black--dark;
+                color: $palette__white;
+            }
             @include screen(768px, 1024px, portrait) {
                 margin: auto;
                 width: 70%;

@@ -1,5 +1,5 @@
 $$(document).on("click", ".team", function() {
-  $$('.loading').show();
+  $$('.loading--leftview').show();
     var teamnr = this.id;
     var roomdata = "roomdata";
     $$.post(connection, {"roomdata": roomdata, 'teamnr' : teamnr}, function (data) {
@@ -17,6 +17,6 @@ $$(document).on("click", ".team", function() {
           '</li>'
           );
         }
-        $$('.loading').hide();
+        $$('.loading--leftview').hide();
     });
 });

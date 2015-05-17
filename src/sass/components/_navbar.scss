@@ -1,0 +1,7 @@
+.navbar{
+	background-color: $palette__white;
+	&:after{
+		// background-color: $palette__grey--dark;
+		background-color: transparent;
+	}
+}

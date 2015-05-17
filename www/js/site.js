@@ -1,20 +1,42 @@
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+
+    onDeviceReady: function() {
+        // alert('Loading PhoneGap is completed');
+        StatusBar.overlaysWebView(false);
+        StatusBar.styleLightContent();
+        StatusBar.backgroundColorByName("black");
+        StatusBar.backgroundColorByHexString("#000000");
+    },
+
+};
 // Initialize your app
 var myApp = new Framework7({
-     onAjaxStart: function (xhr) {
+    onAjaxStart: function(xhr) {
         myApp.showIndicator();
     },
-    onAjaxComplete: function (xhr) {
+    onAjaxComplete: function(xhr) {
         myApp.hideIndicator();
     }
 
 });
 
-var connection = "http://169.254.136.152/api.php";
-var connectionVideo = "http://169.254.136.152/uploadvideo.php";
-var connectionSearch = "http://169.254.136.152/search.php";
-// var connection = "http://localhost/api.php";
-// var connectionVideo = "http://localhost/uploadvideo.php";
-// var connectionSearch = "http://localhost/search.php";
+// var connection = "http://169.254.136.152/api.php";
+// var connectionVideo = "http://169.254.136.152/uploadvideo.php";
+// var connectionSearch = "http://169.254.136.152/search.php";
+var connection = "http://localhost/api.php";
+var connectionVideo = "http://localhost/uploadvideo.php";
+var connectionSearch = "http://localhost/search.php";
 
 // Export selectors engine
 var $$ = Dom7;
@@ -28,12 +50,9 @@ var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
-
-document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady() {
-    console.log('Loading PhoneGap is completed');
-}
+// mainView.router.loadPage('left-page-1.html');
+// mainView.router.loadPage('left-page-2.html');
+// mainView.router.loadPage('all.html');
 
 function onFail(message) {
     alert('An error occured: ' + message);
@@ -83,7 +102,7 @@ function emptyPatientInfo() {
 
 };
 
-var profileImage =  $("#profileImage");
+var profileImage = $("#profileImage");
 var patientName = $("#patientName");
 var patientBorn = $("#patientBorn");
 var patientinlaid = $("#patientinlaid");
@@ -101,6 +120,7 @@ var transfersImage = $("#transfers-image");
 var transfersVideo = $("#transfers-video");
 var transfersNotes = $("#transfers-notes");
 var searchInput = $('.search');
+
 $$('.popupType').on('click', function(){
     type = this.id;
     $('#type').val('');
@@ -193,15 +213,19 @@ var roomnr = $('select[name="roomnr"]').val();
 var description = $('textarea[name="description"]').val();
   $$.post(connection, {"addPatient": addPatient, "fullname": fullname,"born": born,"inlaid":inlaid,"roomnr": roomnr,"description": description,"imageSrc": imageSrc}, function (data) {
         var result = JSON.parse(data);
-        if(result === "success"){
+        if(result != "error"){
             emptyPatientInfo();
 
-            profileImage.append('<img src="' + imageSrc + '" alt="' + fullname + '">');
+            localStorage.setItem("lastPatient", result);
+
+            if(imageSrc != undefined){
+                profileImage.append('<img src="' + imageSrc + '" alt="' + fullname + '">');
+            }
             patientName.text(fullname);
             patientBorn.text('Født: ' + born);
             patientinlaid.text('Indlagt: ' +inlaid);
             patientText.text(description);
-            myApp.closeModal('.popup');
+            myApp.closeModal('.popup-addPatient');
 
             $('.profileImage').empty();
             $('input[name="fullname"]').val('');
@@ -257,17 +281,17 @@ function getPhotoPositioning() {
 
 $$('.addPositioningImage').on('click', function() {
     var buttons = [{
-        text: 'From photo library',
+        text: 'Fra foto bibliotek',
         onClick: function() {
             getPhotoPositioning();
         }
     }, {
-        text: 'From Camera',
+        text: 'Fra kamera',
         onClick: function() {
             snapPicturePositioning();
         }
     }, {
-        text: 'Cancel',
+        text: 'Afbryd',
         color: 'red',
         onClick: function() {
         }
@@ -356,7 +380,7 @@ function winPositioning(r) {
                 var video = result[0];
                 var videotitle = result[1];
     }
-    positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
+    positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
 }
 
 function fail(error) {
@@ -406,17 +430,17 @@ function getPhotoProcess() {
 
 $$('.addProcessImage').on('click', function() {
     var buttons = [{
-        text: 'From photo library',
+        text: 'Fra foto bibliotek',
         onClick: function() {
             getPhotoProcess();
         }
     }, {
-        text: 'From Camera',
+        text: 'Fra kamera',
         onClick: function() {
             snapPictureProcess();
         }
     }, {
-        text: 'Cancel',
+        text: 'Afbryd',
         color: 'red',
         onClick: function() {
         }
@@ -492,7 +516,7 @@ function winProcess(r) {
                 var video = result[0];
                 var videotitle = result[1];
     }
-    processVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
+    processVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
     // console.log(r.response);
     // processVideo.append('<div class="swiper-slide"><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + r.response + '"></video></a></div>');
 
@@ -546,17 +570,17 @@ function getPhotoTransfers() {
 
 $$('.addTransfersImage').on('click', function() {
     var buttons = [{
-        text: 'From photo library',
+        text: 'Fra foto bibliotek',
         onClick: function() {
             getPhotoTransfers();
         }
     }, {
-        text: 'From Camera',
+        text: 'Fra kamera',
         onClick: function() {
             snapPictureTransfers();
         }
     }, {
-        text: 'Cancel',
+        text: 'Afbryd',
         color: 'red',
         onClick: function() {
         }
@@ -640,7 +664,7 @@ function winTransfer(r) {
                 var video = result[0];
                 var videotitle = result[1];
     }
-    transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source type="video/mp4" src="' + video + '"></video></a></div>');
+    transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">'+videotitle+'</p><p class="sliderDate">'+videodate+'</p><a href="#" class="openVideo"><video><source type="video/mp4" src="' + video + '"></video></a></div>');
 
 
 }
@@ -652,7 +676,7 @@ function fail(error) {
 }
 
 $$(document).on("click", ".getAll", function() {
-    $$('.loading').show();
+    $$('.loading--leftview').show();
     var type = this.id;
 
     $$.post(connection, {
@@ -702,7 +726,7 @@ $$(document).on("click", ".getAll", function() {
             }
 
         }
-        $$('.loading').hide();
+        $$('.loading--leftview').hide();
     });
 });
 
@@ -721,10 +745,12 @@ function patientInfo(whereistheidfrom, newid) {
         var getInfo = newid;
         localStorage.setItem("lastPatient", newid);
     }
+    $$('.loading').show();
     $$.post(connection, {
         "patientInfo": patientInfo,
         'id': getInfo
     }, function(data) {
+        $$('.noPatient').hide();
         var result = JSON.parse(data);
         for (var i = 0; i < result.length; i++) {
             var name = result[i].fullname;
@@ -744,54 +770,92 @@ function patientInfo(whereistheidfrom, newid) {
             patientinlaid.text('Indlagt: ' + inlaidDate + ' (Uge: ' + inlaidWeek + ')');
             patientText.text(infotext);
         }
+        $$('.loading').hide();
     });
 
 };
 
 function getImages(id, type) {
     var type = type;
+    $$('.loading').show();
     $$.post(connection, {
         "type": type,
         'id': id
     }, function(data) {
         var result = JSON.parse(data);
         if (result == '') {
-            console.log('no images');
+            if (type == 'processimages') {
+                console.log('no processimages');
+                processImage.append('<div class="no-results"><p>Ingen process billeder</p></div>')
+                var dots = processImage.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'transferimages') {
+                console.log('no transferimages');
+                transfersImage.append('<div class="no-results"><p>Ingen billeder af flytninger</p></div>')
+                var dots = transfersImage.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'positioningimages') {
+                console.log('no positioningimages');
+                positioningImage.append('<div class="no-results"><p>Ingen billeder af lejringer</p></div>')
+                var dots = positioningImage.siblings()[0];
+                $$(dots).hide();
+            }
         } else {
             if (type == 'processimages') {
                 for (var i = 0; i < result.length; i++) {
                     var image = result[i].processimage;
                     var imagedate = result[i].processimagedate;
-                    processImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="'+imagedate+'"></a></div>');
+                    processImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
                 }
             }
             if (type == 'transferimages') {
                 for (var i = 0; i < result.length; i++) {
                     var image = result[i].transferimage;
                     var imagedate = result[i].transferimagedate;
-                    transfersImage.append('<div class="swiper-slide test"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="'+imagedate+'"></a></div>');
+                    transfersImage.append('<div class="swiper-slide test"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
                 }
             }
             if (type == 'positioningimages') {
                 for (var i = 0; i < result.length; i++) {
                     var image = result[i].positioningimage;
                     var imagedate = result[i].positioningimagedate;
-                    positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="'+imagedate+'"></a></div>');
+                    positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a href="#" class="openPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
                 }
             }
         }
+        $$('.loading').hide();
     });
 };
 
 function getNotes(id, type) {
     var type = type;
+    $$('.loading').show();
     $$.post(connection, {
         "type": type,
         'id': id
     }, function(data) {
         var result = JSON.parse(data);
         if (result == '') {
-            console.log('no notes');
+            if (type == 'processnotes') {
+                console.log('no processnotes');
+                processNotes.append('<div class="no-results"><p>Ingen process noter</p></div>')
+                var dots = processNotes.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'transfernotes') {
+                console.log('no transfernotes');
+                transfersNotes.append('<div class="no-results"><p>Ingen forflytnings noter</p></div>')
+                var dots = transfersNotes.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'positioningnotes') {
+                console.log('no positioningnotes');
+                positioningNotes.append('<div class="no-results"><p>Ingen lejrings noter</p></div>')
+                var dots = positioningNotes.siblings()[0];
+                $$(dots).hide();
+            }
         } else {
             if (type == 'processnotes') {
                 for (var i = 0; i < result.length; i++) {
@@ -815,49 +879,68 @@ function getNotes(id, type) {
                 }
             }
         }
+        $$('.loading').hide();
     });
 };
 
 function getVideos(id, type) {
-        var type = type;
-        $$.post(connection, {
-            "type": type,
-            'id': id
-        }, function(data) {
-            var result = JSON.parse(data);
-            if (result == '') {
-                console.log('no videos');
-            } else {
-                if (type == 'processvideos') {
-                    for (var i = 0; i < result.length; i++) {
-                        var video = result[i].processvideo;
-                        var videodate = result[i].processvideodate;
-                        var videotitle = result[i].processvideotitle;
-                        processVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
-                    }
-                }
-                if (type == 'transfervideos') {
-                    for (var i = 0; i < result.length; i++) {
-                        var video = result[i].transfervideo;
-                        var videodate = result[i].transfervideodate;
-                        var videotitle = result[i].transfervideotitle;
-                        transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
-                    }
-                }
-                if (type == 'positioningvideos') {
-                    for (var i = 0; i < result.length; i++) {
-                        var video = result[i].positioningvideo;
-                        var videodate = result[i].positioningvideodate;
-                        var videotitle = result[i].positioningvideotitle;
-                        positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">' + videotitle + '</p><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video poster="img/poster.jpg"><source data-id="'+videodate+'" type="video/mp4" src="' + video + '"></video></a></div>');
-                    }
+    var type = type;
+    $$('.loading').show();
+    $$.post(connection, {
+        "type": type,
+        'id': id
+    }, function(data) {
+        var result = JSON.parse(data);
+        if (result == '') {
+            if (type == 'processvideos') {
+                console.log('no processimages');
+                processVideo.append('<div class="no-results"><p>Ingen process videoer</p></div>')
+                var dots = processVideo.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'transfervideos') {
+                console.log('no transferimages');
+                transfersVideo.append('<div class="no-results"><p>Ingen videoer af forflytninger</p></div>')
+                var dots = transfersVideo.siblings()[0];
+                $$(dots).hide();
+            }
+            if (type == 'positioningvideos') {
+                console.log('no positioningimages');
+                positioningVideo.append('<div class="no-results"><p>Ingen videoer af lejring</p></div>')
+                var dots = positioningVideo.siblings()[0];
+                $$(dots).hide();
+            }
+        } else {
+            if (type == 'processvideos') {
+                for (var i = 0; i < result.length; i++) {
+                    var video = result[i].processvideo;
+                    var videodate = result[i].processvideodate;
+                    var videotitle = result[i].processvideotitle;
+                    processVideo.append('<div class="swiper-slide"><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video><source data-id="' + videodate + '" type="video/mp4" src="' + video + '"></video></a></div>');
                 }
             }
-        });
-    };
+            if (type == 'transfervideos') {
+                for (var i = 0; i < result.length; i++) {
+                    var video = result[i].transfervideo;
+                    var videodate = result[i].transfervideodate;
+                    var videotitle = result[i].transfervideotitle;
+                    transfersVideo.append('<div class="swiper-slide"><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video><source data-id="' + videodate + '" type="video/mp4" src="' + video + '"></video></a></div>');
+                }
+            }
+            if (type == 'positioningvideos') {
+                for (var i = 0; i < result.length; i++) {
+                    var video = result[i].positioningvideo;
+                    var videodate = result[i].positioningvideodate;
+                    var videotitle = result[i].positioningvideotitle;
+                    positioningVideo.append('<div class="swiper-slide"><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a href="#" class="openVideo"><video><source data-id="' + videodate + '" type="video/mp4" src="' + video + '"></video></a></div>');
+                }
+            }
+        }
+        $$('.loading').hide();
+    });
+};
 
 $$(document).on("click", ".getPatientInfo", function() {
-    $$('.loading').show();
     var patientID = this.id;
     emptyPatientInfo();
 
@@ -874,15 +957,14 @@ $$(document).on("click", ".getPatientInfo", function() {
     getVideos(patientID, 'processvideos');
     getVideos(patientID, 'transfervideos');
     getVideos(patientID, 'positioningvideos');
-    $$('.loading').hide();
 });
 
 //Load last patient
 
 if (lastID === null) {
-    console.log('its empty');
+    $$('.noPatient').show();
 } else {
-    $$('.loading').show();
+    $$('.noPatient').hide();
     emptyPatientInfo();
     patientInfo('stored');
     getImages(lastID, 'transferimages');
@@ -896,11 +978,10 @@ if (lastID === null) {
     getVideos(lastID, 'processvideos');
     getVideos(lastID, 'transfervideos');
     getVideos(lastID, 'positioningvideos');
-    $$('.loading').hide();
 }
 
 $$(document).on("click", ".getPatientList", function() {
-    $$('.loading').show();
+    $$('.loading--leftview').show();
 
     var roomnr = this.id;
     var patientListData = "patientListData";
@@ -927,14 +1008,16 @@ $$(document).on("click", ".getPatientList", function() {
                 );
             }
         }
-        $$('.loading').hide();
+        $$('.loading--leftview').hide();
     });
 });
 
 $$(document).on("click", ".openPhoto", function() {
+    console.log($(this).siblings());
     var arr = [];
     var img = $(this).parent().parent().parent().find("img"),
         len = img.length;
+        console.log(img);
     if (len > 0) {
 
         img.each(function() {
@@ -995,7 +1078,7 @@ $$(document).on("click", ".openVideo", function() {
 });
 
 $$(document).on("click", ".team", function() {
-  $$('.loading').show();
+  $$('.loading--leftview').show();
     var teamnr = this.id;
     var roomdata = "roomdata";
     $$.post(connection, {"roomdata": roomdata, 'teamnr' : teamnr}, function (data) {
@@ -1013,7 +1096,7 @@ $$(document).on("click", ".team", function() {
           '</li>'
           );
         }
-        $$('.loading').hide();
+        $$('.loading--leftview').hide();
     });
 });
 var searchbar = $('.searchbar');
@@ -1114,14 +1197,28 @@ var mySwiper9 = myApp.swiper('.positioning-notes', {
     observer: true,
     observeParents: true,
 });
-    $$(".tabs-menu a").click(function(event) {
-        event.preventDefault();
-        $(this).parent().addClass("current");
-        $(this).parent().siblings().removeClass("current");
-        var tab = $(this).attr("href");
-        $(".tab-content").not(tab).addClass('hide');
-        $(tab).removeClass('hide');
+$$(".tabs-menu li").click(function(event) {
+    event.preventDefault();
+    // $(this).parent().addClass("current");
+    $(this).addClass("current");
+    // $(this).parent().siblings().removeClass("current");
+    $(this).siblings().removeClass("current");
+    var tab = $(this).attr("data-id");
+    $(".tab-content").not(tab).addClass('hide');
+    $(tab).removeClass('hide');
+});
 
-    });
+$$(".toggler").click(function(event) {
+    event.preventDefault();
+    if (!$(this).hasClass('open')) {
+        $(this).addClass('open');
+    }
+});
+
+$$(".panel-overlay").click(function(event){
+	if($(".toggler").hasClass('open')){
+		$(".toggler").removeClass('open');
+	}
+});
 
 //# sourceMappingURL=site.js.map
