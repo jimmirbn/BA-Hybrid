@@ -27,7 +27,6 @@
             width: 100%;
             margin: auto;
         }
-
         .profile-image {
             @include screen(768px, 1024px, portrait) {
                 margin: auto;
@@ -47,10 +46,12 @@
                 font-size: $fontsize__p--medium;
                 // color: $palette__black--dark;
                 color: $palette__white;
+                word-wrap: break-word;
             }
             @include screen(768px, 1024px, portrait) {
                 margin: auto;
-                width: 70%;
+                width: 100%;
+                padding: 10px 65px 0;
             }
         }
     }

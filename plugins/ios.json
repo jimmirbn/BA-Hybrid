@@ -73,6 +73,10 @@
                         {
                             "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Media\"><param name=\"ios-package\" value=\"CDVSound\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -106,6 +110,9 @@
             "PACKAGE_NAME": "com.phonegap.patientInfo"
         },
         "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.phonegap.patientInfo"
+        },
+        "cordova-plugin-media": {
             "PACKAGE_NAME": "com.phonegap.patientInfo"
         }
     },

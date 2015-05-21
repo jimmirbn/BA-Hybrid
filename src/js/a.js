@@ -12,35 +12,37 @@ var app = {
     },
 
     onDeviceReady: function() {
+        console.log('Device ready');
         // alert('Loading PhoneGap is completed');
         StatusBar.overlaysWebView(false);
         StatusBar.styleLightContent();
         StatusBar.backgroundColorByName("black");
         StatusBar.backgroundColorByHexString("#000000");
     },
-
 };
-// Initialize your app
-var myApp = new Framework7({
-    onAjaxStart: function(xhr) {
-        myApp.showIndicator();
-    },
-    onAjaxComplete: function(xhr) {
-        myApp.hideIndicator();
-    }
 
-});
-
-// var connection = "http://169.254.136.152/api.php";
-// var connectionVideo = "http://169.254.136.152/uploadvideo.php";
-// var connectionSearch = "http://169.254.136.152/search.php";
-var connection = "http://localhost/api.php";
-var connectionVideo = "http://localhost/uploadvideo.php";
-var connectionSearch = "http://localhost/search.php";
+// var connection = "http://169.254.32.78/api.php";
+// var connectionVideo = "http://169.254.32.78/uploadvideo.php";
+// var connectionSearch = "http://169.254.32.78/search.php";
+var connection = "http://192.168.1.7/api.php";
+var connectionVideo = "http://192.168.1.7/uploadvideo.php";
+var connectionSearch = "http://192.168.1.7/search.php";
+// var connection = "http://localhost/api.php";
+// var connectionVideo = "http://localhost/uploadvideo.php";
+// var connectionSearch = "http://localhost/search.php";
 
 // Export selectors engine
 var $$ = Dom7;
 
+var myApp = new Framework7({
+    // onAjaxStart: function(xhr) {
+    //     myApp.showIndicator();
+    // },
+    // onAjaxComplete: function(xhr) {
+    //     myApp.hideIndicator();
+    // }
+
+});
 // Add views
 var leftView = myApp.addView('.view-left', {
     // Because we use fixed-through navbar we can enable dynamic navbar
@@ -50,18 +52,206 @@ var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
-// mainView.router.loadPage('left-page-1.html');
-// mainView.router.loadPage('left-page-2.html');
-// mainView.router.loadPage('all.html');
+
+function captureError(error) {
+    var msg = 'An error occurred during capture: ' + error.code;
+    console.log(msg);
+}
+var ProcessArr = [];
+var TransferArr = [];
+var PositioningArr = [];
+var ProcessVideoArr = [];
+var TransferVideoArr = [];
+var PositioningVideoArr = [];
+var LearningArr = [];
+
+$$(document).on('pageInit', function(e) {
+    var page = e.detail.page;
+    if (page.name === 'left-page-1') {
+        var id = page.query.id;
+        console.log(id);
+
+        $$('.loading--leftview').show();
+        var teamnr = id;
+        var roomdata = "roomdata";
+        $$.post(connection, {
+            "roomdata": roomdata,
+            'teamnr': teamnr
+        }, function(data) {
+            var result = JSON.parse(data);
+            for (var i = 0; i < result.length; i++) {
+                var roomnr = result[i].roomnr;
+                $('.roomData').append('<li>' +
+                    '<a id="' + roomnr + '" href="left-page-2.html?id=' + roomnr + '" class="item-link getPatientList">' +
+                    '<div class="item-content">' +
+                    '<div class="item-inner">' +
+                    '<div class="item-title">Stue ' + roomnr + '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</a>' +
+                    '</li>'
+                );
+            }
+            $$('.loading--leftview').hide();
+        });
+    }
+    if (page.name === 'left-page-2') {
+        var id = page.query.id;
+        console.log(id);
+
+        $$('.loading--leftview').show();
+
+        var roomnr = id;
+        var patientListData = "patientListData";
+        $$.post(connection, {
+            "patientListData": patientListData,
+            'roomnr': roomnr
+        }, function(data) {
+            var result = JSON.parse(data);
+            if (result == '') {
+                $('#patientHeader').text('Ingen patienter');
+            } else {
+                for (var i = 0; i < result.length; i++) {
+                    var name = result[i].fullname;
+                    var id = result[i].id;
+                    $('.patientList').append('<li>' +
+                        '<a id="' + id + '" href="" class="item-link getPatientInfo">' +
+                        '<div class="item-content">' +
+                        '<div class="item-inner">' +
+                        '<div class="item-title">' + name + '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</a>' +
+                        '</li>'
+                    );
+                }
+            }
+            $$('.loading--leftview').hide();
+        });
+    }
+    if (page.name === 'all') {
+        var id = page.query.id;
+        console.log(id);
+
+        $$('.loading--leftview').show();
+        var type = id;
+
+        $$.post(connection, {
+            "type": type
+        }, function(data) {
+            var result = JSON.parse(data);
+            for (var i = 0; i < result.length; i++) {
+
+                if (type == 'allRooms') {
+                    if (result == '') {
+                        $('#allHeader').text('Ingen stuer endnu');
+
+                    } else {
+                        $('#allHeader').text('Alle stuer');
+                    }
+                    var roomnr = result[i].roomnr;
+                    $('.allData').append('<li>' +
+                        '<a id="' + roomnr + '" href="left-page-2.html?id=' + roomnr + '" class="item-link getPatientList">' +
+                        '<div class="item-content">' +
+                        '<div class="item-inner">' +
+                        '<div class="item-title">Stue ' + roomnr + '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</a>' +
+                        '</li>'
+                    );
+                }
+                if (type == 'allPatients') {
+                    if (result == '') {
+                        $('#allHeader').text('Ingen patienter endnu');
+
+                    } else {
+                        $('#allHeader').text('Alle patienter');
+                    }
+                    var name = result[i].fullname;
+                    var id = result[i].id;
+                    $('.allData').append('<li>' +
+                        '<a id="' + id + '" href="" class="item-link getPatientInfo">' +
+                        '<div class="item-content">' +
+                        '<div class="item-inner">' +
+                        '<div class="item-title">' + name + '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</a>' +
+                        '</li>'
+                    );
+                }
+
+            }
+            $$('.loading--leftview').hide();
+        });
+
+    }
+    if (page.name === 'learning') {
+        LearningArr.length = 0;
+        $$('.loading').show();
+
+        $$.post(connection, {
+            "getLearning": 'getLearning',
+        }, function(data) {
+            var result = JSON.parse(data);
+            if (result == '') {
+                // $('#patientHeader').text('Ingen patienter');
+                console.log('Intet materiale')
+            } else {
+                for (var i = 0; i < result.length; i++) {
+                    var media = result[i].media;
+                    var info = result[i].info;
+                    var date = result[i].learningdate;
+
+                    if (media.indexOf("image") >= 0) {
+                        LearningArr.push({
+                            url: media,
+                            caption: date
+                        });
+                        $('#learningMaterial').append('<div class="col-33-custom">' +
+                            '<div id="' + i + '" class="thumbnail thumbail--image">' +
+                            '<div class="img-container"><img src="' + media + '" alt=""></div>' +
+                            '<div class="caption">' +
+                            '<p>' + info + '</p>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>');
+                    } else {
+                        LearningArr.push({
+                            html: '<video controls=""><source type="video/mp4" src="' + media + '"></video>',
+                            caption: date
+                        });
+                        $('#learningMaterial').append('<div class="col-33-custom">' +
+                            '<div id="' + i + '" class="thumbnail thumbnail--video">' +
+                            '<div class="video-container" data-id="' + media + '"><i></i><p></p></div>' +
+                            '<div class="caption">' +
+                            '<p>' + info + '</p>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>');
+                    }
+                }
+            }
+            $$('.loading').hide();
+        });
+
+        $$(document).on("click", ".thumbnail", function() {
+
+            theMedia = this.id;
+            var myVideoBrowserDarkLearning = myApp.photoBrowser({
+                photos: LearningArr,
+                theme: 'dark'
+            });
+            myVideoBrowserDarkLearning.open(theMedia);
+        });
+    }
+});
 
 function onFail(message) {
     alert('An error occured: ' + message);
 }
 
-function captureError(error) {
-    var msg = 'An error occurred during capture: ' + error.code;
-    navigator.notification.alert(msg, null, 'Uh oh!');
-}
 
 function emptyPatientInfo() {
     var profileImage = $("#profileImage");
@@ -120,3 +310,4 @@ var transfersImage = $("#transfers-image");
 var transfersVideo = $("#transfers-video");
 var transfersNotes = $("#transfers-notes");
 var searchInput = $('.search');
+var btnDelete = $('.btn--delete');

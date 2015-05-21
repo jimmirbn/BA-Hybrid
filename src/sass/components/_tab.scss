@@ -7,17 +7,27 @@
     // top: 214px;
     top: 250px;
     @include screen(768px, 1024px, portrait) {
-        top: 350px;
-        bottom: 92px;
+        top: 364px;
+        bottom: 113px;
     }
 
     .tabs-header {
+        position: relative;
         height: 50px;
         border-top: solid 1px $palette__grey--dark;
-        // border-bottom: solid 1px $palette__grey--dark;
+        @include screen(768px, 1024px, portrait) {
+            border-bottom: solid 1px $palette__grey--dark;
+        }
+
         h3 {
             margin: 0;
             padding: 12px 12px 0;
+        }
+        button{
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            @include transform(translateY(-50%));
         }
     }
     .tabs-innercontainer {
@@ -52,25 +62,26 @@
         position: relative;
         background: $palette__white;
         // background: #76c6eb;
-        // /* Old browsers */
+        // /* Old browsers
         // background: -moz-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
-        // /* FF3.6+ */
+        // /* FF3.6+
         // background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #76c6eb), color-stop(100%, #009ce8));
-        // /* Chrome,Safari4+ */
+        // /* Chrome,Safari4+
         // background: -webkit-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
-        // /* Chrome10+,Safari5.1+ */
+        // /* Chrome10+,Safari5.1+
         // background: -o-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
-        // /* Opera 12+ */
+        // /* Opera 12+
         // background: -ms-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
-        // /* IE10+ */
+        // /* IE10+
         // background: radial-gradient(ellipse at center, #76c6eb 0%, #009ce8 100%);
-        // /* W3C */
+        // /* W3C
         // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76c6eb', endColorstr='#009ce8',GradientType=1 );
         // /* IE6-9 fallback on horizontal gradient */
         @include screen(768px, 1024px, portrait) {
             height: auto;
             width: 33.333333333%;
             float: left;
+            height: 60px;
         }
 
         span {
@@ -83,6 +94,12 @@
                 display: inline-block;
                 position: relative;
             }
+            @include screen(768px, 1024px, portrait) {
+                @include transform(none);
+                left: auto;
+                position: static;
+                height: 100%;
+            }
         }
         a {
             text-transform: uppercase;
@@ -93,12 +110,24 @@
             font-family: $mari--light;
             font-weight: 700;
             position: relative;
+            @include screen(768px, 1024px, portrait) {
+                top: 14px;
+            }
+        }
+        .arrow{
+                
+                @include screen(768px, 1024px, portrait) {
+                    @include transform(translate(0,-15px) rotate(90deg));
+                }
         }
         &.current {
             .arrow {
                 @include transform(translateX(35px));
                 // @include transition(transform 200ms ease, opacity 200ms ease);
                 opacity: 1;
+                @include screen(768px, 1024px, portrait) {
+                    @include transform(translate(0, 0) rotate(90deg));
+                }
             }
         }
         &.process {
@@ -108,6 +137,16 @@
                 display: block;
                 position: relative;
                 margin: 39px auto 0;
+                @include screen(768px, 1024px, portrait) {
+                    display: none;
+                    margin: 5px auto;
+                    float: left;
+                    left: 30px;
+                    width: 50px;
+                }
+            }
+            @include screen(768px, 1024px, portrait) {
+                border-top: 0;
             }
         }
         &.transfers {
@@ -116,6 +155,14 @@
                 width: 65px;
                 display: block;
                 margin: 35px auto 5px;
+                position: relative;
+                @include screen(768px, 1024px, portrait) {
+                    display: none;
+                    margin: 5px auto;
+                    float: left;
+                    left: 15px;
+                    width: 40px;
+                }
             }
         }
         &.positioning {
@@ -123,6 +170,17 @@
                 width: 70px;
                 display: block;
                 margin: 35px auto 5px;
+                position: relative;
+                @include screen(768px, 1024px, portrait) {
+                    display: none;
+                    margin: 5px auto;
+                    float: left;
+                    left: 30px;
+                    width: 40px;
+                }
+            }
+            @include screen(768px, 1024px, portrait) {
+                border-bottom: 1px solid $palette__grey--dark;
             }
         }
     }

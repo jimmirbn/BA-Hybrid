@@ -5,3 +5,12 @@
 		background-color: transparent;
 	}
 }
+
+div[data-page="learning"]{
+	.navbar{
+		border-bottom: solid 1px $palette__grey--dark;
+		.navbar-on-center{
+			background-color: $palette__white;
+		}
+	}
+}

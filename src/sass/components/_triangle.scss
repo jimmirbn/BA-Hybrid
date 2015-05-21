@@ -12,6 +12,10 @@
         right: 0px;
         overflow: hidden;
         opacity: 0;
+        @include screen(768px, 1024px, portrait) {
+            right: -35px;
+        }
+
         &:before,
         &:after {
             @include transition(background-color 0.2s ease-out);
@@ -23,7 +27,7 @@
             background-color: $palette__black--light;
             top: 48%;
         }
-        &:before{
+        &:before {
             top: 54%;
         }
     }

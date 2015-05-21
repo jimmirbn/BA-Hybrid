@@ -36,7 +36,7 @@
                         <div class="list-block">
                             <ul>
                                 <li>
-                                    <a id="1" href="left-page-1.html" class="item-link team">
+                                    <a id="1" href="left-page-1.html?id=1" class="item-link team">
                                         <div class="item-content">
                                             <div class="item-inner">
                                                 <div class="item-title">Team 1</div>
@@ -45,7 +45,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a id="2" href="left-page-1.html" class="item-link team">
+                                    <a id="2" href="left-page-1.html?id=2" class="item-link team">
                                         <div class="item-content">
                                             <div class="item-inner">
                                                 <div class="item-title">Team 2</div>
@@ -54,7 +54,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a id="3" href="left-page-1.html" class="item-link team">
+                                    <a id="3" href="left-page-1.html?id=3" class="item-link team">
                                         <div class="item-content">
                                             <div class="item-inner">
                                                 <div class="item-title">Team 3</div>
@@ -68,7 +68,7 @@
                         <div class="list-block">
                             <ul>
                                 <li>
-                                    <a id="allRooms" href="all.html" class="item-link getAll">
+                                    <a id="allRooms" href="all.html?id=allRooms" class="item-link getAll">
                                         <div class="item-content">
                                             <div class="item-inner">
                                                 <div class="item-title">Alle stuer</div>
@@ -77,10 +77,23 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a id="allPatients" href="all.html" class="item-link getAll">
+                                    <a id="allPatients" href="all.html?id=allPatients" class="item-link getAll">
                                         <div class="item-content">
                                             <div class="item-inner">
                                                 <div class="item-title">Alle patienter</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <a id="learning" href="learning.html" class="item-link" data-view=".view-main">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">læringsmateriale</div>
                                             </div>
                                         </div>
                                     </a>
@@ -126,7 +139,7 @@
                     <div class="search-container">
                         <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init">
                             <div class="searchbar-input">
-                                <input class="search" id="search" type="search" placeholder="Søg">
+                                <input class="search" id="search" type="search" placeholder="Søg patient">
                                 <a href="#" class="searchbar-clear"></a>
                             </div>
                             <!-- <a href="#" class="searchbar-cancel">Cancel</a> -->
@@ -169,6 +182,7 @@
                         <div class="tabs-container">
                             <div class="tabs-header">
                                 <h3>Patient data</h3>
+                                <button class="button btn btn--blue btn--delete">Slet patient</button>
                             </div>
                             <div class="row no-gutter tabs-innercontainer">
                                 <div class="col-25 h100">
