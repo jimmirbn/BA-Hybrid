@@ -86,35 +86,47 @@ function winProcess(url, title) {
     var id = $$('#patientID').val();
     var process = "process";
     var videotitle = title;
+    var videodate = moment().format('DD-MM-YYYY, H:mm');
     $$.post(connectionVideo, {
         "process": process,
         'id': id,
         'videotitle': videotitle,
-        'url': url
+        'url': url,
+        'date':videodate
     }, function(data) {
         console.log(data);
 
     });
 
     var processVideo = $("#process-video");
-    var videodate = moment().format('LLL');
     
     var countDivs = $('#process-video .swiper-slide').length;
     if (countDivs == 0) {
         var totalDivs = 0;
     } else {
-        var totalDivs = countDivs + 1;
+        var totalDivs = countDivs;
     }
+    var processvideosDivs = $('.openProcessVideo');
+
+
+    $.each(processvideosDivs, function() {
+        var id = this.id;
+        var oldId = parseInt(id);
+        $(this).attr('id',oldId+1);
+    });
 
 
     if ($("#process-video .swiper-slide").length == 0) {
         processVideo.empty();
     }
-    ProcessVideoArr.push({
+    var dots = processVideo.siblings()[0];
+    $$(dots).show();
+    ProcessVideoArr.unshift({
         html: '<video controls=""><source type="video/mp4" src="' + url + '"></video>',
         caption: videodate
     });
-    processVideo.append('<div class="swiper-slide"><p class="videoTitle">' + title + '</p><p class="sliderDate">' + videodate + '</p><a id="'+totalDivs+'" href="#" class="openVideo openProcessVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
+    mySwiper2.prependSlide('<div class="swiper-slide"><h3 class="videoTitle">' + title + '</h3><p class="sliderDate">' + videodate + '</p><a id="0" href="#" class="openVideo openProcessVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
+    mySwiper2.slideTo(0);
 }
 
 // function fail(error) {

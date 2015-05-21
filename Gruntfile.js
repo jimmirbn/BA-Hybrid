@@ -37,8 +37,10 @@ module.exports = function (grunt) {
             vendors : {
                 src : [
                     '<%= src.bower %>/jquery/dist/jquery.js',
+                    '<%= src.bower %>/fastclick/lib/fastclick.js',
                     '<%= src.bower %>/framework7/dist/js/framework7.js',
                     '<%= src.bower %>/momentjs/moment.js',
+                    '<%= src.bower %>/momentjs/locale/da.js',
                 ],
                 dest : '<%= app.js %>/vendors.js',
                 nonull : true

@@ -86,35 +86,35 @@ $$('.addPatient').on('click', function() {
             $('select[name="roomnr"]').val('');
             $('textarea[name="description"]').val('');
 
-            processImage.append('<div class="no-results"><p>Ingen process billeder</p></div>');
+            processImage.append('<div class="no-results"><p>Ingen billeder af proces</p></div>');
             var dots1 = processImage.siblings()[0];
             $$(dots1).hide();
 
-            transfersImage.append('<div class="no-results"><p>Ingen billeder af flytninger</p></div>');
+            transfersImage.append('<div class="no-results"><p>Ingen billeder af forflytning</p></div>');
             var dots2 = transfersImage.siblings()[0];
             $$(dots2).hide();
 
-            positioningImage.append('<div class="no-results"><p>Ingen billeder af lejringer</p></div>');
+            positioningImage.append('<div class="no-results"><p>Ingen billeder af lejring</p></div>');
             var dots3 = positioningImage.siblings()[0];
             $$(dots3).hide();
 
-            processNotes.append('<div class="no-results"><p>Ingen process noter</p></div>')
+            processNotes.append('<div class="no-results"><p>Ingen noter til proces</p></div>')
             var dots4 = processNotes.siblings()[0];
             $$(dots4).hide();
 
-            transfersNotes.append('<div class="no-results"><p>Ingen forflytnings noter</p></div>')
+            transfersNotes.append('<div class="no-results"><p>Ingen noter til forflytning</p></div>')
             var dots5 = transfersNotes.siblings()[0];
             $$(dots5).hide();
 
-            positioningNotes.append('<div class="no-results"><p>Ingen lejrings noter</p></div>')
+            positioningNotes.append('<div class="no-results"><p>Ingen noter til lejring</p></div>')
             var dots6 = positioningNotes.siblings()[0];
             $$(dots6).hide();
 
-            processVideo.append('<div class="no-results"><p>Ingen process videoer</p></div>')
+            processVideo.append('<div class="no-results"><p>Ingen videoer af proces</p></div>')
             var dots7 = processVideo.siblings()[0];
             $$(dots7).hide();
 
-            transfersVideo.append('<div class="no-results"><p>Ingen videoer af forflytninger</p></div>')
+            transfersVideo.append('<div class="no-results"><p>Ingen videoer af forflytning</p></div>')
             var dots8 = transfersVideo.siblings()[0];
             $$(dots8).hide();
 

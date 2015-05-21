@@ -23,7 +23,7 @@
             margin: 0;
             padding: 12px 12px 0;
         }
-        button{
+        button {
             position: absolute;
             top: 50%;
             right: 15px;
@@ -61,22 +61,6 @@
         text-align: center;
         position: relative;
         background: $palette__white;
-        // background: #76c6eb;
-        // /* Old browsers
-        // background: -moz-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
-        // /* FF3.6+
-        // background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #76c6eb), color-stop(100%, #009ce8));
-        // /* Chrome,Safari4+
-        // background: -webkit-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
-        // /* Chrome10+,Safari5.1+
-        // background: -o-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
-        // /* Opera 12+
-        // background: -ms-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
-        // /* IE10+
-        // background: radial-gradient(ellipse at center, #76c6eb 0%, #009ce8 100%);
-        // /* W3C
-        // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76c6eb', endColorstr='#009ce8',GradientType=1 );
-        // /* IE6-9 fallback on horizontal gradient */
         @include screen(768px, 1024px, portrait) {
             height: auto;
             width: 33.333333333%;
@@ -114,29 +98,50 @@
                 top: 14px;
             }
         }
-        .arrow{
-                
-                @include screen(768px, 1024px, portrait) {
-                    @include transform(translate(0,-15px) rotate(90deg));
-                }
+        .arrow {
+            @include screen(768px, 1024px, portrait) {
+                @include transform(translate(0, -15px) rotate(90deg));
+            }
         }
         &.current {
             .arrow {
-                @include transform(translateX(35px));
+                @include transform(translateX(25px));
                 // @include transition(transform 200ms ease, opacity 200ms ease);
                 opacity: 1;
                 @include screen(768px, 1024px, portrait) {
                     @include transform(translate(0, 0) rotate(90deg));
                 }
             }
+            background: #76c6eb;
+            // Old browsers
+            background: -moz-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
+            /* FF3.6+*/
+            background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #76c6eb), color-stop(100%, #009ce8));
+            /* Chrome,Safari4+*/
+            background: -webkit-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
+            /* Chrome10+,Safari5.1+*/
+            background: -o-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
+            /* Opera 12+*/
+            background: -ms-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
+            /* IE10+*/
+            background: radial-gradient(ellipse at center, #76c6eb 0%, #009ce8 100%);
+            /* W3C*/
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76c6eb', endColorstr='#009ce8', GradientType=1);
+            /* IE6-9 fallback on horizontal gradient*/
+            a {
+                color: $palette__white;
+            }
         }
         &.process {
             border-bottom: 1px solid $palette__grey--dark;
             border-top: 1px solid $palette__grey--dark;
-            img {
+            .img {
                 display: block;
                 position: relative;
                 margin: 39px auto 0;
+                width: 80px;
+                height: 59px;
+                background: url(../img/process_grey.png) no-repeat;
                 @include screen(768px, 1024px, portrait) {
                     display: none;
                     margin: 5px auto;
@@ -147,15 +152,24 @@
             }
             @include screen(768px, 1024px, portrait) {
                 border-top: 0;
+
+            }
+
+            &.current {
+                .img {
+                    background: url(../img/process.png) no-repeat;
+                }
             }
         }
         &.transfers {
             border-bottom: 1px solid $palette__grey--dark;
-            img {
-                width: 65px;
+            .img {
                 display: block;
                 margin: 35px auto 5px;
                 position: relative;
+                width: 65px;
+                height: 62px;
+                background: url("../img/transfer_grey.png") no-repeat;
                 @include screen(768px, 1024px, portrait) {
                     display: none;
                     margin: 5px auto;
@@ -164,13 +178,26 @@
                     width: 40px;
                 }
             }
+            @include screen(768px, 1024px, portrait) {
+                span{
+                    border-left: 1px solid $palette__grey--dark;
+                }
+            }
+            &.current {
+                .img {
+                    background: url(../img/transfer.png) no-repeat;
+                }
+            }
         }
         &.positioning {
-            img {
+            .img {
                 width: 70px;
                 display: block;
                 margin: 35px auto 5px;
                 position: relative;
+                background: url("../img/positioning_grey.png") no-repeat;
+                width: 65px;
+                height: 58px;
                 @include screen(768px, 1024px, portrait) {
                     display: none;
                     margin: 5px auto;
@@ -181,6 +208,15 @@
             }
             @include screen(768px, 1024px, portrait) {
                 border-bottom: 1px solid $palette__grey--dark;
+                span {
+                    border-left: 1px solid $palette__grey--dark;
+                }
+            }
+
+            &.current {
+                .img {
+                    background: url("../img/positioning.png") no-repeat;
+                }
             }
         }
     }

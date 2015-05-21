@@ -10,22 +10,28 @@ $$('.addNote').on('click', function(){
     var theType = $('#type').val();
     var note = $('textarea[name="note"]').val();
 
-  $$.post(connection, {"type": type, "id": patientID,"note": note,"theType":theType}, function (data) {
+        var notedate = moment().format('DD-MM-YYYY, H:mm');
+        $$.post(connection, {'date':notedate,"type": type, "id": patientID,"note": note,"theType":theType}, function (data) {
         var result = JSON.parse(data);
-        var notedate = moment().format('DD-MM-YYYY');
 
         if(result === "success"){
             if(theType == 'transfer'){
 
-                transfersNotes.append('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                transfersNotes.prepend('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                var dots = transfersNotes.siblings()[0];
+                $$(dots).show();
             }
             if(theType == 'process'){
 
-                processNotes.append('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                processNotes.prepend('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                var dots = processNotes.siblings()[0];
+                $$(dots).show();
             }
             if(theType == 'positioning'){
 
-                positioningNotes.append('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                positioningNotes.prepend('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                var dots = positioningNotes.siblings()[0];
+                $$(dots).show();
             }
 
             myApp.closeModal('.popup-addNote');

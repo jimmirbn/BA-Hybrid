@@ -1,3 +1,4 @@
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -27,7 +28,7 @@ var app = {
 var connection = "http://192.168.1.7/api.php";
 var connectionVideo = "http://192.168.1.7/uploadvideo.php";
 var connectionSearch = "http://192.168.1.7/search.php";
-// var connection = "http://localhost/api.php";
+// var connection = "http://slocalhost/api.php";
 // var connectionVideo = "http://localhost/uploadvideo.php";
 // var connectionSearch = "http://localhost/search.php";
 
@@ -35,6 +36,7 @@ var connectionSearch = "http://192.168.1.7/search.php";
 var $$ = Dom7;
 
 var myApp = new Framework7({
+    fastClicks: false,
     // onAjaxStart: function(xhr) {
     //     myApp.showIndicator();
     // },
@@ -64,7 +66,7 @@ var ProcessVideoArr = [];
 var TransferVideoArr = [];
 var PositioningVideoArr = [];
 var LearningArr = [];
-
+moment.locale('da');
 $$(document).on('pageInit', function(e) {
     var page = e.detail.page;
     if (page.name === 'left-page-1') {

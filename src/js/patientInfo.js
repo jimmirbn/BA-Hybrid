@@ -86,7 +86,6 @@ function getImages(id, type) {
                         caption: this.processimagedate
                     });
                 });
-
                 for (var i = 0; i < result.length; i++) {
                     var image = result[i].processimage;
                     var imagedate = result[i].processimagedate;

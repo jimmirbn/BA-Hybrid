@@ -11,22 +11,34 @@ function onSuccessProcess(imageData) {
     var processImage = $("#process-image");
     var patientID = $('#patientID').val();
     image = 'data:image/jpeg;base64,' + imageData;
-    var imagedate = moment().format('LLL');
+    var imagedate = moment().format('DD-MM-YYYY, H:mm');
     var totalDivs;
     var countDivs = $('#process-image .swiper-slide').length;
     if (countDivs == 0) {
         var totalDivs = 0;
     } else {
-        var totalDivs = countDivs + 1;
-    }
+        var totalDivs = countDivs;
+    };
 
-    ProcessArr.push({
+    var processimagesDivs = $('.openProcessPhoto');
+
+    $.each(processimagesDivs, function() {
+        var id = this.id;
+        var oldId = parseInt(id);
+        $(this).attr('id',oldId+1);
+    });
+
+    ProcessArr.unshift({
         url: image,
         caption: imagedate
     });
-    // processImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
-    processImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+    
+    var dots1 = processImage.siblings()[0];
+    $$(dots1).show();
+    mySwiper1.prependSlide('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>')
 
+    // processImage.prepend('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+    mySwiper1.slideTo(0);
     var addImage = 'addImage';
     var table = 'processimages';
     var imagerow = 'processimage';
@@ -35,10 +47,10 @@ function onSuccessProcess(imageData) {
         "imageData": image,
         "patientID": patientID,
         "table": table,
-        "imagerow": imagerow
+        "imagerow": imagerow,
+        "date": imagedate
     }, function(data) {
-        var result = JSON.parse(data);
-        console.log(result);
+        console.log(data);
         // if(result === "success"){
 
         //   console.log('success');

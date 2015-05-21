@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8' ?>
+<?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.patientInfo" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Patient Info</name>
     <description>
@@ -67,19 +67,14 @@
         <splash height="1536" src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" />
         <splash height="768" src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" />
     </platform>
-    <!-- iPad -->
-    <gap:splash src="resources/ios/splash/Default-Portrait~ipad.png" gap:platform="ios" width="768" height="1024" />
-    <gap:splash src="resources/ios/splash/Default-Landscape~ipad.png" gap:platform="ios" width="1024" height="768" />
-    <!-- Retina iPad -->
-    <gap:splash src="resources/ios/splash/Default-Portrait@2x~ipad.png" gap:platform="ios" width="1536" height="2048" />
-    <gap:splash src="resources/ios/splash/Default-Landscape@2x~ipad.png" gap:platform="ios" width="2048" height="1536" />
-
-    <!-- iPad Spotlight and Settings Icon -->
-    <icon src="resources/ios/icon/icon-50.pngg" gap:platform="ios" width="50" height="50" />
-    <icon src="resources/ios/icon/icon-50@2x.png" gap:platform="ios" width="100" height="100" />
-    
-    <icon src="resources/ios/icon/icon-76.png" gap:platform="ios" width="76" height="76" />
-    <icon src="resources/ios/icon/icon-76@2x.png" gap:platform="ios" width="152" height="152" />
+    <gap:splash gap:platform="ios" height="1024" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" />
+    <gap:splash gap:platform="ios" height="768" src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" />
+    <gap:splash gap:platform="ios" height="2048" src="resources/ios/splash/Default-Portrait@2x~ipad.png" width="1536" />
+    <gap:splash gap:platform="ios" height="1536" src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" />
+    <icon gap:platform="ios" height="50" src="resources/ios/icon/icon-50.pngg" width="50" />
+    <icon gap:platform="ios" height="100" src="resources/ios/icon/icon-50@2x.png" width="100" />
+    <icon gap:platform="ios" height="76" src="resources/ios/icon/icon-76.png" width="76" />
+    <icon gap:platform="ios" height="152" src="resources/ios/icon/icon-76@2x.png" width="152" />
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="http://*/*" />

@@ -28,6 +28,14 @@
   font-weight: normal;
   src: url("../fonts/mari_light-webfont-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/mari_light-webfont-webfont.woff2") format("woff2"), url("../fonts/mari_light-webfont-webfont.woff") format("woff"), url("../fonts/mari_light-webfont-webfont.ttf") format("truetype"), url("../fonts/mari_light-webfont-webfont.svg#mari-light") format("svg");
 }
+body {
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-user-select: none;
+  -webkit-highlight: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 html, body {
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
@@ -201,12 +209,29 @@ a {
     transform: translate(0, -15px) rotate(90deg);
   }
 }
+.tabs-menu li.current {
+  background: #76c6eb;
+  background: -moz-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
+  /* FF3.6+*/
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #76c6eb), color-stop(100%, #009ce8));
+  /* Chrome,Safari4+*/
+  background: -webkit-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
+  /* Chrome10+,Safari5.1+*/
+  background: -o-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
+  /* Opera 12+*/
+  background: -ms-radial-gradient(center, ellipse cover, #76c6eb 0%, #009ce8 100%);
+  /* IE10+*/
+  background: radial-gradient(ellipse at center, #76c6eb 0%, #009ce8 100%);
+  /* W3C*/
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76c6eb', endColorstr='#009ce8', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient*/
+}
 .tabs-menu li.current .arrow {
-  -webkit-transform: translateX(35px);
-  -moz-transform: translateX(35px);
-  -ms-transform: translateX(35px);
-  -o-transform: translateX(35px);
-  transform: translateX(35px);
+  -webkit-transform: translateX(25px);
+  -moz-transform: translateX(25px);
+  -ms-transform: translateX(25px);
+  -o-transform: translateX(25px);
+  transform: translateX(25px);
   opacity: 1;
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
@@ -218,17 +243,23 @@ a {
     transform: translate(0, 0) rotate(90deg);
   }
 }
+.tabs-menu li.current a {
+  color: #fff;
+}
 .tabs-menu li.process {
   border-bottom: 1px solid #d5d5d5;
   border-top: 1px solid #d5d5d5;
 }
-.tabs-menu li.process img {
+.tabs-menu li.process .img {
   display: block;
   position: relative;
   margin: 39px auto 0;
+  width: 80px;
+  height: 59px;
+  background: url(../img/process_grey.png) no-repeat;
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  .tabs-menu li.process img {
+  .tabs-menu li.process .img {
     display: none;
     margin: 5px auto;
     float: left;
@@ -241,17 +272,22 @@ a {
     border-top: 0;
   }
 }
+.tabs-menu li.process.current .img {
+  background: url(../img/process.png) no-repeat;
+}
 .tabs-menu li.transfers {
   border-bottom: 1px solid #d5d5d5;
 }
-.tabs-menu li.transfers img {
-  width: 65px;
+.tabs-menu li.transfers .img {
   display: block;
   margin: 35px auto 5px;
   position: relative;
+  width: 65px;
+  height: 62px;
+  background: url("../img/transfer_grey.png") no-repeat;
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  .tabs-menu li.transfers img {
+  .tabs-menu li.transfers .img {
     display: none;
     margin: 5px auto;
     float: left;
@@ -259,14 +295,25 @@ a {
     width: 40px;
   }
 }
-.tabs-menu li.positioning img {
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .tabs-menu li.transfers span {
+    border-left: 1px solid #d5d5d5;
+  }
+}
+.tabs-menu li.transfers.current .img {
+  background: url(../img/transfer.png) no-repeat;
+}
+.tabs-menu li.positioning .img {
   width: 70px;
   display: block;
   margin: 35px auto 5px;
   position: relative;
+  background: url("../img/positioning_grey.png") no-repeat;
+  width: 65px;
+  height: 58px;
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  .tabs-menu li.positioning img {
+  .tabs-menu li.positioning .img {
     display: none;
     margin: 5px auto;
     float: left;
@@ -278,6 +325,12 @@ a {
   .tabs-menu li.positioning {
     border-bottom: 1px solid #d5d5d5;
   }
+  .tabs-menu li.positioning span {
+    border-left: 1px solid #d5d5d5;
+  }
+}
+.tabs-menu li.positioning.current .img {
+  background: url("../img/positioning.png") no-repeat;
 }
 
 .tab {
@@ -937,7 +990,7 @@ a {
 
 .searchbar-overlay.active {
   position: fixed;
-  top: 64px;
+  top: 44px;
   opacity: 1;
 }
 
@@ -1041,6 +1094,10 @@ div[data-page="learning"] .navbar .navbar-on-center {
   background-color: #fff;
 }
 
+.page-content--scroll .content-block-title {
+  margin: 10px 0px 10px 15px;
+}
+
 .arrow {
   will-change: transform;
   -webkit-transition: -webkit-transform 200ms ease, opacity 200ms ease;
@@ -1073,7 +1130,7 @@ div[data-page="learning"] .navbar .navbar-on-center {
   left: 25%;
   right: 25%;
   height: 2px;
-  background-color: #777;
+  background-color: #fff;
   top: 48%;
 }
 .arrow:not(:nth-child(1n+3)):before {

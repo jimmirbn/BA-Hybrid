@@ -1,3 +1,4 @@
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -27,7 +28,7 @@ var app = {
 var connection = "http://192.168.1.7/api.php";
 var connectionVideo = "http://192.168.1.7/uploadvideo.php";
 var connectionSearch = "http://192.168.1.7/search.php";
-// var connection = "http://localhost/api.php";
+// var connection = "http://slocalhost/api.php";
 // var connectionVideo = "http://localhost/uploadvideo.php";
 // var connectionSearch = "http://localhost/search.php";
 
@@ -35,6 +36,7 @@ var connectionSearch = "http://192.168.1.7/search.php";
 var $$ = Dom7;
 
 var myApp = new Framework7({
+    fastClicks: false,
     // onAjaxStart: function(xhr) {
     //     myApp.showIndicator();
     // },
@@ -64,7 +66,7 @@ var ProcessVideoArr = [];
 var TransferVideoArr = [];
 var PositioningVideoArr = [];
 var LearningArr = [];
-
+moment.locale('da');
 $$(document).on('pageInit', function(e) {
     var page = e.detail.page;
     if (page.name === 'left-page-1') {
@@ -557,22 +559,28 @@ $$('.addNote').on('click', function(){
     var theType = $('#type').val();
     var note = $('textarea[name="note"]').val();
 
-  $$.post(connection, {"type": type, "id": patientID,"note": note,"theType":theType}, function (data) {
+        var notedate = moment().format('DD-MM-YYYY, H:mm');
+        $$.post(connection, {'date':notedate,"type": type, "id": patientID,"note": note,"theType":theType}, function (data) {
         var result = JSON.parse(data);
-        var notedate = moment().format('DD-MM-YYYY');
 
         if(result === "success"){
             if(theType == 'transfer'){
 
-                transfersNotes.append('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                transfersNotes.prepend('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                var dots = transfersNotes.siblings()[0];
+                $$(dots).show();
             }
             if(theType == 'process'){
 
-                processNotes.append('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                processNotes.prepend('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                var dots = processNotes.siblings()[0];
+                $$(dots).show();
             }
             if(theType == 'positioning'){
 
-                positioningNotes.append('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                positioningNotes.prepend('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                var dots = positioningNotes.siblings()[0];
+                $$(dots).show();
             }
 
             myApp.closeModal('.popup-addNote');
@@ -672,35 +680,35 @@ $$('.addPatient').on('click', function() {
             $('select[name="roomnr"]').val('');
             $('textarea[name="description"]').val('');
 
-            processImage.append('<div class="no-results"><p>Ingen process billeder</p></div>');
+            processImage.append('<div class="no-results"><p>Ingen billeder af proces</p></div>');
             var dots1 = processImage.siblings()[0];
             $$(dots1).hide();
 
-            transfersImage.append('<div class="no-results"><p>Ingen billeder af flytninger</p></div>');
+            transfersImage.append('<div class="no-results"><p>Ingen billeder af forflytning</p></div>');
             var dots2 = transfersImage.siblings()[0];
             $$(dots2).hide();
 
-            positioningImage.append('<div class="no-results"><p>Ingen billeder af lejringer</p></div>');
+            positioningImage.append('<div class="no-results"><p>Ingen billeder af lejring</p></div>');
             var dots3 = positioningImage.siblings()[0];
             $$(dots3).hide();
 
-            processNotes.append('<div class="no-results"><p>Ingen process noter</p></div>')
+            processNotes.append('<div class="no-results"><p>Ingen noter til proces</p></div>')
             var dots4 = processNotes.siblings()[0];
             $$(dots4).hide();
 
-            transfersNotes.append('<div class="no-results"><p>Ingen forflytnings noter</p></div>')
+            transfersNotes.append('<div class="no-results"><p>Ingen noter til forflytning</p></div>')
             var dots5 = transfersNotes.siblings()[0];
             $$(dots5).hide();
 
-            positioningNotes.append('<div class="no-results"><p>Ingen lejrings noter</p></div>')
+            positioningNotes.append('<div class="no-results"><p>Ingen noter til lejring</p></div>')
             var dots6 = positioningNotes.siblings()[0];
             $$(dots6).hide();
 
-            processVideo.append('<div class="no-results"><p>Ingen process videoer</p></div>')
+            processVideo.append('<div class="no-results"><p>Ingen videoer af proces</p></div>')
             var dots7 = processVideo.siblings()[0];
             $$(dots7).hide();
 
-            transfersVideo.append('<div class="no-results"><p>Ingen videoer af forflytninger</p></div>')
+            transfersVideo.append('<div class="no-results"><p>Ingen videoer af forflytning</p></div>')
             var dots8 = transfersVideo.siblings()[0];
             $$(dots8).hide();
 
@@ -727,22 +735,33 @@ function onSuccessPositioning(imageData) {
     var positioningImage = $("#positioning-image");
     var patientID = $('#patientID').val();
     image = 'data:image/jpeg;base64,' + imageData;
-    var imagedate = moment().format('LLL');
+    var imagedate = moment().format('DD-MM-YYYY, H:mm');
     var totalDivs;
     var countDivs = $('#positioning-image .swiper-slide').length;
     if (countDivs == 0) {
         var totalDivs = 0;
     } else {
-        var totalDivs = countDivs + 1;
+        var totalDivs = countDivs;
     }
 
-    PositioningArr.push({
+    var positioningimagesDivs = $('.openPositioningPhoto');
+
+    $.each(positioningimagesDivs, function() {
+        var id = this.id;
+        var oldId = parseInt(id);
+        $(this).attr('id',oldId+1);
+    });
+
+    PositioningArr.unshift({
         url: image,
         caption: imagedate
     });
-    // positioningImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
-    positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
 
+    var dots = positioningImage.siblings()[0];
+    $$(dots).show();
+    // positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+    mySwiper7.prependSlide('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+    mySwiper7.slideTo(0);
     var addImage = 'addImage';
     var table = 'positioningimages';
     var imagerow = 'positioningimage';
@@ -751,7 +770,8 @@ function onSuccessPositioning(imageData) {
         "imageData": image,
         "patientID": patientID,
         "table": table,
-        "imagerow": imagerow
+        "imagerow": imagerow,
+        "date": imagedate
     }, function(data) {
         var result = JSON.parse(data);
         console.log(result);
@@ -978,40 +998,140 @@ function uploadFilePositioning(mediaFile) {
     });
 }
 
+function copyBasePositioning(mediaFile, title) {
+    // console.log('Mediafile copybase ' + mediaFile.fullPath);
+    var DocPath = cordova.file.documentsDirectory;
+    var d = $.now();
+    var newName = d + "movie.mov";
+    var fullFile = 'file://' + mediaFile.fullPath;
+    window.resolveLocalFileSystemURL(fullFile,
+        function(file) {
+            console.log('success! file was found ' + file.toURL());
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, null);
 
-function copyBasePositioning(url, title) {
-    console.log('win function ' + url);
+            function onSuccess(fileSystem) {
+                window.resolveLocalFileSystemURL(cordova.file.dataDirectory,
+                    function(dir) {
+                        console.log("Success! Got a DirectoryEntry " + dir.name);
+                        // Do more things with `entry` here
+
+                        var documentsPath = fileSystem.root;
+                        // console.log('Filesystem ' + documentsPath.toURL());
+                        file.copyTo(dir, newName,
+                            function(entry) {
+                                console.log('copying was successful ' + entry.toURL())
+                                var url = entry.toURL();
+                                winPositioning(url, title);
+
+                            },
+                            function() {
+                                console.log('unsuccessful copying')
+                            });
+                    },
+                    function(error) {
+                        console.error("Something bad happened, and we didn't get a DirectoryEntry");
+                    });
+            }
+        },
+        function() {
+            console.log('failure! file was not found')
+        });
+};
+
+
+// function copyBasePositioning(url, title) {
+//     console.log('win function ' + url);
+//     var id = $$('#patientID').val();
+//     var positioning = "positioning";
+//     var videodate = moment().format('DD-MM-YYYY, H:mm');
+//     var videotitle = title;
+//     $$.post(connectionVideo, {
+//         "positioning": positioning,
+//         'id': id,
+//         'videotitle': videotitle,
+//         'url': url,
+//         'date':videodate
+//     }, function(data) {
+//         console.log(data);
+
+//     });
+//     var positioningVideo = $("#positioning-video");
+
+//     var countDivs = $('#positioning-video .swiper-slide').length;
+//     if (countDivs == 0) {
+//         var totalDivs = 0;
+//     } else {
+//         var totalDivs = countDivs;
+//     }
+
+//     var positioningvideosDivs = $('.openPositioningVideo');
+
+
+//     $.each(positioningvideosDivs, function() {
+//         var id = this.id;
+//         var oldId = parseInt(id);
+//         $(this).attr('id',oldId+1);
+//     });
+
+//     if ($("#positioning-video .swiper-slide").length == 0) {
+//         positioningVideo.empty();
+//     }
+//     var dots = positioningVideo.siblings()[0];
+//     $$(dots).show();
+//     PositioningVideoArr.unshift({
+//         html: '<video controls=""><source type="video/mp4" src="' + url + '"></video>',
+//         caption: videodate
+//     });
+//     mySwiper8.prependSlide('<div class="swiper-slide"><h3 class="videoTitle">' + title + '</h3><p class="sliderDate">' + videodate + '</p><a id="0" href="#" class="openVideo openPositioningVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
+//     mySwiper8.slideTo(0);
+// }
+
+function winPositioning(url, title) {
     var id = $$('#patientID').val();
     var positioning = "positioning";
+    var videodate = moment().format('DD-MM-YYYY, H:mm');
     var videotitle = title;
     $$.post(connectionVideo, {
         "positioning": positioning,
         'id': id,
         'videotitle': videotitle,
-        'url': url
+        'url': url,
+        'date':videodate
     }, function(data) {
         console.log(data);
 
     });
     var positioningVideo = $("#positioning-video");
-    var videodate = moment().format('LLL');
 
     var countDivs = $('#positioning-video .swiper-slide').length;
     if (countDivs == 0) {
         var totalDivs = 0;
     } else {
-        var totalDivs = countDivs + 1;
+        var totalDivs = countDivs;
     }
+
+    var positioningvideosDivs = $('.openPositioningVideo');
+
+
+    $.each(positioningvideosDivs, function() {
+        var id = this.id;
+        var oldId = parseInt(id);
+        $(this).attr('id',oldId+1);
+    });
 
     if ($("#positioning-video .swiper-slide").length == 0) {
         positioningVideo.empty();
     }
-    PositioningVideoArr.push({
+    var dots = positioningVideo.siblings()[0];
+    $$(dots).show();
+    PositioningVideoArr.unshift({
         html: '<video controls=""><source type="video/mp4" src="' + url + '"></video>',
         caption: videodate
     });
-    positioningVideo.append('<div class="swiper-slide"><p class="videoTitle">' + title + '</p><p class="sliderDate">' + videodate + '</p><a id="'+totalDivs+'" href="#" class="openVideo openPositioningVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
+    mySwiper8.prependSlide('<div class="swiper-slide"><h3 class="videoTitle">' + title + '</h3><p class="sliderDate">' + videodate + '</p><a id="0" href="#" class="openVideo openPositioningVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
+    mySwiper8.slideTo(0);
 }
+
 
 // function fail(error) {
 //     alert("An error has occurred: Code = " + error.code);
@@ -1035,22 +1155,34 @@ function onSuccessProcess(imageData) {
     var processImage = $("#process-image");
     var patientID = $('#patientID').val();
     image = 'data:image/jpeg;base64,' + imageData;
-    var imagedate = moment().format('LLL');
+    var imagedate = moment().format('DD-MM-YYYY, H:mm');
     var totalDivs;
     var countDivs = $('#process-image .swiper-slide').length;
     if (countDivs == 0) {
         var totalDivs = 0;
     } else {
-        var totalDivs = countDivs + 1;
-    }
+        var totalDivs = countDivs;
+    };
 
-    ProcessArr.push({
+    var processimagesDivs = $('.openProcessPhoto');
+
+    $.each(processimagesDivs, function() {
+        var id = this.id;
+        var oldId = parseInt(id);
+        $(this).attr('id',oldId+1);
+    });
+
+    ProcessArr.unshift({
         url: image,
         caption: imagedate
     });
-    // processImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
-    processImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+    
+    var dots1 = processImage.siblings()[0];
+    $$(dots1).show();
+    mySwiper1.prependSlide('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>')
 
+    // processImage.prepend('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+    mySwiper1.slideTo(0);
     var addImage = 'addImage';
     var table = 'processimages';
     var imagerow = 'processimage';
@@ -1059,10 +1191,10 @@ function onSuccessProcess(imageData) {
         "imageData": image,
         "patientID": patientID,
         "table": table,
-        "imagerow": imagerow
+        "imagerow": imagerow,
+        "date": imagedate
     }, function(data) {
-        var result = JSON.parse(data);
-        console.log(result);
+        console.log(data);
         // if(result === "success"){
 
         //   console.log('success');
@@ -1190,35 +1322,47 @@ function winProcess(url, title) {
     var id = $$('#patientID').val();
     var process = "process";
     var videotitle = title;
+    var videodate = moment().format('DD-MM-YYYY, H:mm');
     $$.post(connectionVideo, {
         "process": process,
         'id': id,
         'videotitle': videotitle,
-        'url': url
+        'url': url,
+        'date':videodate
     }, function(data) {
         console.log(data);
 
     });
 
     var processVideo = $("#process-video");
-    var videodate = moment().format('LLL');
     
     var countDivs = $('#process-video .swiper-slide').length;
     if (countDivs == 0) {
         var totalDivs = 0;
     } else {
-        var totalDivs = countDivs + 1;
+        var totalDivs = countDivs;
     }
+    var processvideosDivs = $('.openProcessVideo');
+
+
+    $.each(processvideosDivs, function() {
+        var id = this.id;
+        var oldId = parseInt(id);
+        $(this).attr('id',oldId+1);
+    });
 
 
     if ($("#process-video .swiper-slide").length == 0) {
         processVideo.empty();
     }
-    ProcessVideoArr.push({
+    var dots = processVideo.siblings()[0];
+    $$(dots).show();
+    ProcessVideoArr.unshift({
         html: '<video controls=""><source type="video/mp4" src="' + url + '"></video>',
         caption: videodate
     });
-    processVideo.append('<div class="swiper-slide"><p class="videoTitle">' + title + '</p><p class="sliderDate">' + videodate + '</p><a id="'+totalDivs+'" href="#" class="openVideo openProcessVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
+    mySwiper2.prependSlide('<div class="swiper-slide"><h3 class="videoTitle">' + title + '</h3><p class="sliderDate">' + videodate + '</p><a id="0" href="#" class="openVideo openProcessVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
+    mySwiper2.slideTo(0);
 }
 
 // function fail(error) {
@@ -1240,22 +1384,32 @@ function onSuccessTransfers(imageData) {
     var transferImage = $("#transfers-image");
     var patientID = $('#patientID').val();
     image = 'data:image/jpeg;base64,' + imageData;
-    var imagedate = moment().format('LLL');
+    var imagedate = moment().format('DD-MM-YYYY, H:mm');
     var totalDivs;
     var countDivs = $('#transfers-image .swiper-slide').length;
     if (countDivs == 0) {
         var totalDivs = 0;
     } else {
-        var totalDivs = countDivs + 1;
+        var totalDivs = countDivs;
     }
 
-    TransferArr.push({
+    var transferimagesDivs = $('.openTransferPhoto');
+
+    $.each(transferimagesDivs, function() {
+        var id = this.id;
+        var oldId = parseInt(id);
+        $(this).attr('id',oldId+1);
+    });
+
+    TransferArr.unshift({
         url: image,
         caption: imagedate
     });
-    // transferImage.append('<div class="swiper-slide test"><a href="#" class="openPhoto"><img class="photo" src="' + image + '"></a></div>');
-    transferImage.append('<div class="swiper-slide test"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openTransferPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
-
+    var dots = transferImage.siblings()[0];
+    $$(dots).show();
+    // transferImage.append('<div class="swiper-slide test"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openTransferPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+    mySwiper4.prependSlide('<div class="swiper-slide test"><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openTransferPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+    mySwiper4.slideTo(0);
     var addImage = 'addImage';
     var table = 'transferimages'
     var imagerow = 'transferimage'
@@ -1264,7 +1418,8 @@ function onSuccessTransfers(imageData) {
         "imageData": image,
         "patientID": patientID,
         "table": table,
-        "imagerow": imagerow
+        "imagerow": imagerow,
+        "date": imagedate
     }, function(data) {
         var result = JSON.parse(data);
         console.log(result);
@@ -1406,22 +1561,111 @@ function uploadFileTransfer(mediaFile) {
 }
 
 
-function copyBaseTransfer(url, title) {
+// function copyBaseTransfer(url, title) {
+//     console.log('win function ' + url);
+//     var id = $$('#patientID').val();
+//     var transfer = "transfer";
+//     var videotitle = title;
+//     var videodate = moment().format('DD-MM-YYYY, H:mm');
+//     $$.post(connectionVideo, {
+//         "transfer": transfer,
+//         'id': id,
+//         'videotitle': videotitle,
+//         'url': url,
+//         'date':videodate
+//     }, function(data) {
+//         console.log(data);
+
+//     });
+//     var transfersVideo = $("#transfers-video");
+
+
+//     var countDivs = $('#transfers-video .swiper-slide').length;
+//     if (countDivs == 0) {
+//         var totalDivs = 0;
+//     } else {
+//         var totalDivs = countDivs + 1;
+//     }
+
+//     var transfervideosDivs = $('.openTransferVideo');
+
+
+//     $.each(transfervideosDivs, function() {
+//         var id = this.id;
+//         var oldId = parseInt(id);
+//         $(this).attr('id',oldId+1);
+//     });
+
+//     if ($("#transfers-video .swiper-slide").length == 0) {
+//         transfersVideo.empty();
+//     }
+//     var dots = transfersVideo.siblings()[0];
+//     $$(dots).show();
+//     TransferVideoArr.unshift({
+//         html: '<video controls=""><source type="video/mp4" src="' + url + '"></video>',
+//         caption: videodate
+//     });
+//     mySwiper5.prependSlide('<div class="swiper-slide"><h3 class="videoTitle">' + title + '</h3><p class="sliderDate">' + videodate + '</p><a id="0" href="#" class="openVideo openTransferVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
+//     mySwiper5.slideTo(0);
+// }
+
+function copyBaseTransfer(mediaFile, title) {
+    // console.log('Mediafile copybase ' + mediaFile.fullPath);
+    var DocPath = cordova.file.documentsDirectory;
+    var d = $.now();
+    var newName = d + "movie.mov";
+    var fullFile = 'file://' + mediaFile.fullPath;
+    window.resolveLocalFileSystemURL(fullFile,
+        function(file) {
+            console.log('success! file was found ' + file.toURL());
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, null);
+
+            function onSuccess(fileSystem) {
+                window.resolveLocalFileSystemURL(cordova.file.dataDirectory,
+                    function(dir) {
+                        console.log("Success! Got a DirectoryEntry " + dir.name);
+                        // Do more things with `entry` here
+
+                        var documentsPath = fileSystem.root;
+                        // console.log('Filesystem ' + documentsPath.toURL());
+                        file.copyTo(dir, newName,
+                            function(entry) {
+                                console.log('copying was successful ' + entry.toURL())
+                                var url = entry.toURL();
+                                winTransfer(url, title);
+
+                            },
+                            function() {
+                                console.log('unsuccessful copying')
+                            });
+                    },
+                    function(error) {
+                        console.error("Something bad happened, and we didn't get a DirectoryEntry");
+                    });
+            }
+        },
+        function() {
+            console.log('failure! file was not found')
+        });
+};
+
+function winTransfer(url, title) {
     console.log('win function ' + url);
     var id = $$('#patientID').val();
     var transfer = "transfer";
     var videotitle = title;
+    var videodate = moment().format('DD-MM-YYYY, H:mm');
     $$.post(connectionVideo, {
         "transfer": transfer,
         'id': id,
         'videotitle': videotitle,
-        'url': url
+        'url': url,
+        'date':videodate
     }, function(data) {
         console.log(data);
 
     });
     var transfersVideo = $("#transfers-video");
-    var videodate = moment().format('LLL');
 
 
     var countDivs = $('#transfers-video .swiper-slide').length;
@@ -1431,14 +1675,26 @@ function copyBaseTransfer(url, title) {
         var totalDivs = countDivs + 1;
     }
 
+    var transfervideosDivs = $('.openTransferVideo');
+
+
+    $.each(transfervideosDivs, function() {
+        var id = this.id;
+        var oldId = parseInt(id);
+        $(this).attr('id',oldId+1);
+    });
+
     if ($("#transfers-video .swiper-slide").length == 0) {
         transfersVideo.empty();
     }
-    TransferVideoArr.push({
+    var dots = transfersVideo.siblings()[0];
+    $$(dots).show();
+    TransferVideoArr.unshift({
         html: '<video controls=""><source type="video/mp4" src="' + url + '"></video>',
         caption: videodate
     });
-    transfersVideo.append('<div class="swiper-slide"><p class="videoTitle">' + title + '</p><p class="sliderDate">' + videodate + '</p><a id="'+totalDivs+'" href="#" class="openVideo openTransferVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
+    mySwiper5.prependSlide('<div class="swiper-slide"><h3 class="videoTitle">' + title + '</h3><p class="sliderDate">' + videodate + '</p><a id="0" href="#" class="openVideo openTransferVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
+    mySwiper5.slideTo(0);
 }
 
 // function fail(error) {
@@ -1450,19 +1706,23 @@ function copyBaseTransfer(url, title) {
 
 
 $$('.btn--delete').on('click', function() {
-	localStorage.clear();
-	emptyPatientInfo();
-    $$('.noPatient').show();
+        id = this.id;
 
-	id = this.id;
-	var deletePatient = 'deletePatient';
-	$$.post(connection, {
-        "type": deletePatient,
-        'id': id
-    }, function(data) {
-        	console.log(data);
+    myApp.confirm('Dette vil slette patient og alt tilhørende', function() {
+        localStorage.clear();
+        emptyPatientInfo();
+        $$('.noPatient').show();
+
+        var deletePatient = 'deletePatient';
+        $$.post(connection, {
+            "type": deletePatient,
+            'id': id
+        }, function(data) {
+            console.log(data);
+        });
     });
 });
+
 // $$(document).on("click", ".getAll", function() {
 //     $$('.loading--leftview').show();
 //     var type = this.id;
@@ -1606,7 +1866,6 @@ function getImages(id, type) {
                         caption: this.processimagedate
                     });
                 });
-
                 for (var i = 0; i < result.length; i++) {
                     var image = result[i].processimage;
                     var imagedate = result[i].processimagedate;
@@ -2059,6 +2318,7 @@ var mySwiper9 = myApp.swiper('.positioning-notes', {
     observeParents: true,
 });
 $$(".tabs-menu li").click(function(event) {
+
     event.preventDefault();
     // $(this).parent().addClass("current");
     $(this).addClass("current");
@@ -2076,10 +2336,14 @@ $$(".toggler").click(function(event) {
     }
 });
 
-$$(".panel-overlay").click(function(event){
-	if($(".toggler").hasClass('open')){
-		$(".toggler").removeClass('open');
-	}
+$$(".panel-overlay").click(function(event) {
+    if ($(".toggler").hasClass('open')) {
+        $(".toggler").removeClass('open');
+        leftView.router.loadPage('index.html');
+        setTimeout(function() {
+        $('.view-left .page-on-left').remove();
+        }, 1000);
+    }
 });
 
 //# sourceMappingURL=site.js.map
