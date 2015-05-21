@@ -6,10 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>My App</title>
+    <title>Patient app</title>
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/framework7.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/fastclick.js"></script>
+    <script type="text/javascript">
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+    </script>
 </head>
 
 <body style="padding: 0!important;">
@@ -26,7 +34,7 @@
                     <div class="loading--leftview">
                         <span class="preloader preloader--leftview"></span>
                     </div>
-                    <div class="center sliding">Left View</div>
+                    <!-- <div class="center sliding">Left View</div> -->
                 </div>
             </div>
             <div class="pages">
@@ -93,7 +101,7 @@
                                     <a id="learning" href="learning.html" class="item-link" data-view=".view-main">
                                         <div class="item-content">
                                             <div class="item-inner">
-                                                <div class="item-title">læringsmateriale</div>
+                                                <div class="item-title">Læringsmaterialer</div>
                                             </div>
                                         </div>
                                     </a>
@@ -128,7 +136,7 @@
                     </div>
                     <!-- <a href="#" class="open-panel left">Menu</a> -->
                     <a href="#" class="toggler open-panel left">
-                        <span class="closed">Åben</span>
+                        <span class="closed">Menu</span>
                         <span class="open">Luk</span>
                         <i class="t"></i>
                         <i class="m"></i>
@@ -181,13 +189,14 @@
                         </div>
                         <div class="tabs-container">
                             <div class="tabs-header">
-                                <h3>Patient data</h3>
+                                <h3>Patientdata</h3>
+                                <button class="button btn btn--blue btn--delete">Slet patient</button>
                             </div>
                             <div class="row no-gutter tabs-innercontainer">
                                 <div class="col-25 h100">
                                     <ul class="tabs-menu">
-                                        <li data-id="#tab-1" class="process current"><span><div class="img"></div><a href="">Process<i class="arrow"></i></a></span></li>
-                                        <li class="transfers" data-id="#tab-2"><span><div class="img"></div><a href="#tab-2">Forflytninger<i class="arrow"></i></a></span></li>
+                                        <li data-id="#tab-1" class="process current"><span><div class="img"></div><a href="">Proces<i class="arrow"></i></a></span></li>
+                                        <li class="transfers" data-id="#tab-2"><span><div class="img"></div><a href="#tab-2">Forflytning<i class="arrow"></i></a></span></li>
                                         <li class="positioning" data-id="#tab-3"><span><div class="img"></div><a href="#tab-3">Lejring<i class="arrow"></i></a></span></li>
                                     </ul>
                                 </div>
@@ -283,7 +292,7 @@
                             </div>
                         </div>
                         <div class="noPatient">
-                            <h2>Opret en ny patient<br> eller brug menuen samt søgefeltet.</h2>
+                            <h2>Opret nu patient<br>eller gå til menu</h2>
                         </div>
                     </div>
                 </div>
@@ -319,9 +328,9 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-calendar"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Fødselsdag</div>
+                                <div class="item-title label">Fødselsdato</div>
                                 <div class="item-input">
-                                    <input type="date" name="born" placeholder="Birth day">
+                                    <input type="date" name="born" placeholder="Fødselsdato">
                                 </div>
                             </div>
                         </div>
@@ -330,9 +339,9 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-calendar"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Indlagt dato</div>
+                                <div class="item-title label">Indlæggelsesdato</div>
                                 <div class="item-input">
-                                    <input type="date" name="inlaid" placeholder="Indlagt dato">
+                                    <input type="date" name="inlaid" placeholder="Indlæggelsesdato">
                                 </div>
                             </div>
                         </div>
@@ -371,7 +380,7 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon icon-form-comment"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Patient info & evt målene for forløbet</div>
+                                <div class="item-title label">Patientinfo og mål for forløb</div>
                                 <div class="item-input">
                                     <textarea placeholder="Tryk her for at tilføje tekst" name="description"></textarea>
                                 </div>
