@@ -1,0 +1,43 @@
+.photo-browser-captions-dark {
+    height: 250px;
+    width: 50%;
+    bottom: 64px!important;
+    pointer-events: auto!important;
+    a {
+        color: white;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+            right: 0;
+            width: 100%;
+            text-align: right;
+            padding-right: 5px;
+              background: rgba(0,0,0,.8);
+              height: 20px;
+    }
+    &.active {
+        height: auto;
+        width: 100%;
+        bottom: 44px!important;
+        a {
+            top: auto;
+            bottom: 3px;
+            right: 20px;
+            width: auto;
+            background: transparent;
+        }
+        .photo-browser-caption-active {
+            height: 25px;
+            top: auto;
+        }
+    }
+}
+
+.photo-browser-caption-active {
+	top: 20px;
+    word-wrap: break-word;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    overflow-y: scroll;
+}

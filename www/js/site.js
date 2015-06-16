@@ -1849,7 +1849,7 @@ function getImages(id, type) {
                 $.each(result, function() {
                     ProcessArr.push({
                         url: this.processimage,
-                        caption: this.processimagedate
+                        caption: this.processimagedate+"<br>"+this.processimageinfo
                     });
                 });
                 for (var i = 0; i < result.length; i++) {
@@ -2106,7 +2106,8 @@ $$(document).on("click", ".openProcessPhoto", function() {
     theImage = $(this).find('img').attr('src');
     var myPhotoBrowserDarkProcess = myApp.photoBrowser({
         photos: ProcessArr,
-        theme: 'dark'
+        theme: 'dark',
+        captionsTemplate: '<div class="photo-browser-captions photo-browser-captions-dark active"><a class="minBrowser">Læs mere</a>{{captions}}</div>'
     });
     var indexNr = this.id;
     myPhotoBrowserDarkProcess.open(indexNr);
@@ -2155,9 +2156,9 @@ $$(document).on("click", ".openTransferVideo", function() {
     myVideoBrowserDarkTransfer.open(indexNr);
 });
 $$(document).on("click", ".openPositioningVideo", function() {
-console.log('test');
-console.log(PositioningVideoArr);
-console.log(this.id);
+    console.log('test');
+    console.log(PositioningVideoArr);
+    console.log(this.id);
     theVideo = $(this).html();
     var myVideoBrowserDarkPositioning = myApp.photoBrowser({
         photos: PositioningVideoArr,
@@ -2166,6 +2167,17 @@ console.log(this.id);
 
     var indexNr = this.id;
     myVideoBrowserDarkPositioning.open(indexNr);
+});
+
+$$(document).on("click", ".minBrowser", function() {
+    var browser = $('.photo-browser-captions-dark');
+        if (!browser.hasClass('active')) {
+            browser.addClass('active');
+            $(this).text('Læs mere')
+        } else {
+            browser.removeClass('active');
+            $(this).text('Luk');
+        }
 });
 
 // $$(document).on("click", ".team", function() {

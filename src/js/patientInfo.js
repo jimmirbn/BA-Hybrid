@@ -82,7 +82,7 @@ function getImages(id, type) {
                 $.each(result, function() {
                     ProcessArr.push({
                         url: this.processimage,
-                        caption: this.processimagedate
+                        caption: this.processimagedate+"<br>"+this.processimageinfo
                     });
                 });
                 for (var i = 0; i < result.length; i++) {
