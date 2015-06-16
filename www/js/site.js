@@ -862,59 +862,78 @@ function snapPicturePositioning() {
 }
 
 function onSuccessPositioning(imageData) {
-    var positioningImage = $("#positioning-image");
-    var patientID = $('#patientID').val();
-    image = 'data:image/jpeg;base64,' + imageData;
-    var imagedate = moment().format('DD-MM-YYYY, H:mm');
-    var totalDivs;
-    var countDivs = $('#positioning-image .swiper-slide').length;
-    if (countDivs == 0) {
-        var totalDivs = 0;
-        positioningImage.empty();
-    } else {
-        var totalDivs = countDivs;
-    }
 
-    var positioningimagesDivs = $('.openPositioningPhoto');
-    var positioningimagesDelete = $('#positioning-image .deleteContent');
+    myApp.modal({
+        title: 'Skriv evt info til billedet',
+        text: '<textarea name="processImageInfo" placeholder="Tryk her for at skrive"></textarea>',
+        buttons: [{
+            text: 'Ok',
+            onClick: function() {
+                var learningInfo = $('textarea[name="processImageInfo"]').val();
+
+                var positioningImage = $("#positioning-image");
+                var patientID = $('#patientID').val();
+                image = 'data:image/jpeg;base64,' + imageData;
+                var imagedate = moment().format('DD-MM-YYYY, H:mm');
+                var totalDivs;
+                var countDivs = $('#positioning-image .swiper-slide').length;
+                if (countDivs == 0) {
+                    var totalDivs = 0;
+                    positioningImage.empty();
+                } else {
+                    var totalDivs = countDivs;
+                }
+
+                var positioningimagesDivs = $('.openPositioningPhoto');
+                var positioningimagesDelete = $('#positioning-image .deleteContent');
 
 
-    $.each(positioningimagesDivs, function() {
-        var id = this.id;
-        var oldId = parseInt(id);
-        $(this).attr('id',oldId+1);
+                $.each(positioningimagesDivs, function() {
+                    var id = this.id;
+                    var oldId = parseInt(id);
+                    $(this).attr('id', oldId + 1);
+                });
+
+                $.each(positioningimagesDelete, function() {
+                    var id = $(this).attr('data-index');
+                    var oldId = parseInt(id);
+                    $(this).attr('data-index', oldId + 1);
+                });
+
+                PositioningArr.unshift({
+                    url: image,
+                    caption: imagedate+"<br>"+learningInfo
+                });
+                var addImage = 'addImage';
+                var table = 'positioningimages';
+                var imagerow = 'positioningimage';
+                $$.post(connection, {
+                    "addImage": addImage,
+                    "imageData": image,
+                    "patientID": patientID,
+                    "table": table,
+                    "imagerow": imagerow,
+                    "date": imagedate,
+                    "info": learningInfo
+                }, function(data) {
+                    var result = JSON.parse(data);
+                    console.log(result);
+                    mySwiper7.prependSlide('<div class="swiper-slide"><a data-array="PositioningArr" data-index="0" data-id="' + table + '" id="' + result + '" class="deleteContent">X</a><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+                });
+
+                var dots = positioningImage.siblings()[0];
+                $$(dots).show();
+                // positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+                mySwiper7.slideTo(0);
+
+            }
+        }, {
+            text: 'Afbryd',
+            onClick: function() {
+                myApp.alert('Billedet er slettet!')
+            }
+        }]
     });
-
-    $.each(positioningimagesDelete, function() {
-        var id = $(this).attr('data-index');
-        var oldId = parseInt(id);
-        $(this).attr('data-index', oldId + 1);
-    });
-
-    PositioningArr.unshift({
-        url: image,
-        caption: imagedate
-    });
-    var addImage = 'addImage';
-    var table = 'positioningimages';
-    var imagerow = 'positioningimage';
-    $$.post(connection, {
-        "addImage": addImage,
-        "imageData": image,
-        "patientID": patientID,
-        "table": table,
-        "imagerow": imagerow,
-        "date": imagedate
-    }, function(data) {
-        var result = JSON.parse(data);
-        console.log(result);
-        mySwiper7.prependSlide('<div class="swiper-slide"><a data-array="PositioningArr" data-index="0" data-id="' + table + '" id="' + result + '" class="deleteContent">X</a><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
-    });
-
-    var dots = positioningImage.siblings()[0];
-    $$(dots).show();
-    // positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
-    mySwiper7.slideTo(0);
 }
 
 function getPhotoPositioning() {
@@ -1080,56 +1099,74 @@ function snapPictureProcess() {
 }
 
 function onSuccessProcess(imageData) {
-    var processImage = $("#process-image");
-    var patientID = $('#patientID').val();
-    image = 'data:image/jpeg;base64,' + imageData;
-    var imagedate = moment().format('DD-MM-YYYY, H:mm');
-    var totalDivs;
-    var countDivs = $('#process-image .swiper-slide').length;
-    if (countDivs == 0) {
-        var totalDivs = 0;
-        processImage.empty();
-    } else {
-        var totalDivs = countDivs;
-    };
 
-    var processimagesDivs = $('.openProcessPhoto');
-    var processimagesDelete = $('#process-image .deleteContent');
+    myApp.modal({
+        title: 'Skriv evt info til billedet',
+        text: '<textarea name="processImageInfo" placeholder="Tryk her for at skrive"></textarea>',
+        buttons: [{
+            text: 'Ok',
+            onClick: function() {
+                var learningInfo = $('textarea[name="processImageInfo"]').val();
+                var processImage = $("#process-image");
+                var patientID = $('#patientID').val();
+                image = 'data:image/jpeg;base64,' + imageData;
+                var imagedate = moment().format('DD-MM-YYYY, H:mm');
+                var totalDivs;
+                var countDivs = $('#process-image .swiper-slide').length;
+                if (countDivs == 0) {
+                    var totalDivs = 0;
+                    processImage.empty();
+                } else {
+                    var totalDivs = countDivs;
+                };
 
-    $.each(processimagesDivs, function() {
-        var id = this.id;
-        var oldId = parseInt(id);
-        $(this).attr('id', oldId + 1);
-    });
-    $.each(processimagesDelete, function() {
-        var id = $(this).attr('data-index');
-        var oldId = parseInt(id);
-        $(this).attr('data-index', oldId + 1);
-    });
+                var processimagesDivs = $('.openProcessPhoto');
+                var processimagesDelete = $('#process-image .deleteContent');
 
-    ProcessArr.unshift({
-        url: image,
-        caption: imagedate
-    });
-    var addImage = 'addImage';
-    var table = 'processimages';
-    var imagerow = 'processimage';
-    $$.post(connection, {
-        "addImage": addImage,
-        "imageData": image,
-        "patientID": patientID,
-        "table": table,
-        "imagerow": imagerow,
-        "date": imagedate
-    }, function(data) {
-        console.log(data);
-        var result = JSON.parse(data);
-        mySwiper1.prependSlide('<div class="swiper-slide"><a data-array="ProcessArr" data-index="0" data-id="' + table + '" id="' + result + '" class="deleteContent">X</a><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>')
-    });
-    var dots1 = processImage.siblings()[0];
-    $$(dots1).show();
+                $.each(processimagesDivs, function() {
+                    var id = this.id;
+                    var oldId = parseInt(id);
+                    $(this).attr('id', oldId + 1);
+                });
+                $.each(processimagesDelete, function() {
+                    var id = $(this).attr('data-index');
+                    var oldId = parseInt(id);
+                    $(this).attr('data-index', oldId + 1);
+                });
 
-    mySwiper1.slideTo(0);
+                ProcessArr.unshift({
+                    url: image,
+                    caption: imagedate+"<br>"+learningInfo
+                });
+                var addImage = 'addImage';
+                var table = 'processimages';
+                var imagerow = 'processimage';
+                $$.post(connection, {
+                    "addImage": addImage,
+                    "imageData": image,
+                    "patientID": patientID,
+                    "table": table,
+                    "imagerow": imagerow,
+                    "date": imagedate,
+                    "info": learningInfo
+                }, function(data) {
+                    console.log(data);
+                    var result = JSON.parse(data);
+                    mySwiper1.prependSlide('<div class="swiper-slide"><a data-array="ProcessArr" data-index="0" data-id="' + table + '" id="' + result + '" class="deleteContent">X</a><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>')
+                });
+                var dots1 = processImage.siblings()[0];
+                $$(dots1).show();
+
+                mySwiper1.slideTo(0);
+
+            }
+        }, {
+            text: 'Afbryd',
+            onClick: function() {
+                myApp.alert('Billedet er slettet!')
+            }
+        }]
+    });
 }
 
 function getPhotoProcess() {
@@ -1290,56 +1327,75 @@ function snapPictureTransfers() {
 }
 
 function onSuccessTransfers(imageData) {
-    var transfersImage = $("#transfers-image");
-    var patientID = $('#patientID').val();
-    image = 'data:image/jpeg;base64,' + imageData;
-    var imagedate = moment().format('DD-MM-YYYY, H:mm');
-    var totalDivs;
-    var countDivs = $('#transfers-image .swiper-slide').length;
-    if (countDivs == 0) {
-        var totalDivs = 0;
-        transfersImage.empty();
-    } else {
-        var totalDivs = countDivs;
-    }
 
-    var transferimagesDivs = $('.openTransferPhoto');
-    var transferimagesDelete = $('#transfers-image .deleteContent');
+    myApp.modal({
+        title: 'Skriv evt info til billedet',
+        text: '<textarea name="processImageInfo" placeholder="Tryk her for at skrive"></textarea>',
+        buttons: [{
+            text: 'Ok',
+            onClick: function() {
+                var learningInfo = $('textarea[name="processImageInfo"]').val();
+
+                var transfersImage = $("#transfers-image");
+                var patientID = $('#patientID').val();
+                image = 'data:image/jpeg;base64,' + imageData;
+                var imagedate = moment().format('DD-MM-YYYY, H:mm');
+                var totalDivs;
+                var countDivs = $('#transfers-image .swiper-slide').length;
+                if (countDivs == 0) {
+                    var totalDivs = 0;
+                    transfersImage.empty();
+                } else {
+                    var totalDivs = countDivs;
+                }
+
+                var transferimagesDivs = $('.openTransferPhoto');
+                var transferimagesDelete = $('#transfers-image .deleteContent');
 
 
-    $.each(transferimagesDivs, function() {
-        var id = this.id;
-        var oldId = parseInt(id);
-        $(this).attr('id',oldId+1);
-    });
-    $.each(transferimagesDelete, function() {
-        var id = $(this).attr('data-index');
-        var oldId = parseInt(id);
-        $(this).attr('data-index', oldId + 1);
-    });
+                $.each(transferimagesDivs, function() {
+                    var id = this.id;
+                    var oldId = parseInt(id);
+                    $(this).attr('id', oldId + 1);
+                });
+                $.each(transferimagesDelete, function() {
+                    var id = $(this).attr('data-index');
+                    var oldId = parseInt(id);
+                    $(this).attr('data-index', oldId + 1);
+                });
 
-    TransferArr.unshift({
-        url: image,
-        caption: imagedate
+                TransferArr.unshift({
+                    url: image,
+                    caption: imagedate+"<br>"+learningInfo
+                });
+                var addImage = 'addImage';
+                var table = 'transferimages'
+                var imagerow = 'transferimage'
+                $$.post(connection, {
+                    "addImage": addImage,
+                    "imageData": image,
+                    "patientID": patientID,
+                    "table": table,
+                    "imagerow": imagerow,
+                    "date": imagedate,
+                    "info":learningInfo
+                }, function(data) {
+                    var result = JSON.parse(data);
+                    console.log(result);
+                    mySwiper4.prependSlide('<div class="swiper-slide"><a data-array="TransferArr" data-index="0" data-id="' + table + '" id="' + result + '" class="deleteContent">X</a><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openTransferPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+                });
+                var dots = transfersImage.siblings()[0];
+                $$(dots).show();
+                mySwiper4.slideTo(0);
+
+            }
+        }, {
+            text: 'Afbryd',
+            onClick: function() {
+                myApp.alert('Billedet er slettet!')
+            }
+        }]
     });
-    var addImage = 'addImage';
-    var table = 'transferimages'
-    var imagerow = 'transferimage'
-    $$.post(connection, {
-        "addImage": addImage,
-        "imageData": image,
-        "patientID": patientID,
-        "table": table,
-        "imagerow": imagerow,
-        "date": imagedate
-    }, function(data) {
-        var result = JSON.parse(data);
-        console.log(result);
-        mySwiper4.prependSlide('<div class="swiper-slide"><a data-array="TransferArr" data-index="0" data-id="' + table + '" id="' + result + '" class="deleteContent">X</a><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openTransferPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
-    });
-    var dots = transfersImage.siblings()[0];
-    $$(dots).show();
-    mySwiper4.slideTo(0);
 }
 
 function getPhotoTransfers() {
@@ -1863,7 +1919,7 @@ function getImages(id, type) {
                 $.each(result, function() {
                     TransferArr.push({
                         url: this.transferimage,
-                        caption: this.transferimagedate
+                        caption: this.transferimagedate+"<br>"+this.transferimageinfo
                     });
                 });
                 for (var i = 0; i < result.length; i++) {
@@ -1877,7 +1933,7 @@ function getImages(id, type) {
                 $.each(result, function() {
                     PositioningArr.push({
                         url: this.positioningimage,
-                        caption: this.positioningimagedate
+                        caption: this.positioningimagedate+"<br>"+this.positioningimageinfo
                     });
                 });
                 for (var i = 0; i < result.length; i++) {
@@ -2118,7 +2174,9 @@ $$(document).on("click", ".openTransferPhoto", function() {
 
     var myPhotoBrowserDarkTransfer = myApp.photoBrowser({
         photos: TransferArr,
-        theme: 'dark'
+        theme: 'dark',
+        captionsTemplate: '<div class="photo-browser-captions photo-browser-captions-dark active"><a class="minBrowser">Læs mere</a>{{captions}}</div>'
+
     });
 
     var indexNr = this.id;
@@ -2129,7 +2187,9 @@ $$(document).on("click", ".openPositioningPhoto", function() {
 
     var myPhotoBrowserDarkPositioning = myApp.photoBrowser({
         photos: PositioningArr,
-        theme: 'dark'
+        theme: 'dark',
+        captionsTemplate: '<div class="photo-browser-captions photo-browser-captions-dark active"><a class="minBrowser">Læs mere</a>{{captions}}</div>'
+        
     });
 
     var indexNr = this.id;

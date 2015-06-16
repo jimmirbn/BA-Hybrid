@@ -96,7 +96,7 @@ function getImages(id, type) {
                 $.each(result, function() {
                     TransferArr.push({
                         url: this.transferimage,
-                        caption: this.transferimagedate
+                        caption: this.transferimagedate+"<br>"+this.transferimageinfo
                     });
                 });
                 for (var i = 0; i < result.length; i++) {
@@ -110,7 +110,7 @@ function getImages(id, type) {
                 $.each(result, function() {
                     PositioningArr.push({
                         url: this.positioningimage,
-                        caption: this.positioningimagedate
+                        caption: this.positioningimagedate+"<br>"+this.positioningimageinfo
                     });
                 });
                 for (var i = 0; i < result.length; i++) {

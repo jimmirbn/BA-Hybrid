@@ -14,7 +14,9 @@ $$(document).on("click", ".openTransferPhoto", function() {
 
     var myPhotoBrowserDarkTransfer = myApp.photoBrowser({
         photos: TransferArr,
-        theme: 'dark'
+        theme: 'dark',
+        captionsTemplate: '<div class="photo-browser-captions photo-browser-captions-dark active"><a class="minBrowser">Læs mere</a>{{captions}}</div>'
+
     });
 
     var indexNr = this.id;
@@ -25,7 +27,9 @@ $$(document).on("click", ".openPositioningPhoto", function() {
 
     var myPhotoBrowserDarkPositioning = myApp.photoBrowser({
         photos: PositioningArr,
-        theme: 'dark'
+        theme: 'dark',
+        captionsTemplate: '<div class="photo-browser-captions photo-browser-captions-dark active"><a class="minBrowser">Læs mere</a>{{captions}}</div>'
+        
     });
 
     var indexNr = this.id;
