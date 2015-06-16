@@ -74,15 +74,14 @@
         background-color: $palette__blue;
         color: $palette__white;
     }
-    
-    &--50{
+    &--50 {
         width: 50%;
         margin: auto;
     }
-    &--delete{
+    &--delete {
         padding-left: 31px;
-        &:before{
-            content:'';
+        &:before {
+            content: '';
             display: block;
             height: 20px;
             width: 20px;
@@ -124,5 +123,22 @@
     &.active-state {
         background-color: $palette__blue--light;
         color: $palette__white;
+    }
+}
+
+.deleteContent {
+    color: $palette__white;
+    font-size: 17px;
+    z-index: 99999;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: $palette__blue;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    line-height: 20px;
+    &:hover{
+        cursor: pointer;
     }
 }

@@ -16,29 +16,29 @@ function onSuccessProcess(imageData) {
     var countDivs = $('#process-image .swiper-slide').length;
     if (countDivs == 0) {
         var totalDivs = 0;
+        processImage.empty();
     } else {
         var totalDivs = countDivs;
     };
 
     var processimagesDivs = $('.openProcessPhoto');
+    var processimagesDelete = $('#process-image .deleteContent');
 
     $.each(processimagesDivs, function() {
         var id = this.id;
         var oldId = parseInt(id);
-        $(this).attr('id',oldId+1);
+        $(this).attr('id', oldId + 1);
+    });
+    $.each(processimagesDelete, function() {
+        var id = $(this).attr('data-index');
+        var oldId = parseInt(id);
+        $(this).attr('data-index', oldId + 1);
     });
 
     ProcessArr.unshift({
         url: image,
         caption: imagedate
     });
-    
-    var dots1 = processImage.siblings()[0];
-    $$(dots1).show();
-    mySwiper1.prependSlide('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>')
-
-    // processImage.prepend('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
-    mySwiper1.slideTo(0);
     var addImage = 'addImage';
     var table = 'processimages';
     var imagerow = 'processimage';
@@ -51,17 +51,16 @@ function onSuccessProcess(imageData) {
         "date": imagedate
     }, function(data) {
         console.log(data);
-        // if(result === "success"){
-
-        //   console.log('success');
-        // } else{
-        //     myApp.alert('Sorry, something went wrong, try again');
-        // }
+        var result = JSON.parse(data);
+        mySwiper1.prependSlide('<div class="swiper-slide"><a data-array="ProcessArr" data-index="0" data-id="' + table + '" id="' + result + '" class="deleteContent">X</a><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>')
     });
+    var dots1 = processImage.siblings()[0];
+    $$(dots1).show();
+
+    mySwiper1.slideTo(0);
 }
 
 function getPhotoProcess() {
-    //Specify the source to get the photos.
     navigator.camera.getPicture(onSuccessProcess, onFail, {
         quality: 50,
         targetWidth: 1280,

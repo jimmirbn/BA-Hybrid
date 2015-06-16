@@ -23,22 +23,21 @@ function patientInfo(whereistheidfrom, newid) {
         $$('.noPatient').hide();
         var result = JSON.parse(data);
         for (var i = 0; i < result.length; i++) {
+            var roomnr = result[i].roomnr;
             var name = result[i].fullname;
             var profileimage = result[i].profileimage;
             var infotext = result[i].infotext;
 
             var born = result[i].born;
-            var bornDate = moment(born).format('DD-MM-YYYY');
 
             var inlaid = result[i].inlaid;
-            var inlaidDate = moment(inlaid).format('DD-MM-YYYY');
-            var inlaidWeek = moment(inlaid).week();
 
             profileImage.append('<img src="' + profileimage + '" alt="' + name + '">');
             patientName.text(name);
-            patientBorn.text('Født: ' + bornDate);
-            patientinlaid.text('Indlagt: ' + inlaidDate + ' (Uge: ' + inlaidWeek + ')');
+            patientBorn.text('CPR: ' + born);
+            patientinlaid.text('Indlagt: ' + inlaid);
             patientText.text(infotext);
+            patientRoom.text("Stue nr: "+roomnr);
 
         }
 
@@ -89,7 +88,8 @@ function getImages(id, type) {
                 for (var i = 0; i < result.length; i++) {
                     var image = result[i].processimage;
                     var imagedate = result[i].processimagedate;
-                    processImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="'+i+'" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+                    var id = result[i].id;
+                    processImage.append('<div class="swiper-slide"><a data-array="ProcessArr" data-index="'+i+'" data-id="'+type+'" id="'+id+'" class="deleteContent">X</a><p class="sliderDate">' + imagedate + '</p><a id="'+i+'" href="#" class="openPhoto openProcessPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
                 }
             }
             if (type == 'transferimages') {
@@ -102,7 +102,8 @@ function getImages(id, type) {
                 for (var i = 0; i < result.length; i++) {
                     var image = result[i].transferimage;
                     var imagedate = result[i].transferimagedate;
-                    transfersImage.append('<div class="swiper-slide test"><p class="sliderDate">' + imagedate + '</p><a id="'+i+'" href="#" class="openPhoto openTransferPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+                    var id = result[i].id;
+                    transfersImage.append('<div class="swiper-slide test"><a data-array="TransferArr" data-index="'+i+'" data-id="'+type+'" id="'+id+'" class="deleteContent">X</a><p class="sliderDate">' + imagedate + '</p><a id="'+i+'" href="#" class="openPhoto openTransferPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
                 }
             }
             if (type == 'positioningimages') {
@@ -115,7 +116,8 @@ function getImages(id, type) {
                 for (var i = 0; i < result.length; i++) {
                     var image = result[i].positioningimage;
                     var imagedate = result[i].positioningimagedate;
-                    positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="'+i+'" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+                    var id = result[i].id;
+                    positioningImage.append('<div class="swiper-slide"><a data-array="PositioningArr" data-index="'+i+'" data-id="'+type+'" id="'+id+'" class="deleteContent">X</a><p class="sliderDate">' + imagedate + '</p><a id="'+i+'" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
                 }
             }
         }
@@ -155,21 +157,24 @@ function getNotes(id, type) {
                 for (var i = 0; i < result.length; i++) {
                     var note = result[i].processnote;
                     var notedate = result[i].processnotedate;
-                    processNotes.append('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                    var id = result[i].id;
+                    processNotes.append('<div class="swiper-slide"><a data-index="'+i+'" data-id="'+type+'" id="'+id+'" class="deleteContent">X</a><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
                 }
             }
             if (type == 'transfernotes') {
                 for (var i = 0; i < result.length; i++) {
                     var note = result[i].transfernote;
                     var notedate = result[i].transfernotedate;
-                    transfersNotes.append('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                    var id = result[i].id;
+                    transfersNotes.append('<div class="swiper-slide"><a data-index="'+i+'" data-id="'+type+'" id="'+id+'" class="deleteContent">X</a><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
                 }
             }
             if (type == 'positioningnotes') {
                 for (var i = 0; i < result.length; i++) {
                     var note = result[i].positioningnote;
                     var notedate = result[i].positioningnotedate;
-                    positioningNotes.append('<div class="swiper-slide test"><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
+                    var id = result[i].id;
+                    positioningNotes.append('<div class="swiper-slide"><a data-index="'+i+'" data-id="'+type+'" id="'+id+'" class="deleteContent">X</a><p class="sliderDate">' + notedate + '</p><p class="sliderNote">' + note + '</p></div>');
                 }
             }
         }
@@ -219,7 +224,8 @@ function getVideos(id, type) {
                     var video = result[i].processvideo;
                     var videodate = result[i].processvideodate;
                     var videotitle = result[i].processvideotitle;
-                    processVideo.append('<div class="swiper-slide"><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a id="'+i+'" href="#" class="openVideo openProcessVideo"><video controls><source type="video/mp4" src="' + video + '"></video></a></div>');
+                    var id = result[i].id;
+                    processVideo.append('<div class="swiper-slide"><a data-array="ProcessVideoArr" data-index="'+i+'" data-id="processvideo" id="'+id+'" class="deleteContent">X</a><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a id="'+i+'" href="#" class="openVideo openProcessVideo"><video controls><source type="video/mp4" src="' + video + '"></video></a></div>');
                 }
             }
             if (type == 'transfervideos') {
@@ -233,7 +239,8 @@ function getVideos(id, type) {
                     var video = result[i].transfervideo;
                     var videodate = result[i].transfervideodate;
                     var videotitle = result[i].transfervideotitle;
-                    transfersVideo.append('<div class="swiper-slide"><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a id="'+i+'" href="#" class="openVideo openTransferVideo"><video controls><source type="video/mp4" src="' + video + '"></video></a></div>');
+                    var id = result[i].id;
+                    transfersVideo.append('<div class="swiper-slide"><a data-array="TransferVideoArr" data-index="'+i+'" data-id="transfervideo" id="'+id+'" class="deleteContent">X</a><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a id="'+i+'" href="#" class="openVideo openTransferVideo"><video controls><source type="video/mp4" src="' + video + '"></video></a></div>');
                 }
             }
             if (type == 'positioningvideos') {
@@ -247,7 +254,8 @@ function getVideos(id, type) {
                     var video = result[i].positioningvideo;
                     var videodate = result[i].positioningvideodate;
                     var videotitle = result[i].positioningvideotitle;
-                    positioningVideo.append('<div class="swiper-slide"><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a id="'+i+'" href="#" class="openVideo openPositioningVideo"><video controls><source type="video/mp4" src="' + video + '"></video></a></div>');
+                    var id = result[i].id;
+                    positioningVideo.append('<div class="swiper-slide"><a data-array="PositioningVideoArr" data-index="'+i+'" data-id="positioningvideo" id="'+id+'" class="deleteContent">X</a><h3 class="videoTitle">' + videotitle + '</h3><p class="sliderDate">' + videodate + '</p><a id="'+i+'" href="#" class="openVideo openPositioningVideo"><video controls><source type="video/mp4" src="' + video + '"></video></a></div>');
                 }
             }
         }

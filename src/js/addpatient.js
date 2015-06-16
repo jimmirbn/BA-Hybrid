@@ -50,13 +50,18 @@ $$('.addPatient').on('click', function() {
     var imageSrc = $('.profileImage img').attr('src');
     var fullname = $('input[name="fullname"]').val();
     var born = $('input[name="born"]').val();
+    var firstFour = born.replace(/-/g, '').slice(0, -4);
+    var lastTwo = born.replace(/-/g, '').slice(6, 8);
+    var newBorn = firstFour + lastTwo;
+    var cpr = $('input[name="cpr"]').val();
     var inlaid = $('input[name="inlaid"]').val();
     var roomnr = $('select[name="roomnr"]').val();
     var description = $('textarea[name="description"]').val();
+    var fullCpr = newBorn + "-" + cpr;
     $.post(connection, {
         "addPatient": addPatient,
         "fullname": fullname,
-        "born": born,
+        "born": fullCpr,
         "inlaid": inlaid,
         "roomnr": roomnr,
         "description": description,
@@ -69,19 +74,23 @@ $$('.addPatient').on('click', function() {
             emptyPatientInfo();
 
             localStorage.setItem("lastPatient", result);
-            btnDelete.attr('id',result);
+            $('#patientID').val(result);
+
+            btnDelete.attr('id', result);
             if (imageSrc != undefined) {
                 profileImage.append('<img src="' + imageSrc + '" alt="' + fullname + '">');
             }
             patientName.text(fullname);
-            patientBorn.text('Født: ' + born);
+            patientBorn.text('CPR: ' + fullCpr);
             patientinlaid.text('Indlagt: ' + inlaid);
             patientText.text(description);
+            patientRoom.text("Stue nr: " + roomnr);
             myApp.closeModal('.popup-addPatient');
 
             $('.profileImage').empty();
             $('input[name="fullname"]').val('');
             $('input[name="born"]').val('');
+            $('input[name="cpr"]').val('');
             $('input[name="inlaid"]').val('');
             $('select[name="roomnr"]').val('');
             $('textarea[name="description"]').val('');

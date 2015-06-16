@@ -3,6 +3,9 @@ $$(".toggler").click(function(event) {
     if (!$(this).hasClass('open')) {
         $(this).addClass('open');
     }
+    else{
+        $(this).removeClass('open')
+    }
 });
 
 $$(".panel-overlay").click(function(event) {

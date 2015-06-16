@@ -16,11 +16,14 @@ function onSuccessPositioning(imageData) {
     var countDivs = $('#positioning-image .swiper-slide').length;
     if (countDivs == 0) {
         var totalDivs = 0;
+        positioningImage.empty();
     } else {
         var totalDivs = countDivs;
     }
 
     var positioningimagesDivs = $('.openPositioningPhoto');
+    var positioningimagesDelete = $('#positioning-image .deleteContent');
+
 
     $.each(positioningimagesDivs, function() {
         var id = this.id;
@@ -28,16 +31,16 @@ function onSuccessPositioning(imageData) {
         $(this).attr('id',oldId+1);
     });
 
+    $.each(positioningimagesDelete, function() {
+        var id = $(this).attr('data-index');
+        var oldId = parseInt(id);
+        $(this).attr('data-index', oldId + 1);
+    });
+
     PositioningArr.unshift({
         url: image,
         caption: imagedate
     });
-
-    var dots = positioningImage.siblings()[0];
-    $$(dots).show();
-    // positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
-    mySwiper7.prependSlide('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
-    mySwiper7.slideTo(0);
     var addImage = 'addImage';
     var table = 'positioningimages';
     var imagerow = 'positioningimage';
@@ -51,13 +54,13 @@ function onSuccessPositioning(imageData) {
     }, function(data) {
         var result = JSON.parse(data);
         console.log(result);
-        // if(result === "success"){
-
-        //   console.log('success');
-        // } else{
-        //     myApp.alert('Sorry, something went wrong, try again');
-        // }
+        mySwiper7.prependSlide('<div class="swiper-slide"><a data-array="PositioningArr" data-index="0" data-id="' + table + '" id="' + result + '" class="deleteContent">X</a><p class="sliderDate">' + imagedate + '</p><a id="0" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
     });
+
+    var dots = positioningImage.siblings()[0];
+    $$(dots).show();
+    // positioningImage.append('<div class="swiper-slide"><p class="sliderDate">' + imagedate + '</p><a id="' + totalDivs + '" href="#" class="openPhoto openPositioningPhoto"><img class="photo" src="' + image + '" alt="' + imagedate + '"></a></div>');
+    mySwiper7.slideTo(0);
 }
 
 function getPhotoPositioning() {

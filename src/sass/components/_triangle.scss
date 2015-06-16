@@ -3,7 +3,7 @@
     @include transition(transform 200ms ease, opacity 200ms ease);
     &:not(:nth-child(1n+3)) {
         font-size: 5px;
-        @include inline-block;
+        display: inline-block;
         text-indent: -9999px;
         width: 5em;
         height: 5em;

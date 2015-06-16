@@ -584,6 +584,11 @@ a {
   height: 29px;
   background-image: url(../img/i-form-door.png);
 }
+.popup-addPatient i.icon.icon-form-cpr {
+  width: 29px;
+  height: 29px;
+  background-image: url(../img/i-form-cpr.png);
+}
 
 .popup-addNote .row {
   width: 50%;
@@ -1313,6 +1318,23 @@ div[data-page="learning"] .navbar .navbar-on-center {
   color: #fff;
 }
 
+.deleteContent {
+  color: #fff;
+  font-size: 17px;
+  z-index: 99999;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: #009ceb;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  line-height: 20px;
+}
+.deleteContent:hover {
+  cursor: pointer;
+}
+
 .login-screen, html.with-statusbar-overlay .popup.tablet-fullscreen, html.with-statusbar-overlay body > .photo-browser {
   height: 100% !important;
   top: 0 !important;
@@ -1409,6 +1431,9 @@ textarea[name="learningInfo"] {
 
 .content-block {
   margin: 0;
+}
+.content-block .content-block-inner {
+  color: #fff;
 }
 .content-block .content-block-inner:before, .content-block .content-block-inner:after {
   background-color: transparent;

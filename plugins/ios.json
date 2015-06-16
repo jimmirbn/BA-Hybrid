@@ -59,15 +59,15 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Capture\"><param name=\"ios-package\" value=\"CDVCapture\" /></feature>",
                             "count": 1
                         },
                         {
                             "xml": "<feature name=\"Media\"><param name=\"ios-package\" value=\"CDVSound\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
                             "count": 1
                         },
                         {
@@ -103,13 +103,13 @@
         "cordova-plugin-file": {
             "PACKAGE_NAME": "com.phonegap.patientInfo"
         },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.phonegap.patientInfo"
+        },
         "cordova-plugin-media-capture": {
             "PACKAGE_NAME": "com.phonegap.patientInfo"
         },
         "cordova-plugin-media": {
-            "PACKAGE_NAME": "com.phonegap.patientInfo"
-        },
-        "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.phonegap.patientInfo"
         },
         "cordova-plugin-camera": {

@@ -17,25 +17,7 @@ function captureVideoProcess() {
 function uploadFileProcess(mediaFile) {
 
     myApp.prompt('Giv videon en title', 'Video title', function(value) {
-        // console.log('Upload file' + mediaFile.fullPath);
 
-        //     var options = new FileUploadOptions();
-        //     options.headers = {
-        //         Connection: "close"
-        //     };
-        //     var params = {};
-        //     params.process = "process";
-        //     params.id = $$('#patientID').val();
-        //     params.videotitle = value;
-
-        //     options.params = params;
-        //     var ft = new FileTransfer(),
-        //         path = mediaFile.fullPath,
-        //         name = mediaFile.name;
-
-        //     $$('.loading').show();
-
-        //     ft.upload(path, connectionVideo, winProcess, fail, options);
         copyBase(mediaFile, value);
     });
 }
@@ -45,7 +27,7 @@ function copyBase(mediaFile, title) {
     // console.log('Mediafile copybase ' + mediaFile.fullPath);
     var DocPath = cordova.file.documentsDirectory;
     var d = $.now();
-    var newName = d + "movie.mov";
+    var newName = d + " "+title+".mov";
     var fullFile = 'file://' + mediaFile.fullPath;
     window.resolveLocalFileSystemURL(fullFile,
         function(file) {
@@ -82,11 +64,40 @@ function copyBase(mediaFile, title) {
 };
 
 function winProcess(url, title) {
-    console.log('winProcess function ' + url);
+    var processVideo = $("#process-video");
     var id = $$('#patientID').val();
+    if ($("#process-video .swiper-slide").length == 0) {
+        processVideo.empty();
+    }
+    var videodate = moment().format('DD-MM-YYYY, H:mm');
+    var countDivs = $('#process-video .swiper-slide').length;
+    if (countDivs == 0) {
+        var totalDivs = 0;
+    } else {
+        var totalDivs = countDivs;
+    }
+    var processvideosDivs = $('.openProcessVideo');
+    var processvideosDelete = $('#process-video .deleteContent');
+
+
+    $.each(processvideosDivs, function() {
+        var id = this.id;
+        var oldId = parseInt(id);
+        $(this).attr('id',oldId+1);
+    });
+    $.each(processvideosDelete, function() {
+        var id = $(this).attr('data-index');
+        var oldId = parseInt(id);
+        $(this).attr('data-index', oldId + 1);
+    });
+    ProcessVideoArr.unshift({
+        html: '<video controls=""><source type="video/mp4" src="' + url + '"></video>',
+        caption: videodate
+    });
+    
     var process = "process";
     var videotitle = title;
-    var videodate = moment().format('DD-MM-YYYY, H:mm');
+    var table = "processvideo";
     $$.post(connectionVideo, {
         "process": process,
         'id': id,
@@ -95,42 +106,13 @@ function winProcess(url, title) {
         'date':videodate
     }, function(data) {
         console.log(data);
+        var result = JSON.parse(data);
+
+    mySwiper2.prependSlide('<div class="swiper-slide"><a data-array="ProcessVideoArr" data-index="0" data-id="' + table + '" id="' + result + '" class="deleteContent">X</a><h3 class="videoTitle">' + title + '</h3><p class="sliderDate">' + videodate + '</p><a id="0" href="#" class="openVideo openProcessVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
 
     });
 
-    var processVideo = $("#process-video");
-    
-    var countDivs = $('#process-video .swiper-slide').length;
-    if (countDivs == 0) {
-        var totalDivs = 0;
-    } else {
-        var totalDivs = countDivs;
-    }
-    var processvideosDivs = $('.openProcessVideo');
-
-
-    $.each(processvideosDivs, function() {
-        var id = this.id;
-        var oldId = parseInt(id);
-        $(this).attr('id',oldId+1);
-    });
-
-
-    if ($("#process-video .swiper-slide").length == 0) {
-        processVideo.empty();
-    }
     var dots = processVideo.siblings()[0];
     $$(dots).show();
-    ProcessVideoArr.unshift({
-        html: '<video controls=""><source type="video/mp4" src="' + url + '"></video>',
-        caption: videodate
-    });
-    mySwiper2.prependSlide('<div class="swiper-slide"><h3 class="videoTitle">' + title + '</h3><p class="sliderDate">' + videodate + '</p><a id="0" href="#" class="openVideo openProcessVideo"><video controls=""><source type="video/mp4" src="' + url + '"></video></a></div>');
     mySwiper2.slideTo(0);
 }
-
-// function fail(error) {
-//     alert("An error has occurred: Code = " + error.code);
-//     console.log("upload error source " + error.source);
-//     console.log("upload error target " + error.target);
-// }

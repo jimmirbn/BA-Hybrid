@@ -178,6 +178,7 @@
                                                 <h1 class="text-bold" id="patientName"></h1>
                                                 <p id="patientBorn"></p>
                                                 <p id="patientinlaid"></p>
+                                                <p id="patientinRoom"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -292,7 +293,7 @@
                             </div>
                         </div>
                         <div class="noPatient">
-                            <h2>Opret nu patient<br>eller gå til menu</h2>
+                            <h2>Opret ny patient<br>eller gå til menu</h2>
                         </div>
                     </div>
                 </div>
@@ -314,23 +315,36 @@
                 <ul>
                     <!-- Text inputs -->
                     <li>
-                        <div class="item-content">
+                        <div class="item-content fullnameInput">
                             <div class="item-media"><i class="icon icon-form-name"></i></div>
                             <div class="item-inner">
                                 <div class="item-title label">Fulde navn</div>
                                 <div class="item-input">
-                                    <input type="text" name="fullname" placeholder="Fulde navn">
+                                    <input class="inputName" type="text" name="fullname" placeholder="Fulde navn">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content birthdayInput">
+                            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Fødselsdato</div>
+                                <div class="item-input">
+                                    <!-- <input class="inputBirth" type="date" name="born" placeholder="Fødselsdato"> -->
+                                    <input type="text" name="born" placeholder="Fødselsdato" readonly id="birthdayInput">
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="item-content">
-                            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                            <div class="item-media"><i class="icon icon-form-cpr"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Fødselsdato</div>
+                                <div class="item-title label">Sidste 4 cifre i CPR</div>
                                 <div class="item-input">
-                                    <input type="date" name="born" placeholder="Fødselsdato">
+                                    <!-- <input class="inputBirth" type="date" name="born" placeholder="Fødselsdato"> -->
+                                    <input type="text" name="cpr" placeholder="cpr" maxlength="4">
                                 </div>
                             </div>
                         </div>
@@ -341,7 +355,8 @@
                             <div class="item-inner">
                                 <div class="item-title label">Indlæggelsesdato</div>
                                 <div class="item-input">
-                                    <input type="date" name="inlaid" placeholder="Indlæggelsesdato">
+                                    <!-- <input type="date" name="inlaid" placeholder="Indlæggelsesdato"> -->
+                                    <input type="text" name="inlaid" placeholder="Indlæggelsesdato" readonly id="inlaidInput">
                                 </div>
                             </div>
                         </div>
@@ -377,12 +392,12 @@
                         </div>
                     </li>
                     <li class="align-top">
-                        <div class="item-content">
+                        <div class="item-content patientInput">
                             <div class="item-media"><i class="icon icon-form-comment"></i></div>
                             <div class="item-inner">
                                 <div class="item-title label">Patientinfo og mål for forløb</div>
                                 <div class="item-input">
-                                    <textarea placeholder="Tryk her for at tilføje tekst" name="description"></textarea>
+                                    <textarea class="inputPatient" placeholder="Tryk her for at tilføje tekst" name="description"></textarea>
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,3 @@
-
 var app = {
     // Application Constructor
     initialize: function() {
@@ -21,14 +20,14 @@ var app = {
         StatusBar.backgroundColorByHexString("#000000");
     },
 };
-
+    
 // var connection = "http://169.254.32.78/api.php";
 // var connectionVideo = "http://169.254.32.78/uploadvideo.php";
 // var connectionSearch = "http://169.254.32.78/search.php";
 var connection = "http://192.168.1.7/api.php";
 var connectionVideo = "http://192.168.1.7/uploadvideo.php";
 var connectionSearch = "http://192.168.1.7/search.php";
-// var connection = "http://slocalhost/api.php";
+// var connection = "http://localhost/api.php";
 // var connectionVideo = "http://localhost/uploadvideo.php";
 // var connectionSearch = "http://localhost/search.php";
 
@@ -37,6 +36,7 @@ var $$ = Dom7;
 
 var myApp = new Framework7({
     fastClicks: false,
+    modalTitle: 'Obs!'
     // onAjaxStart: function(xhr) {
     //     myApp.showIndicator();
     // },
@@ -66,7 +66,17 @@ var ProcessVideoArr = [];
 var TransferVideoArr = [];
 var PositioningVideoArr = [];
 var LearningArr = [];
-moment.locale('da');
+moment.locale('da',{
+     longDateFormat : {
+        LT : "HH:mm",
+        LTS : "HH:mm:ss",
+        L : "DDMMYY",
+        LL : "D MMMM YYYY",
+        LLL : "D MMMM YYYY LT",
+        LLLL : "dddd D MMMM YYYY LT"
+    },
+});
+
 $$(document).on('pageInit', function(e) {
     var page = e.detail.page;
     if (page.name === 'left-page-1') {
@@ -254,6 +264,56 @@ function onFail(message) {
     alert('An error occured: ' + message);
 }
 
+$.fn.capitalize = function() {
+    $.each(this, function() {
+        var split = this.value.split(' ');
+        for (var i = 0, len = split.length; i < len; i++) {
+            split[i] = split[i].charAt(0).toUpperCase() + split[i].slice(1).toLowerCase();
+        }
+        this.value = split.join(' ');
+    });
+    return this;
+};
+
+$('.inputName').on('keyup', function() {
+    $(this).capitalize();
+});
+$$(document).on("click", ".fullnameInput", function() {
+    $('.inputName').focus();
+});
+$$(document).on("click", ".patientInput", function() {
+    $('.inputPatient').focus();
+});
+var birthdayInput = myApp.calendar({
+    input: '#birthdayInput',
+    toolbar: true,
+    toolbarCloseText: 'Vælg',
+    convertToPopover: false,
+    dateFormat: 'dd-mm-yyyy',
+    toolbarTemplate:
+    '<div class="toolbar">' +
+        '<div class="toolbar-inner">' +
+            '{{monthPicker}}' +
+            '{{yearPicker}}' +
+            '<a href="#" class="link close-picker">{{closeText}}</a>' +
+        '</div>' +
+    '</div>',
+}); 
+var inlaidInput = myApp.calendar({
+    input: '#inlaidInput',
+    toolbar: true,
+    toolbarCloseText: 'Vælg',
+    convertToPopover: false,
+    dateFormat: 'dd-mm-yyyy',
+    toolbarTemplate:
+    '<div class="toolbar">' +
+        '<div class="toolbar-inner">' +
+            '{{monthPicker}}' +
+            '{{yearPicker}}' +
+            '<a href="#" class="link close-picker">{{closeText}}</a>' +
+        '</div>' +
+    '</div>',
+}); 
 
 function emptyPatientInfo() {
     var profileImage = $("#profileImage");
@@ -261,6 +321,7 @@ function emptyPatientInfo() {
     var patientBorn = $("#patientBorn");
     var patientinlaid = $("#patientinlaid");
     var patientText = $("#patientText");
+    var patientRoom = $("#patientinRoom");
 
     var positioningImage = $("#positioning-image");
     var positioningVideo = $("#positioning-video");
@@ -281,6 +342,7 @@ function emptyPatientInfo() {
     patientBorn.empty();
     patientinlaid.empty();
     patientText.empty();
+    patientRoom.empty();
     positioningVideo.empty();
     positioningImage.empty();
     positioningNotes.empty();
@@ -299,6 +361,7 @@ var patientName = $("#patientName");
 var patientBorn = $("#patientBorn");
 var patientinlaid = $("#patientinlaid");
 var patientText = $("#patientText");
+var patientRoom = $("#patientinRoom");
 
 var positioningImage = $("#positioning-image");
 var positioningVideo = $("#positioning-video");

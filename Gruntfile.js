@@ -333,11 +333,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('js_build', [
-        // 'ngAnnotate', 
         'concat:app',
-        // 'modernizr',
         'uglify:site',
-        // 'clean',
         'notify:js'
     ]);
 

@@ -9,6 +9,7 @@
 .content-block {
     margin: 0;
     .content-block-inner {
+        color: $palette__white;
         &:before, &:after {
             background-color: transparent;
         }
