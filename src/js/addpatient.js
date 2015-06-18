@@ -54,18 +54,22 @@ $$('.addPatient').on('click', function() {
     var firstFour = born.replace(/-/g, '').slice(0, -4);
     var lastTwo = born.replace(/-/g, '').slice(6, 8);
     var newBorn = firstFour + lastTwo;
+    var cpr = $('input[name="cpr"]').val().replace(/\s+/g, '');;
     var fullCpr = newBorn + "-" + cpr;
     
-    var cpr = $('input[name="cpr"]').val();
     var inlaid = $('input[name="inlaid"]').val();
-    var roomnr = $('select[name="roomnr"]').val();
+    var roomnr = $('input[name="roomnr"]').val();
+
+    var iRoomNr = roomnr.replace(/[^\d.]/g, '');
+
+
     var description = $('textarea[name="description"]').val();
     $.post(connection, {
         "addPatient": addPatient,
         "fullname": fullname,
         "born": fullCpr,
         "inlaid": inlaid,
-        "roomnr": roomnr,
+        "roomnr": iRoomNr,
         "description": description,
         "imageSrc": imageSrc
     }, function(data) {
@@ -87,7 +91,7 @@ $$('.addPatient').on('click', function() {
             patientinlaid.text('Indlagt: ' + inlaid);
             patientText.text(description);
 
-            patientRoom.text("Stue nr: " + roomnr);
+            patientRoom.text("Stue nr: " + iRoomNr);
             
             myApp.closeModal('.popup-addPatient');
 

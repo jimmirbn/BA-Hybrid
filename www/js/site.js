@@ -20,7 +20,7 @@ var app = {
         StatusBar.backgroundColorByHexString("#000000");
     },
 };
-    
+
 // var connection = "http://169.254.32.78/api.php";
 // var connectionVideo = "http://169.254.32.78/uploadvideo.php";
 // var connectionSearch = "http://169.254.32.78/search.php";
@@ -37,12 +37,12 @@ var $$ = Dom7;
 var myApp = new Framework7({
     fastClicks: false,
     modalTitle: 'Obs!'
-    // onAjaxStart: function(xhr) {
-    //     myApp.showIndicator();
-    // },
-    // onAjaxComplete: function(xhr) {
-    //     myApp.hideIndicator();
-    // }
+        // onAjaxStart: function(xhr) {
+        //     myApp.showIndicator();
+        // },
+        // onAjaxComplete: function(xhr) {
+        //     myApp.hideIndicator();
+        // }
 
 });
 // Add views
@@ -66,14 +66,14 @@ var ProcessVideoArr = [];
 var TransferVideoArr = [];
 var PositioningVideoArr = [];
 var LearningArr = [];
-moment.locale('da',{
-     longDateFormat : {
-        LT : "HH:mm",
-        LTS : "HH:mm:ss",
-        L : "DDMMYY",
-        LL : "D MMMM YYYY",
-        LLL : "D MMMM YYYY LT",
-        LLLL : "dddd D MMMM YYYY LT"
+moment.locale('da', {
+    longDateFormat: {
+        LT: "HH:mm",
+        LTS: "HH:mm:ss",
+        L: "DDMMYY",
+        LL: "D MMMM YYYY",
+        LLL: "D MMMM YYYY LT",
+        LLLL: "dddd D MMMM YYYY LT"
     },
 });
 
@@ -280,15 +280,14 @@ $('.capitalLetter').on('keyup', function() {
 });
 
 function capitalize(textboxid, str) {
-      // string with alteast one character
-      if (str && str.length >= 1)
-      {       
-          var firstChar = str.charAt(0);
-          var remainingStr = str.slice(1);
-          str = firstChar.toUpperCase() + remainingStr;
-      }
-      document.getElementById(textboxid).value = str;
-  }
+    // string with alteast one character
+    if (str && str.length >= 1) {
+        var firstChar = str.charAt(0);
+        var remainingStr = str.slice(1);
+        str = firstChar.toUpperCase() + remainingStr;
+    }
+    document.getElementById(textboxid).value = str;
+}
 
 
 $$(document).on("click", ".focusInput", function() {
@@ -304,15 +303,14 @@ var birthdayInput = myApp.calendar({
     toolbarCloseText: 'Vælg',
     convertToPopover: false,
     dateFormat: 'dd-mm-yyyy',
-    toolbarTemplate:
-    '<div class="toolbar">' +
+    toolbarTemplate: '<div class="toolbar">' +
         '<div class="toolbar-inner">' +
-            '{{monthPicker}}' +
-            '{{yearPicker}}' +
-            '<a href="#" class="link close-picker">{{closeText}}</a>' +
+        '{{monthPicker}}' +
+        '{{yearPicker}}' +
+        '<a href="#" class="link close-picker">{{closeText}}</a>' +
         '</div>' +
-    '</div>',
-}); 
+        '</div>',
+});
 $$(document).on("click", ".birthdayInput", function() {
     birthdayInput.open();
 });
@@ -322,17 +320,52 @@ var inlaidInput = myApp.calendar({
     toolbarCloseText: 'Vælg',
     convertToPopover: false,
     dateFormat: 'dd-mm-yyyy',
-    toolbarTemplate:
-    '<div class="toolbar">' +
+    toolbarTemplate: '<div class="toolbar">' +
         '<div class="toolbar-inner">' +
-            '{{monthPicker}}' +
-            '{{yearPicker}}' +
-            '<a href="#" class="link close-picker">{{closeText}}</a>' +
+        '{{monthPicker}}' +
+        '{{yearPicker}}' +
+        '<a href="#" class="link close-picker">{{closeText}}</a>' +
         '</div>' +
-    '</div>',
-}); 
+        '</div>',
+});
 $$(document).on("click", ".inlaidInput", function() {
     inlaidInput.open();
+});
+
+var roomNumber = myApp.picker({
+    input: '#roomNumber',
+    convertToPopover: false,
+    cols: [{
+        textAlign: 'center',
+        values: ['Stue 1', 'Stue 2', 'Stue 3', 'Stue 4', 'Stue 5', 'Stue 6', 'Stue 7', 'Stue 8', 'Stue 9', 'Stue 10', 'Stue 11', 'Stue 12', 'Stue 13', 'Stue 14', 'Stue 15', 'Stue 16', 'Stue 17', 'Stue 18']
+    }]
+});
+$$(document).on("click", ".roomNumberInput", function() {
+    roomNumber.open();
+});
+
+var cprNumber = myApp.picker({
+    input: '#cpr',
+    convertToPopover: false,
+    rotateEffect: true,
+    cols: [
+        {
+            textAlign: 'left',
+            values: ('0 1 2 3 4 5 6 7 8 9').split(' ')
+        },
+        {
+            values: ('0 1 2 3 4 5 6 7 8 9').split(' ')
+        },
+        {
+            values: ('0 1 2 3 4 5 6 7 8 9').split(' ')
+        },
+        {
+            values: ('0 1 2 3 4 5 6 7 8 9').split(' ')
+        },
+    ]
+});
+$$(document).on("click", ".cprInput", function() {
+    cprNumber.open();
 });
 
 function emptyPatientInfo() {
@@ -789,18 +822,22 @@ $$('.addPatient').on('click', function() {
     var firstFour = born.replace(/-/g, '').slice(0, -4);
     var lastTwo = born.replace(/-/g, '').slice(6, 8);
     var newBorn = firstFour + lastTwo;
+    var cpr = $('input[name="cpr"]').val().replace(/\s+/g, '');;
     var fullCpr = newBorn + "-" + cpr;
     
-    var cpr = $('input[name="cpr"]').val();
     var inlaid = $('input[name="inlaid"]').val();
-    var roomnr = $('select[name="roomnr"]').val();
+    var roomnr = $('input[name="roomnr"]').val();
+
+    var iRoomNr = roomnr.replace(/[^\d.]/g, '');
+
+
     var description = $('textarea[name="description"]').val();
     $.post(connection, {
         "addPatient": addPatient,
         "fullname": fullname,
         "born": fullCpr,
         "inlaid": inlaid,
-        "roomnr": roomnr,
+        "roomnr": iRoomNr,
         "description": description,
         "imageSrc": imageSrc
     }, function(data) {
@@ -822,7 +859,7 @@ $$('.addPatient').on('click', function() {
             patientinlaid.text('Indlagt: ' + inlaid);
             patientText.text(description);
 
-            patientRoom.text("Stue nr: " + roomnr);
+            patientRoom.text("Stue nr: " + iRoomNr);
             
             myApp.closeModal('.popup-addPatient');
 

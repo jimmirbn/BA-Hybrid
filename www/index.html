@@ -339,13 +339,13 @@
                         </div>
                     </li>
                     <li>
-                        <div class="item-content focusInput">
+                        <div class="item-content cprInput">
                             <div class="item-media"><i class="icon icon-form-cpr"></i></div>
                             <div class="item-inner">
                                 <div class="item-title label">Sidste 4 cifre i CPR</div>
                                 <div class="item-input">
                                     <!-- <input class="inputBirth" type="date" name="born" placeholder="Fødselsdato"> -->
-                                    <input type="text" name="cpr" placeholder="cpr" maxlength="4">
+                                    <input id="cpr" type="text" readonly name="cpr" placeholder="cpr">
                                 </div>
                             </div>
                         </div>
@@ -363,12 +363,13 @@
                         </div>
                     </li>
                     <li>
-                        <div class="item-content">
+                        <div class="item-content roomNumberInput">
                             <div class="item-media"><i class="icon icon-form-door"></i></div>
                             <div class="item-inner">
                                 <div class="item-title label">Stue nr</div>
                                 <div class="item-input">
-                                    <select name="roomnr">
+                                <input type="text" name="roomnr" placeholder="Stue nr" readonly id="roomNumber">
+                                   <!--  <select name="roomnr">
                                         <option value="1">Stue 1</option>
                                         <option value="2">Stue 2</option>
                                         <option value="3">Stue 3</option>
@@ -387,7 +388,7 @@
                                         <option value="16">Stue 16</option>
                                         <option value="17">Stue 17</option>
                                         <option value="18">Stue 18</option>
-                                    </select>
+                                    </select> -->
                                 </div>
                             </div>
                         </div>
