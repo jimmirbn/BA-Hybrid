@@ -275,11 +275,25 @@ $.fn.capitalize = function() {
     return this;
 };
 
-$('.inputName').on('keyup', function() {
+$('.capitalLetter').on('keyup', function() {
     $(this).capitalize();
 });
-$$(document).on("click", ".fullnameInput", function() {
-    $('.inputName').focus();
+
+function capitalize(textboxid, str) {
+      // string with alteast one character
+      if (str && str.length >= 1)
+      {       
+          var firstChar = str.charAt(0);
+          var remainingStr = str.slice(1);
+          str = firstChar.toUpperCase() + remainingStr;
+      }
+      document.getElementById(textboxid).value = str;
+  }
+
+
+$$(document).on("click", ".focusInput", function() {
+    var inputBox = $(this).find('input[type="text"]');
+    inputBox.focus();
 });
 $$(document).on("click", ".patientInput", function() {
     $('.inputPatient').focus();
@@ -299,6 +313,9 @@ var birthdayInput = myApp.calendar({
         '</div>' +
     '</div>',
 }); 
+$$(document).on("click", ".birthdayInput", function() {
+    birthdayInput.open();
+});
 var inlaidInput = myApp.calendar({
     input: '#inlaidInput',
     toolbar: true,
@@ -314,6 +331,9 @@ var inlaidInput = myApp.calendar({
         '</div>' +
     '</div>',
 }); 
+$$(document).on("click", ".inlaidInput", function() {
+    inlaidInput.open();
+});
 
 function emptyPatientInfo() {
     var profileImage = $("#profileImage");
@@ -764,15 +784,17 @@ $$('.addPatient').on('click', function() {
     var addPatient = 'addPatient';
     var imageSrc = $('.profileImage img').attr('src');
     var fullname = $('input[name="fullname"]').val();
+    
     var born = $('input[name="born"]').val();
     var firstFour = born.replace(/-/g, '').slice(0, -4);
     var lastTwo = born.replace(/-/g, '').slice(6, 8);
     var newBorn = firstFour + lastTwo;
+    var fullCpr = newBorn + "-" + cpr;
+    
     var cpr = $('input[name="cpr"]').val();
     var inlaid = $('input[name="inlaid"]').val();
     var roomnr = $('select[name="roomnr"]').val();
     var description = $('textarea[name="description"]').val();
-    var fullCpr = newBorn + "-" + cpr;
     $.post(connection, {
         "addPatient": addPatient,
         "fullname": fullname,
@@ -799,7 +821,9 @@ $$('.addPatient').on('click', function() {
             patientBorn.text('CPR: ' + fullCpr);
             patientinlaid.text('Indlagt: ' + inlaid);
             patientText.text(description);
+
             patientRoom.text("Stue nr: " + roomnr);
+            
             myApp.closeModal('.popup-addPatient');
 
             $('.profileImage').empty();
